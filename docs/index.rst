@@ -6,12 +6,18 @@
 Welcome to Scrapple's documentation!
 ====================================
 
-Contents:
+Scrapple is a project aimed at designing a framework for building semi-automatic web wrappers. 
+
+Contribution guide
+------------------
+
+This part contains information about contributing to the project.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   history
+   dev/authors
+   
 
 Indices and tables
 ==================
