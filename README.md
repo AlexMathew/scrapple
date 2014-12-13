@@ -1,4 +1,4 @@
-SCRAPPLE
+scrapple
 ========
 
-A Python framework to build semi-automatic web wrappers.
+A framework for creating semi-automatic web scrapers
