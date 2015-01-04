@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 =================================
-Scrappple |version| documentation
+Scrapple |version| documentation
 =================================
 
 Scrapple is a project aimed at designing a framework for building semi-automatic web scrapers. This documentation contains everything about how Scrapple works.
@@ -44,7 +44,7 @@ Contribution guide
 This part contains information about contributing to the project.
 
 .. toctree::
-   :maxdepth: 1
+   :hidden:
 
    dev/authors
    
