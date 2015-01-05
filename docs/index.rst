@@ -47,6 +47,9 @@ This part contains information about contributing to the project.
    :hidden:
 
    dev/authors
+
+:doc:`dev/authors`
+    Contributors to the project
    
 
 Indices and tables
