@@ -9,9 +9,13 @@ The basic requirements for running Scrapple are:
 
 .. _Python2.7: https://www.python.org/downloads/release/python-278/
 
-On your Linux machine, install the necessary C libraries for the lxml module.
+If you're running Ubuntu, install the necessary C libraries for the lxml module.
 
 ``$ sudo apt-get install libxml2-dev libxslt-dev python-dev lib32z1-dev``
+
+If you're running any other Linux distro, follow the standard install procedures and install these libraries.
+
+You may not have to do this on your Windows machine.
 
 Install the requirements for running Scrapple with
 
