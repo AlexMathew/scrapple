@@ -47,9 +47,13 @@ This part contains information about contributing to the project.
    :hidden:
 
    dev/authors
+   dev/contributing
 
 :doc:`dev/authors`
     Contributors to the project
+
+:doc:`dev/contributing`
+    Details about contributing to Scrapple
    
 
 Indices and tables
