@@ -30,3 +30,8 @@ pip-delete-this-directory.txt
 docs/_build/
 
 */pages/
+
+# Tox
+
+.tox/
+scrapple.egg-info/
