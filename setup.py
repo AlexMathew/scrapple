@@ -32,6 +32,9 @@ setup(
     license="MIT",
     zip_safe=False,
     keywords='scrapple',
+    entry_points={
+        'console_scripts': ['scrapple = scrapple.cmd:run']
+    },
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
