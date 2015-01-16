@@ -1,0 +1,1 @@
+Name of the project. Used for setting project directory and config file name. Set as 'scrappleproject' by default.

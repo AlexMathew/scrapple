@@ -1,0 +1,8 @@
+Scrapple is a framework for creating web scrapers/crawlers.
+
+The 'scrapple' command provides several options for setting up and running your project.
+
+genconfig - Sets up the project and creates a template of the input JSON configuration file
+run - Runs the scraper/crawler according to the specified configuration
+generate - Generates a Python script which can be run natively to replicate the action of 'scrapple run'
+web - Opens a web interface to specify the configuration

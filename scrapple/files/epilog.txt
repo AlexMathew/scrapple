@@ -1,0 +1,1 @@
+Further details can be found on the tutorial in the Scrappple documentation - http://scrapple.readthedocs.org/en/latest/intro/tutorial.html
