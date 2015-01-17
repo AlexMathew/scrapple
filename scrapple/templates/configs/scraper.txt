@@ -1,0 +1,13 @@
+{
+	"project_name": "{{ projectname }}",
+	"selector_type": "{{ selector_type }}",
+	"scraping": {
+		"url": "{{ url }}",
+		"data": [
+			{
+				"field": "",
+				"selector": ""
+			}
+		]
+	}
+}
