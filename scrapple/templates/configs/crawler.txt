@@ -1,8 +1,8 @@
 {
-	"project_name": "{{ projectname }}",
-	"selector_type": "{{ selector_type }}",
+	"project_name": "{{ settings.projectname }}",
+	"selector_type": "{{ settings.selector_type }}",
 	"scraping": {
-		"url": "{{ url }}",
+		"url": "{{ settings.url }}",
 		"data": [
 			{
 				"field": "",
