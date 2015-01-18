@@ -21,10 +21,14 @@ Options:
 
 from __future__ import print_function
 from docopt import docopt
+from operator import itemgetter
 
 
 def run():
     args = docopt(__doc__, version='0.1')
+    commands = ['genconfig', 'run', 'generate', 'web']
+    select = itemgetter('genconfig', 'run', 'generate', 'web')
+    selectedCommand = commands[select(args).index(True)]
 
 
 if __name__ == '__main__':
