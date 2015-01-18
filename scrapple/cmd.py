@@ -23,13 +23,23 @@ from __future__ import print_function
 from docopt import docopt
 from operator import itemgetter
 
+from commands import genconfig, generate, run, web
 
-def run():
+
+def get_command_class(command):
+    cmdClass = getattr(eval(command), command.title() + 'Command')
+    return cmdClass
+
+
+def runCLI():
     args = docopt(__doc__, version='0.1')
-    commands = ['genconfig', 'run', 'generate', 'web']
+    command_list = ['genconfig', 'run', 'generate', 'web']
     select = itemgetter('genconfig', 'run', 'generate', 'web')
-    selectedCommand = commands[select(args).index(True)]
+    selectedCommand = command_list[select(args).index(True)]
+    cmdClass = get_command_class(selectedCommand)
+    object = cmdClass(args)
+    object.execute_command()
 
 
 if __name__ == '__main__':
-    run()
+    runCLI()
