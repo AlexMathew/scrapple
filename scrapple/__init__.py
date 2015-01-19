@@ -20,7 +20,7 @@ __status__ = "Development"
 __maintainer__ = "Alex Mathew"
 __email__ = "alexmathew003@gmail.com"
 
-__all__ = ["__version__"]
+__all__ = ["__version__", "command"]
 
 import sys
 if sys.version_info < (2, 7):

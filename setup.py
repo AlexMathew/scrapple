@@ -33,7 +33,7 @@ setup(
     zip_safe=False,
     keywords='scrapple',
     entry_points={
-        'console_scripts': ['scrapple = scrapple.cmd:run']
+        'console_scripts': ['scrapple = scrapple.cmd:runCLI']
     },
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
