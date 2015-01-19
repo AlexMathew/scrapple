@@ -24,7 +24,6 @@ from docopt import docopt
 from operator import itemgetter
 
 from scrapple.utils.dynamicdispatch import get_command_class
-from scrapple.commands import genconfig, generate, run, web
 
 
 def runCLI():
