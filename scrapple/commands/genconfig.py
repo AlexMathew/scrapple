@@ -28,7 +28,7 @@ class GenconfigCommand(command.Command):
         """
         print(Back.GREEN + Fore.BLACK + "Scrapple Genconfig")
         print(Back.RESET + Fore.RESET)
-        directory = os.path.join(scrapple.__path__, 'templates', 'configs')
+        directory = os.path.join(scrapple.__path__[0], 'templates', 'configs')
         with open(os.path.join(directory, self.args['--type'] + '.txt'), 'r') as f:
             template_content = f.read()
         print("\n\nUsing the", self.args['--type'], "template\n\n")
