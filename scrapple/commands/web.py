@@ -10,7 +10,7 @@ import webbrowser
 from multiprocessing import Process
 from colorama import init, Fore, Back
 
-from . import command
+from scrapple.commands import command
 
 class WebCommand(command.Command):
     """

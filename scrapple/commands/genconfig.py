@@ -10,7 +10,8 @@ import os
 import json
 from colorama import init, Fore, Back
 
-from . import command
+import scrapple
+from scrapple.commands import command
 
 class GenconfigCommand(command.Command):
     """
@@ -27,7 +28,7 @@ class GenconfigCommand(command.Command):
         """
         print(Back.GREEN + Fore.BLACK + "Scrapple Genconfig")
         print(Back.RESET + Fore.RESET)
-        directory = os.path.join(os.getcwd(), 'templates', 'configs')
+        directory = os.path.join(scrapple.__path__, 'templates', 'configs')
         with open(os.path.join(directory, self.args['--type'] + '.txt'), 'r') as f:
             template_content = f.read()
         print("\n\nUsing the", self.args['--type'], "template\n\n")

@@ -23,12 +23,8 @@ from __future__ import print_function
 from docopt import docopt
 from operator import itemgetter
 
-from commands import genconfig, generate, run, web
-
-
-def get_command_class(command):
-    cmdClass = getattr(eval(command), command.title() + 'Command')
-    return cmdClass
+from scrapple.utils.dynamicdispatch import get_command_class
+from scrapple.commands import genconfig, generate, run, web
 
 
 def runCLI():
