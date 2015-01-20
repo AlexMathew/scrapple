@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 try:
-    from setuptools import setup
+    from setuptools import setup, find_packages
 except ImportError:
-    from distutils.core import setup
+    from distutils.core import setup, find_packages
 
 
 readme = open('README.md').read()
@@ -12,7 +12,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 requirements = open('requirements.txt').read().split('\n')
 
-test_requirements = ['mock']
+test_requirements = ['mock', 'nose']
 
 setup(
     name='scrapple',
@@ -22,9 +22,7 @@ setup(
     author='Alex Mathew',
     author_email='alexmathew003@gmail.com',
     url='https://github.com/scrappleapp/scrapple',
-    packages=[
-        'scrapple',
-    ],
+    packages=find_packages(exclude=('tests',)),
     package_dir={'scrapple':
                  'scrapple'},
     include_package_data=True,
@@ -33,7 +31,7 @@ setup(
     zip_safe=False,
     keywords='scrapple',
     entry_points={
-        'console_scripts': ['scrapple = scrapple.cmd:run']
+        'console_scripts': ['scrapple = scrapple.cmd:runCLI']
     },
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
@@ -44,6 +42,8 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Topic :: Internet :: WWW/HTTP',
+        'Topic :: Software Development :: Libraries :: Application Frameworks',
     ],
     test_suite='tests',
     tests_require=test_requirements

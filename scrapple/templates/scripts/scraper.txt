@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+
+import json
+import os
+
+from scrapple.utils.selector import ScrappleSelector
+
+def task_{{ config.project_name }}():
+	"""
+	Scraper generated using `Scrapple <http://scrappleapp.github.io/scrapple>`_
+	"""
+	page = ScrappleSelector("{{ config['scraping']['url'] }}", "{{ config.selector_type }}")
+	results = dict()
+	{% for attr in config['scraping']['data'] %}
+	result[{{ attr.field }}] = page.extract("{{ attr.selector }}")
+	{% endfor %}
+	with open(os.path.join(os.getcwd(), '{{ config.output_file }}.json')) as f:
+		json.dump(results, f)
+	

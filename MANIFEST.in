@@ -1,0 +1,8 @@
+include README.md
+include AUTHORS.rst
+include LICENSE
+include MANIFEST.in
+recursive-include scrapple/templates *
+recursive-include scrapple/commands *
+recursive-include docs *
+prune docs/build
