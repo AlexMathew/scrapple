@@ -3,13 +3,13 @@
 import json
 import os
 
-from scrapple.utils.selector import ScrappleSelector
+from scrapple.selectors.{{ config.selector_type }} import {{ config.selector_type|title }}Selector
 
 def task_{{ config.project_name }}():
 	"""
 	Scraper generated using `Scrapple <http://scrappleapp.github.io/scrapple>`_
 	"""
-	page = ScrappleSelector("{{ config['scraping']['url'] }}", "{{ config.selector_type }}")
+	page = {{ config.selector_type|title }}Selector("{{ config['scraping']['url'] }}")
 	results = dict()
 	{% for attr in config['scraping']['data'] %}
 	result[{{ attr.field }}] = page.extract("{{ attr.selector }}")
