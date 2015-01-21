@@ -35,3 +35,7 @@ docs/_build/
 
 .tox/
 scrapple.egg-info/
+
+# Example files for tests
+
+tests/*.py

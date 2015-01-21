@@ -1,0 +1,1 @@
+{"scraping": {"url": "www.google.com", "data": [{"field": "title", "selector": "//title"}]}, "project_name": "project2", "selector_type": "css"}
