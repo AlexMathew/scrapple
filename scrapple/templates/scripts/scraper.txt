@@ -12,7 +12,9 @@ def task_{{ config.project_name }}():
 	page = {{ config.selector_type|title }}Selector("{{ config['scraping']['url'] }}")
 	results = dict()
 	{% for attr in config['scraping']['data'] %}
-	result["{{ attr.field }}"] = page.extract("{{ attr.selector }}")
+	{% if not attr.field == "" %}
+	result["{{ attr.field }}"] = page.extract_content("{{ attr.selector }}")
+	{% endif %}
 	{% endfor %}
 	with open(os.path.join(os.getcwd(), '{{ config.output_file }}.json')) as f:
 		json.dump(results, f)
