@@ -20,8 +20,22 @@ class XpathSelector(Selector):
 		self.tree = etree.HTML(self.content)
 
 
-	def extract(self):
+	def extract_content(self):
 		"""
-		Method defining extraction using XPath expressions
+		Method for performing the content extraction for the given XPath expression.
 		"""
-		pass
+		raise NotImplementedError
+
+
+	def extract_links(self):
+		"""
+		Method for performing the link extraction for the crawler.
+		"""
+		raise NotImplementedError
+
+
+	def extract_tabular(self):
+		"""
+		Method for performing the content extraction from tabular organized data.
+		"""
+		raise NotImplementedError

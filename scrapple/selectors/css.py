@@ -20,8 +20,22 @@ class CssSelector(Selector):
 		self.tree = Soup(self.content)
 
 
-	def extract(self):
+	def extract_content(self):
 		"""
-		Method defining extraction using CSS selectors
+		Method for performing the content extraction for the given CSS selector.
 		"""
-		pass
+		raise NotImplementedError
+
+
+	def extract_links(self):
+		"""
+		Method for performing the link extraction for the crawler.
+		"""
+		raise NotImplementedError
+
+
+	def extract_tabular(self):
+		"""
+		Method for performing the content extraction from tabular organized data.
+		"""
+		raise NotImplementedError
