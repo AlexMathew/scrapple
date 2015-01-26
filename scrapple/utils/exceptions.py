@@ -19,6 +19,6 @@ def handle_exceptions(args):
 		if args['--output_type'] not in ['json', 'csv']:
 			raise Exception("--output_type has to be 'json' or 'csv'")
 	if args['genconfig'] or args['generate'] or args['run']:
-		if projectname_re.search(args['<projectname>']).group is not None:
+		if projectname_re.search(args['<projectname>']) is not None:
 			raise Exception("<projectname> should consist of letters, digits or _")
 	return
