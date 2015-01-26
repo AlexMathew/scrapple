@@ -24,16 +24,21 @@ from docopt import docopt
 from operator import itemgetter
 
 from scrapple.utils.dynamicdispatch import get_command_class
+from scrapple.utils.exceptions import handle_exceptions
 
 
 def runCLI():
     args = docopt(__doc__, version='0.1')
-    command_list = ['genconfig', 'run', 'generate', 'web']
-    select = itemgetter('genconfig', 'run', 'generate', 'web')
-    selectedCommand = command_list[select(args).index(True)]
-    cmdClass = get_command_class(selectedCommand)
-    object = cmdClass(args)
-    object.execute_command()
+    try:
+        handle_exceptions(args)
+        command_list = ['genconfig', 'run', 'generate', 'web']
+        select = itemgetter('genconfig', 'run', 'generate', 'web')
+        selectedCommand = command_list[select(args).index(True)]
+        cmdClass = get_command_class(selectedCommand)
+        object = cmdClass(args)
+        object.execute_command()
+    except Exception as e:
+        print('\n', e, '\n')
 
 
 if __name__ == '__main__':
