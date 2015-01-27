@@ -35,8 +35,8 @@ def runCLI():
         select = itemgetter('genconfig', 'run', 'generate', 'web')
         selectedCommand = command_list[select(args).index(True)]
         cmdClass = get_command_class(selectedCommand)
-        object = cmdClass(args)
-        object.execute_command()
+        obj = cmdClass(args)
+        obj.execute_command()
     except Exception as e:
         print('\n', e, '\n')
 
