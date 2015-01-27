@@ -20,11 +20,15 @@ class XpathSelector(Selector):
 		self.tree = etree.HTML(self.content)
 
 
-	def extract_content(self):
+	def extract_content(self, selector):
 		"""
 		Method for performing the content extraction for the given XPath expression.
 		"""
-		raise NotImplementedError
+		try:
+			content = self.tree.xpath(selector)[0]
+			return content
+		except IndexError:
+			raise Exception("There is no content for the selector " + selector)
 
 
 	def extract_links(self):

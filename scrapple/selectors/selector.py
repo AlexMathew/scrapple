@@ -16,7 +16,7 @@ class Selector(object):
 		self.content = requests.get(url).content
 
 
-	def extract_content(self):
+	def extract_content(self, selector):
 		"""
 		Method for performing the content extraction for the particular selector type.
 		"""

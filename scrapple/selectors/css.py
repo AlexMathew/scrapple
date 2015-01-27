@@ -20,7 +20,7 @@ class CssSelector(Selector):
 		self.tree = Soup(self.content)
 
 
-	def extract_content(self):
+	def extract_content(self, selector):
 		"""
 		Method for performing the content extraction for the given CSS selector.
 		"""

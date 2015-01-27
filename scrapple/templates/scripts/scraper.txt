@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import json
 import os
 
@@ -12,11 +13,14 @@ def task_{{ config.project_name }}():
 	"""
 	page = {{ config.selector_type|title }}Selector("{{ config['scraping']['url'] }}")
 	results = dict()
-	{% for attr in config['scraping']['data'] %}
-	{% if not attr.field == "" %}
-	result["{{ attr.field }}"] = page.extract_content("{{ attr.selector }}")
-	{% endif %}
-	{% endfor %}
+	try:
+		{% for attr in config['scraping']['data'] %}
+		{% if not attr.field == "" %}
+		results["{{ attr.field }}"] = page.extract_content("{{ attr.selector }}")
+		{% endif %}
+		{% endfor %}
+	except Exception as e:
+		print(e)
 	with open(os.path.join(os.getcwd(), '{{ config.output_file }}.json')) as f:
 		json.dump(results, f)
 	
