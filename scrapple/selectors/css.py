@@ -16,7 +16,7 @@ class CssSelector(Selector):
 	"""
 	
 	def __init__(self, url):
-		super(CssSelector, self).__init__()
+		super(CssSelector, self).__init__(url)
 		self.tree = Soup(self.content)
 
 

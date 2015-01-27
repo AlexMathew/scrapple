@@ -5,6 +5,7 @@ import os
 
 from scrapple.selectors.{{ config.selector_type }} import {{ config.selector_type|title }}Selector
 
+
 def task_{{ config.project_name }}():
 	"""
 	Scraper generated using `Scrapple <http://scrappleapp.github.io/scrapple>`_
@@ -19,3 +20,6 @@ def task_{{ config.project_name }}():
 	with open(os.path.join(os.getcwd(), '{{ config.output_file }}.json')) as f:
 		json.dump(results, f)
 	
+
+if __name__ == '__main__':
+	task_{{ config.project_name }}()
