@@ -5,7 +5,7 @@ scrapple.selectors.css
 Defines the CSS selector
 """
 
-from bs4 import BeautifulSoup as Soup
+from lxml import etree, cssselect
 
 from scrapple.selectors.selector import Selector
 
@@ -17,14 +17,18 @@ class CssSelector(Selector):
 	
 	def __init__(self, url):
 		super(CssSelector, self).__init__(url)
-		self.tree = Soup(self.content)
 
 
 	def extract_content(self, selector):
 		"""
 		Method for performing the content extraction for the given CSS selector.
 		"""
-		raise NotImplementedError
+		try:
+			sel = cssselect.CSSSelector(selector)
+			content = sel(self.tree)[0].text
+			return content
+		except IndexError:
+			raise Exception("There is no content for the selector " + selector)
 
 
 	def extract_links(self):

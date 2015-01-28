@@ -14,6 +14,7 @@ class Selector(object):
 	
 	def __init__(self, url):
 		self.content = requests.get(url).content
+		self.tree = etree.HTML(self.content)
 
 
 	def extract_content(self, selector):

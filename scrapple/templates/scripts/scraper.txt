@@ -21,7 +21,7 @@ def task_{{ config.project_name }}():
 		{% endfor %}
 	except Exception as e:
 		print(e)
-	with open(os.path.join(os.getcwd(), '{{ config.output_file }}.json')) as f:
+	with open(os.path.join(os.getcwd(), '{{ config.output_file }}.json'), 'w') as f:
 		json.dump(results, f)
 	
 

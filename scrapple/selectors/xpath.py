@@ -17,7 +17,6 @@ class XpathSelector(Selector):
 	
 	def __init__(self, url):
 		super(XpathSelector, self).__init__(url)
-		self.tree = etree.HTML(self.content)
 
 
 	def extract_content(self, selector):
