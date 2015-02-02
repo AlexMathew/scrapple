@@ -5,7 +5,7 @@ scrapple.selectors.css
 Defines the CSS selector
 """
 
-from lxml import etree, cssselect
+from lxml import cssselect
 
 from scrapple.selectors.selector import Selector
 

@@ -5,8 +5,6 @@ scrapple.selectors.xpath
 Defines the XPath selector
 """
 
-from lxml import etree
-
 from scrapple.selectors.selector import Selector
 
 

@@ -6,6 +6,8 @@ Defines Scrapple selectors
 """
 
 import requests
+from lxml import etree
+
 
 class Selector(object):
 	"""
