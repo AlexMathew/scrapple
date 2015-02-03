@@ -19,13 +19,13 @@ class CssSelector(Selector):
 		super(CssSelector, self).__init__(url)
 
 
-	def extract_content(self, selector):
+	def extract_content(self, selector, attr):
 		"""
 		Method for performing the content extraction for the given CSS selector.
 		"""
 		try:
 			sel = cssselect.CSSSelector(selector)
-			content = sel(self.tree)[0].text
+			content = sel(self.tree)[0].get(attr)
 			return content
 		except IndexError:
 			raise Exception("There is no content for the selector " + selector)

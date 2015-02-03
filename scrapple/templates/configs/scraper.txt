@@ -6,7 +6,8 @@
 		"data": [
 			{
 				"field": "",
-				"selector": ""
+				"selector": "",
+				"attr": ""
 			}
 		]
 	}

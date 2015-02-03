@@ -12,17 +12,18 @@ def task_{{ config.project_name }}():
 	Scraper generated using `Scrapple <http://scrappleapp.github.io/scrapple>`_
 	"""
 	page = {{ config.selector_type|title }}Selector("{{ config['scraping']['url'] }}")
-	results = dict()
 	try:
+		results = dict()
 		{% for attr in config['scraping']['data'] %}
 		{% if not attr.field == "" %}
-		results["{{ attr.field }}"] = page.extract_content("{{ attr.selector }}")
+		results["{{ attr.field }}"] = page.extract_content("{{ attr.selector }}", "{{ attr.attr }}")
 		{% endif %}
 		{% endfor %}
 	except Exception as e:
 		print(e)
-	with open(os.path.join(os.getcwd(), '{{ config.output_file }}.json'), 'w') as f:
-		json.dump(results, f)
+	finally:
+		with open(os.path.join(os.getcwd(), '{{ config.output_file }}.json'), 'w') as f:
+			json.dump(results, f)
 	
 
 if __name__ == '__main__':

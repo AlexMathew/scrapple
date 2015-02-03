@@ -17,12 +17,12 @@ class XpathSelector(Selector):
 		super(XpathSelector, self).__init__(url)
 
 
-	def extract_content(self, selector):
+	def extract_content(self, selector, attr):
 		"""
 		Method for performing the content extraction for the given XPath expression.
 		"""
 		try:
-			content = self.tree.xpath(selector)[0]
+			content = self.tree.xpath(selector)[0].get(attr)
 			return content
 		except IndexError:
 			raise Exception("There is no content for the selector " + selector)

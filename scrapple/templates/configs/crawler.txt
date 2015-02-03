@@ -6,7 +6,8 @@
 		"data": [
 			{
 				"field": "",
-				"selector": ""
+				"selector": "",
+				"attr": ""
 			}
 		],
 		"next": {
@@ -14,7 +15,8 @@
 			"data": [
 				{
 					"field": "",
-					"selector": ""
+					"selector": "",
+					"attr": ""
 				}
 			]
 		}
