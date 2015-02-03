@@ -1,0 +1,1 @@
+{"scraping": {"url": "http://www.google.com", "data": [{"field": "", "attr": "", "selector": ""}], "next": {"follow_link": "", "data": [{"field": "", "attr": "", "selector": ""}]}}, "project_name": "project1", "selector_type": "xpath"}

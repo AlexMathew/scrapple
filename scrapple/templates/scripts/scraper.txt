@@ -1,19 +1,30 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import json
 import os
 
-from scrapple.utils.selector import ScrappleSelector
+from scrapple.selectors.{{ config.selector_type }} import {{ config.selector_type|title }}Selector
+
 
 def task_{{ config.project_name }}():
 	"""
 	Scraper generated using `Scrapple <http://scrappleapp.github.io/scrapple>`_
 	"""
-	page = ScrappleSelector("{{ config['scraping']['url'] }}", "{{ config.selector_type }}")
 	results = dict()
-	{% for attr in config['scraping']['data'] %}
-	result[{{ attr.field }}] = page.extract("{{ attr.selector }}")
-	{% endfor %}
-	with open(os.path.join(os.getcwd(), '{{ config.output_file }}.json')) as f:
-		json.dump(results, f)
+	try:
+		page = {{ config.selector_type|title }}Selector("{{ config['scraping']['url'] }}")
+		{% for attr in config['scraping']['data'] %}
+		{% if not attr.field == "" %}
+		results["{{ attr.field }}"] = page.extract_content("{{ attr.selector }}", "{{ attr.attr }}")
+		{% endif %}
+		{% endfor %}
+	except Exception as e:
+		print(e)
+	finally:
+		with open(os.path.join(os.getcwd(), '{{ config.output_file }}.json'), 'w') as f:
+			json.dump(results, f)
 	
+
+if __name__ == '__main__':
+	task_{{ config.project_name }}()
