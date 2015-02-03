@@ -11,9 +11,9 @@ def task_{{ config.project_name }}():
 	"""
 	Scraper generated using `Scrapple <http://scrappleapp.github.io/scrapple>`_
 	"""
-	page = {{ config.selector_type|title }}Selector("{{ config['scraping']['url'] }}")
+	results = dict()
 	try:
-		results = dict()
+		page = {{ config.selector_type|title }}Selector("{{ config['scraping']['url'] }}")
 		{% for attr in config['scraping']['data'] %}
 		{% if not attr.field == "" %}
 		results["{{ attr.field }}"] = page.extract_content("{{ attr.selector }}", "{{ attr.attr }}")
