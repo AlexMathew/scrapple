@@ -22,7 +22,10 @@ class XpathSelector(Selector):
 		Method for performing the content extraction for the given XPath expression.
 		"""
 		try:
-			content = self.tree.xpath(selector)[0].get(attr)
+			if attr == "":
+				content = self.tree.xpath(selector + '/text()')[0]
+			else:
+				content = self.tree.xpath(selector)[0].get(attr)
 			return content
 		except IndexError:
 			raise Exception("There is no content for the selector " + selector)

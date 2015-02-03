@@ -20,11 +20,11 @@ class Selector(object):
 			self.content = requests.get(url).content
 			self.tree = etree.HTML(self.content)
 		except requests.exceptions.MissingSchema:
-			print('URL should be of the form "http://<page_link>')
+			raise Exception('URL should be of the form "http://<page_link>')
 		except requests.exceptions.InvalidURL:
-			print('The URL provided is invalid')
+			raise Exception('The URL provided is invalid')
 		except requests.exceptions.ConnectionError:
-			print('Ensure that you are connected to the Internet and that the page exists')
+			raise Exception('Ensure that you are connected to the Internet and that the page exists')
 
 
 	def extract_content(self, selector, attr):
