@@ -38,4 +38,4 @@ scrapple.egg-info/
 
 # Example files for tests
 
-tests/*.py
+tests/project*.py
