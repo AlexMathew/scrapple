@@ -6,4 +6,4 @@ History
 0.1.0 
 ------
 
-* Currently under development
+* First release on PyPI (04 February 2015)
