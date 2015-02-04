@@ -7,7 +7,7 @@ except ImportError:
     from distutils.core import setup, find_packages
 
 
-readme = open('README.md').read()
+readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 requirements = open('requirements.txt').read().split('\n')
