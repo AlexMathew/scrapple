@@ -25,7 +25,10 @@ class CssSelector(Selector):
 		"""
 		try:
 			sel = cssselect.CSSSelector(selector)
-			content = sel(self.tree)[0].get(attr)
+			if attr == "text":
+				content = sel(self.tree)[0].text
+			else:
+				content = sel(self.tree)[0].get(attr)
 			return content
 		except IndexError:
 			raise Exception("There is no content for the selector " + selector)

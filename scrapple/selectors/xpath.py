@@ -22,8 +22,8 @@ class XpathSelector(Selector):
 		Method for performing the content extraction for the given XPath expression.
 		"""
 		try:
-			if attr == "":
-				content = self.tree.xpath(selector + '/text()')[0]
+			if attr == "text":
+				content = self.tree.xpath(selector)[0].text
 			else:
 				content = self.tree.xpath(selector)[0].get(attr)
 			return content
