@@ -25,10 +25,10 @@ If this fails because of the access privileges, run the command with ``sudo``.
 
 You can then install Scrapple with 
 
-``$ pip install Scrapple`` or ``$ sudo pip install Scrapple``
+``$ pip install scrapple`` or ``$ sudo pip install scrapple``
 
 To verify that Scrapple has been installed correctly, try the ``scrapple`` command from the command line.
 
-``$ scrapple -V``
+``$ scrapple --version``
 
 This should display the version of Scrapple installed.
