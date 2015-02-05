@@ -1,9 +1,176 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Scrapple Web</title>
-	</head>
-	<body>
-		<p>SCRAPPLE</p>
-	</body>
+  <head>
+      <title>Scrapple Online</title>
+      <script src="http://fb.me/react-0.12.2.js"></script>
+      <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+      <script>
+        $(document).ready(function(){
+          $("#addDataBtn").click(function(){
+          $("#data-field").append(" <br>data: [<br>{<div class='level-3'> field: <input type='text' name='field'  required><br><br> selector: <input type='text' name='selector' required><br></div><br>}<br><br>]");
+          });
+
+        });
+      </script>
+
+
+      <style>
+        .level-0{
+          margin: 0px 0px 0px 10px;
+        }
+        .level-1{
+          margin: 0px 0px 0px 30px;
+        }
+        .level-2{
+          margin: 0px 0px 0px 60px;
+        }
+        .level-3{
+          margin: 0px 0px 0px 90px;
+        }
+        .level-4{
+          margin: 0px 0px 0px 120px;
+        }
+      </style>
+    </head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Scrapple</a>
+    <div class="btn-group" role="group" aria-label="...">
+    <button type="button" class="btn btn-default navbar-btn" onclick="writeformScraper();">Scraper</button>
+    <button type="button" class="btn btn-default navbar-btn" onclick="writeformCrawler();">Crawler</button>
+    </div>
+  </div>
+</nav>
+    
+ 
+    
+<br><br><br> 
+
+
+      <div id="selform" style="display: block;" class="panel panel-default">
+        <div class="panel-heading" id="head-title">
+        </div>
+        <div id="newform" class="panel-body">
+        </div>
+      </div>
+      
+<!-- Scraper -->
+  
+<!-- Crawler -->
+<br><br>
+
+  
+<!--      
+      <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      Action <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Scraper</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Crawler</a></li>
+      </ul>
+      </div>
+
+     
+ <script type="text/jsx" > 
+function addData(){
+  dat='<br>data: ['+'<br>'+'{'+'<div class="level-3">';
+  dat+='field: '+'<input type="text" name="field"  required><br><br>';
+  dat+='selector: '+'<input type="text" name="selector" required><br></div><br>';
+  dat+='}'+'<br><br>'+']';
+  document.getElementById('data-field').innerHTML+=dat;
+}
+
+
+    $(function() {
+    var wrapper = $("#input_fields_wraps"); //Fields wrapper
+    var add_button = $("#add_Data_Btn"); //Add button ID
+    var dat1='<br>'+'{'+'<div class="level-3">'+'field: '+'<input type="text" name="field"><br><br>'+'selector: '+'<input type="text" name="selector"><br></div><br>'+'}'+'<br>';
+  
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        $(wrapper).append(dat1); //add input box
+        
+    });
+      
+});    
+-->
+
+
+<script type="text/javascript">
+
+var j=2;
+    
+function addData(){
+    var fld="field_"+j.toString();
+    var slr="selector_"+j.toString();
+    var atr="attribute_"+j.toString();
+    data_field='<strong>,<br>'+'{'+'<div class="level-3">'+'field: </strong>'+'<input type="text" name="field_"><br><br>'+'<strong>selector: </strong>'+'<input type="text" name="selector_"><br><br><strong>attribute:</strong> '+'<input type="text" name="attribute_";><br></div><br>'+'<strong>}</strong>'+'<br>';
+    document.getElementById('input_fields_wraps').innerHTML+=data_field;
+    var x = document.getElementsByName("field_");
+    x[0].name+=j.toString();
+    x = document.getElementsByName("selector_");
+    x[0].name+=j.toString();
+    x = document.getElementsByName("attribute_");
+    x[0].name+=j.toString();
+    j++;
+    }
+
+    
+function writeformScraper(){
+selobj=document.getElementById('selform');
+headobj=document.getElementById('head-title');
+newobj=document.getElementById('newform');
+ txt1='<form method="post" role="form" class="navbar-form navbar-left"><div class="level-0">'+'<strong>{'+'<br><div class="level-1">';
+  txt1+='Project_name: </strong> '+'<input type="text" name="project_name"><br><br>';
+  txt1+='<strong>Selector_type: </strong> '+'<input type="text" name="selector_type"><br><br>';
+  txt1+='<strong>scraping: {'+'<div id="data-field" class="level-2"><br>'+'url:</strong> ';
+  txt1+='<input type="text" name="url"><br><br>';
+  txt1+='<strong>data: ['+'<div id="input_fields_wraps">'+'{'+'<div class="level-3">';
+  txt1+='field:</strong> '+'</strong><input type="text" name="field_1"><br><br>';
+  txt1+='<strong>selector:</strong> '+'<input type="text" name="selector_1"><br><br>';
+  txt1+='<strong>attribute:</strong> '+'<input type="text" name="attribute_1"><br></div><br>';
+  txt1+='<strong>}</strong>'+'<br><button type="button" name="add_Data_Btn" class="btn btn-default" onclick="addData();">Add Data</button>'+'<br>'+'</div><strong>]<br>';
+  txt1+='</div><br>'+'}'+'</div><br>'+'}'+'</div>';
+  txt1+='<br></strong>'+'<br><button type="submit" class="btn btn-default">Submit</button></form>';
+    
+headobj.innerHTML='<h3 class="panel-title">Scraper</h3>';
+newobj.innerHTML=txt1;selobj.style.display='block';
+
+}
+
+function writeformCrawler(){
+  selobj=document.getElementById('selform');
+  headobj=document.getElementById('head-title');
+  newobj=document.getElementById('newform');
+  txt1='<form action="" method="post" class="navbar-form navbar-left"><div class="level-0">'+'<strong>{'+'<br><div class="level-1">';
+  txt1+='Project_name: </strong>'+'<input type="text" name="project_name"><br><br>';
+  txt1+='<strong>Selector_type: </strong>'+'<input type="text" name="selector_type"><br><br>';
+  txt1+='<strong>scraping: {'+'<div class="level-2"><br>'+'url: </strong>';
+  txt1+='<input type="text" name="url"><br><br>';
+  txt1+='<strong>data: ['+'<br>'+'{'+'<div class="level-3">';
+  txt1+='field: '+'</strong><input type="text" name="field"><br><br>';
+  txt1+='<strong>selector: </strong>'+'<input type="text" name="selector"><br><br>';
+  txt1+='<strong>attribute:</strong> '+'<input type="text" name="attribute_1"><br>';
+  txt1+='<strong></div>}'+'<br><br>'+']'+'<br><br>'+'next:{'+'<div class="level-3">'+'<br>follow-link: </strong>';
+  txt1+='<input type="text" name="field"><br><br>'+'<strong>data: ['+'<br>{';
+  txt1+='<div class="level-4">'+'field: </strong>'+'<input type="text" name="field"><br><br>';
+  txt1+='<strong>selector: </strong>'+'<input type="text" name="selector"><br><br>';
+  txt1+='<strong>attribute:</strong> '+'<input type="text" name="attribute_1"><br></div><br>'+'<strong>}';
+  txt1+='<br><br>'+']'+'</div><br>'+'}'+'</div>'+'}'+'</div><br>'+'</div>'+'}'+'</strong>';
+  txt1+='<br><br><button type="submit" class="btn btn-default">Submit</button></form>';
+  
+  headobj.innerHTML='<h3 class="panel-title">Crawler</h3>';
+  newobj.innerHTML=txt1;selobj.style.display='block';
+}
+</script>
+
+  </body>
 </html>
