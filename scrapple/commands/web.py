@@ -5,12 +5,13 @@ scrapple.commands.web
 """
 
 from __future__ import print_function
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import webbrowser
 from multiprocessing import Process
 from colorama import init, Fore, Back
 
 from scrapple.commands import command
+from scrapple.utils.form import form_to_json
 
 class WebCommand(command.Command):
     """
@@ -35,6 +36,8 @@ class WebCommand(command.Command):
         p2.start()
         
         
-    @app.route('/')
+    @app.route('/', methds=['GET', 'POST'])
     def home():
+        if request.method == 'POST':
+            form_to_json(request)
         return render_template('home.html')
