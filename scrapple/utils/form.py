@@ -33,6 +33,7 @@ def form_to_json(form):
 			config['scraping']['data'].append(data)
 		except KeyError:
 			break
+	# TODO : Crawler 'next' parameter handling
 	with open(os.path.join(os.getcwd(), form['project_name'] + '.json'), 'w') as f:
 		json.dump(config, f)
 	return
