@@ -128,7 +128,7 @@ function writeformScraper(){
 selobj=document.getElementById('selform');
 headobj=document.getElementById('head-title');
 newobj=document.getElementById('newform');
- txt1='<form method="post" role="form" class="navbar-form navbar-left"><div class="level-0">'+'<strong>{'+'<br><div class="level-1">';
+ txt1='<form action="' + '{{ url_for("home") }}' + '" method="post" role="form" class="navbar-form navbar-left"><div class="level-0">'+'<strong>{'+'<br><div class="level-1">';
   txt1+='Project_name: </strong> '+'<input type="text" name="project_name"><br><br>';
   txt1+='<strong>Selector_type: </strong> '+'<input type="text" name="selector_type"><br><br>';
   txt1+='<strong>scraping: {'+'<div id="data-field" class="level-2"><br>'+'url:</strong> ';
@@ -150,7 +150,7 @@ function writeformCrawler(){
   selobj=document.getElementById('selform');
   headobj=document.getElementById('head-title');
   newobj=document.getElementById('newform');
-  txt1='<form action="" method="post" class="navbar-form navbar-left"><div class="level-0">'+'<strong>{'+'<br><div class="level-1">';
+  txt1='<form action="' + '{{ url_for("home") }}' + '" method="post" class="navbar-form navbar-left"><div class="level-0">'+'<strong>{'+'<br><div class="level-1">';
   txt1+='Project_name: </strong>'+'<input type="text" name="project_name"><br><br>';
   txt1+='<strong>Selector_type: </strong>'+'<input type="text" name="selector_type"><br><br>';
   txt1+='<strong>scraping: {'+'<div class="level-2"><br>'+'url: </strong>';

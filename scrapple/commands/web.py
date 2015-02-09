@@ -30,14 +30,19 @@ class WebCommand(command.Command):
         """
         print(Back.GREEN + Fore.BLACK + "Scrapple Web Interface")
         print(Back.RESET + Fore.RESET)
-        p1 = Process(target = lambda : WebCommand.app.run(host="127.0.0.1", port=5000))
+        p1 = Process(target = lambda : WebCommand.app.run(host="127.0.0.1", port=5000, debug=True))
         p2 = Process(target = lambda : webbrowser.open('http://127.0.0.1:5000'))
         p1.start()
         p2.start()
         
         
-    @app.route('/', methds=['GET', 'POST'])
+    @app.route('/', methods=['GET', 'POST'])
     def home():
         if request.method == 'POST':
-            form_to_json(request)
-        return render_template('home.html')
+            try:
+                form_to_json(request)
+                return render_template('complete.html')
+            except Exception as e:
+                return render_template('error.html', error=e)
+        else:    
+            return render_template('home.html')
