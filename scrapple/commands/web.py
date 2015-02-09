@@ -40,7 +40,7 @@ class WebCommand(command.Command):
     def home():
         if request.method == 'POST':
             try:
-                form_to_json(request)
+                form_to_json(request.form)
                 return render_template('complete.html')
             except Exception as e:
                 return render_template('error.html', error=e)
