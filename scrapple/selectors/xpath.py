@@ -14,6 +14,7 @@ class XpathSelector(Selector):
 	"""
 	
 	def __init__(self, url):
+		self.url = url
 		super(XpathSelector, self).__init__(url)
 
 
@@ -23,7 +24,7 @@ class XpathSelector(Selector):
 		"""
 		try:
 			if attr == "text":
-				content = self.tree.xpath(selector)[0].text
+				content = "".join([x.text for x in self.tree.xpath(selector)])
 			else:
 				content = self.tree.xpath(selector)[0].get(attr)
 			return content

@@ -26,7 +26,7 @@ class CssSelector(Selector):
 		try:
 			sel = cssselect.CSSSelector(selector)
 			if attr == "text":
-				content = sel(self.tree)[0].text
+				content = "".join([x.text for x in sel(self.tree)])
 			else:
 				content = sel(self.tree)[0].get(attr)
 			return content
