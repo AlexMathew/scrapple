@@ -10,15 +10,19 @@
 				"attr": ""
 			}
 		],
-		"next": {
-			"follow_link": "",
-			"data": [
-				{
-					"field": "",
-					"selector": "",
-					"attr": ""
+		"next": [
+			{
+				"follow_link": "",
+				"scraping": {
+					"data": [
+						{
+							"field": "",
+							"selector": "",
+							"attr": ""
+						}
+					]
 				}
-			]
-		}
+			}
+		]
 	}
 }
