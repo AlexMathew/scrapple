@@ -12,11 +12,11 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 requirements = open('requirements.txt').read().split('\n')
 
-test_requirements = ['mock', 'nose']
+test_requirements = open('test_requirements.txt').read().split('\n')
 
 setup(
     name='scrapple',
-    version='0.1.0',
+    version='0.1.1',
     description='A framework for creating web scrapers',
     long_description=readme + '\n\n' + history,
     author='Alex Mathew',
@@ -29,7 +29,7 @@ setup(
     install_requires=requirements,
     license="MIT",
     zip_safe=False,
-    keywords='scrapple',
+    keywords=['scrapple', 'web', 'content', 'scraper', 'crawler'],
     entry_points={
         'console_scripts': ['scrapple = scrapple.cmd:runCLI']
     },
