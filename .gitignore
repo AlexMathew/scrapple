@@ -40,8 +40,9 @@ scrapple.egg-info/
 
 tests/project*.py
 tests/trial*.json
+trial*.json
 
 # Coverage
 
-*/.coverage
-*/coverage.xml
+.coverage
+coverage.xml
