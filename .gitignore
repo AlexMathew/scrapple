@@ -39,3 +39,9 @@ scrapple.egg-info/
 # Example files for tests
 
 tests/project*.py
+tests/trial*.json
+
+# Coverage
+
+*/.coverage
+*/coverage.xml
