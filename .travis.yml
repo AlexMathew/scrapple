@@ -16,7 +16,7 @@ install:
 # command to run tests, e.g. python setup.py test
 script:
     - pip install -r test_requirements.txt --use-mirrors
-    - cd tests && nosetests -v --with-xcoverage --cover-package=scrapple
+    - cd tests/ && nosetests -v --with-xcoverage --cover-package=scrapple --cover-tests
 
 after_success:
     - coveralls

@@ -29,9 +29,8 @@ class GenerateCommand(command.Command):
         print(Back.GREEN + Fore.BLACK + "Scrapple Generate")
         print(Back.RESET + Fore.RESET)
         directory = os.path.join(scrapple.__path__[0], 'templates', 'scripts')
-        with open(os.path.join(directory, self.args['--type'] + '.txt'), 'r') as f:
+        with open(os.path.join(directory, 'generate.txt'), 'r') as f:
             template_content = f.read()
-        print("\n\nUsing the", self.args['--type'], "template\n\n")
         template = Template(template_content)
         try:
             with open(self.args['<projectname>'] + '.json', 'r') as f:

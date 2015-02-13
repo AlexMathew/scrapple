@@ -5,6 +5,8 @@ scrapple.selectors.xpath
 Defines the XPath selector
 """
 
+from urlparse import urljoin
+
 from scrapple.selectors.selector import Selector
 
 
@@ -32,11 +34,14 @@ class XpathSelector(Selector):
 			raise Exception("There is no content for the selector " + selector)
 
 
-	def extract_links(self):
+	def extract_links(self, selector):
 		"""
 		Method for performing the link extraction for the crawler.
 		"""
-		raise NotImplementedError
+		links = self.tree.xpath(selector)
+		for link in links:
+			next_url = urljoin(self.url, link.get('href'))
+			yield XpathSelector(next_url)
 
 
 	def extract_tabular(self):
