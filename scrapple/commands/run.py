@@ -11,6 +11,7 @@ from colorama import init, Fore, Back
 
 from scrapple.commands import command
 from scrapple.selectors import xpath, css
+from scrapple.utils.config import traverse_next
 
 class RunCommand(command.Command):
     """
