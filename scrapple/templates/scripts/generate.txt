@@ -9,7 +9,7 @@ from scrapple.selectors.{{ config.selector_type }} import {{ config.selector_typ
 
 def task_{{ config.project_name }}():
 	"""
-	Scraper generated using `Scrapple <http://scrappleapp.github.io/scrapple>`_
+	Script generated using `Scrapple <http://scrappleapp.github.io/scrapple>`_
 	"""
 	results = dict()
 	results['project'] = "{{ config.project_name }}"
