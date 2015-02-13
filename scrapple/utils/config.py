@@ -9,6 +9,10 @@ from __future__ import print_function
 
 
 def traverse_next(page, next, results):
+    """
+    Recursive generator to traverse through the next attribute and \
+    crawl through the links to be followed
+    """
     for link in page.extract_links(next['follow_link']):
         print("Loading page", link.url)
         r = results.copy()
