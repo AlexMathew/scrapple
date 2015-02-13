@@ -11,7 +11,7 @@ from __future__ import print_function
 def traverse_next(page, next, results):
     for link in page.extract_links(next['follow_link']):
         print("Loading page", link.url)
-        r = results
+        r = results.copy()
         for attribute in next['scraping'].get('data'):
             if attribute['field'] != "":
                 print("\nExtracting", attribute['field'], "attribute", sep=' ')
