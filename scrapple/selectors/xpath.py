@@ -29,6 +29,8 @@ class XpathSelector(Selector):
 				content = "".join([x.text for x in self.tree.xpath(selector)])
 			else:
 				content = self.tree.xpath(selector)[0].get(attr)
+				if attr == "href":
+					content = urljoin(self.url, content)
 			return content
 		except IndexError:
 			raise Exception("There is no content for the selector " + selector)
