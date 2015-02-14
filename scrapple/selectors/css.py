@@ -31,6 +31,8 @@ class CssSelector(Selector):
 				content = "".join([x.text for x in sel(self.tree)])
 			else:
 				content = sel(self.tree)[0].get(attr)
+				if attr in ["href", "src"]:
+					content = urljoin(self.url, content)
 			return content
 		except IndexError:
 			raise Exception("There is no content for the selector " + selector)
