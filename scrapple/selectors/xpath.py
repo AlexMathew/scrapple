@@ -29,7 +29,7 @@ class XpathSelector(Selector):
 				content = "".join([x.text for x in self.tree.xpath(selector)])
 			else:
 				content = self.tree.xpath(selector)[0].get(attr)
-				if attr == "href":
+				if attr in ["href", "src"]:
 					content = urljoin(self.url, content)
 			return content
 		except IndexError:
