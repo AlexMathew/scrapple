@@ -21,7 +21,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author='Alex Mathew',
     author_email='alexmathew003@gmail.com',
-    url='https://github.com/scrappleapp/scrapple',
+    url='https://scrappleapp.github.io/scrapple',
     packages=find_packages(exclude=('tests',)),
     package_dir={'scrapple':
                  'scrapple'},
