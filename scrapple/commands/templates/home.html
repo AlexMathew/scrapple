@@ -6,17 +6,9 @@
       <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-      <script>
-        $(document).ready(function(){
-          $("#addDataBtn").click(function(){
-          $("#data-field").append(" <br>data: [<br>{<div class='level-3'> field: <input type='text' name='field'  required><br><br> selector: <input type='text' name='selector' required><br></div><br>}<br><br>]");
-          });
-
-        });
-      </script>
+      <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+      <script src="../static/jquery-1.11.2.min"></script>
+      <script src="../static/js/bootstrap.min.js"></script>
 
 
       <style>
@@ -112,8 +104,18 @@ function addData(){
     var fld="field_"+j.toString();
     var slr="selector_"+j.toString();
     var atr="attribute_"+j.toString();
-    data_field='<strong>,<br>'+'{'+'<div class="level-3">'+'field: </strong>'+'<input type="text" name="field_"><br><br>'+'<strong>selector: </strong>'+'<input type="text" name="selector_"><br><br><strong>attribute:</strong> '+'<input type="text" name="attribute_";><br></div><br>'+'<strong>}</strong>'+'<br>';
-    document.getElementById('input_fields_wraps').innerHTML+=data_field;
+    var daa=document.createElement("div");
+    daa.className="level-3";
+    daa.innerHTML=
+    '<strong>field: </strong><input type="text" name="field_"><br><br><strong>selector: </strong><input type="text" name="selector_"><br><br><strong>attribute:</strong> <input type="text" name="attribute_";><br>';
+    var daa0=document.createElement("div");
+    daa0.innerHTML='<strong>,<br>{</strong><br>';
+    var daa2=document.createElement("div");
+    daa2.innerHTML='<br><strong>}</strong><br>';
+    document.getElementById('input_fields_wraps').appendChild(daa0);
+    document.getElementById('input_fields_wraps').appendChild(daa);
+    document.getElementById('input_fields_wraps').appendChild(daa2);
+    
     var x = document.getElementsByName("field_");
     x[0].name+=j.toString();
     x = document.getElementsByName("selector_");
@@ -137,10 +139,10 @@ newobj=document.getElementById('newform');
   txt1+='field:</strong> '+'</strong><input type="text" name="field_1"><br><br>';
   txt1+='<strong>selector:</strong> '+'<input type="text" name="selector_1"><br><br>';
   txt1+='<strong>attribute:</strong> '+'<input type="text" name="attribute_1"><br></div><br>';
-  txt1+='<strong>}</strong>'+'<br><button type="button" name="add_Data_Btn" class="btn btn-default" onclick="addData();">Add Data</button>'+'<br>'+'</div><strong>]<br>';
+  txt1+='<strong>}</strong>'+'<br>'+'</div><button type="button" name="add_Data_Btn" class="btn btn-default" onclick="addData();">Add Data</button>'+'<br><strong>]<br>';
   txt1+='</div><br>'+'}'+'</div><br>'+'}'+'</div>';
   txt1+='<br></strong>'+'<br><button type="submit" class="btn btn-default">Submit</button></form>';
-    
+   
 headobj.innerHTML='<h3 class="panel-title">Scraper</h3>';
 newobj.innerHTML=txt1;selobj.style.display='block';
 
