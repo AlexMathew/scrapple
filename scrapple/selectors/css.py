@@ -21,7 +21,7 @@ class CssSelector(Selector):
 		super(CssSelector, self).__init__(url)
 
 
-	def extract_content(self, selector, attr):
+	def extract_content(self, selector, attr, default):
 		"""
 		Method for performing the content extraction for the given CSS selector.
 		"""
@@ -39,6 +39,8 @@ class CssSelector(Selector):
 					content = urljoin(self.url, content)
 			return content
 		except IndexError:
+			if default is not "":
+				return default
 			raise Exception("There is no content for the selector " + selector)
 
 
