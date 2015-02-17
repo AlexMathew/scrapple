@@ -28,7 +28,9 @@ class XpathSelector(Selector):
 			if selector == "url":
 				return self.url
 			if attr == "text":
-				content = "".join([x.text for x in self.tree.xpath(selector)])
+				tag = self.tree.xpath(selector)[0]
+				content = "".join([x for x in tag.itertext()])
+				content = content.replace("\n", " ").strip()
 			else:
 				content = self.tree.xpath(selector)[0].get(attr)
 				if attr in ["href", "src"]:

@@ -30,7 +30,9 @@ class CssSelector(Selector):
 				return self.url
 			sel = cssselect.CSSSelector(selector)
 			if attr == "text":
-				content = "".join([x.text for x in sel(self.tree)])
+				tag = sel(self.tree)[0]
+				content = "".join([x for x in tag.itertext()])
+				content = content.replace("\n", " ").strip()				
 			else:
 				content = sel(self.tree)[0].get(attr)
 				if attr in ["href", "src"]:
