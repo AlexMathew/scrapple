@@ -26,6 +26,8 @@ class CssSelector(Selector):
 		Method for performing the content extraction for the given CSS selector.
 		"""
 		try:
+			if selector == "url":
+				return self.url
 			sel = cssselect.CSSSelector(selector)
 			if attr == "text":
 				content = "".join([x.text for x in sel(self.tree)])
