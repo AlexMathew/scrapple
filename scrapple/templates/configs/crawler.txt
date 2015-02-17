@@ -7,7 +7,8 @@
 			{
 				"field": "",
 				"selector": "",
-				"attr": ""
+				"attr": "",
+				"default": ""
 			}
 		],
 		"next": [
@@ -18,7 +19,8 @@
 						{
 							"field": "",
 							"selector": "",
-							"attr": ""
+							"attr": "",
+							"default": ""
 						}
 					]
 				}
