@@ -25,6 +25,8 @@ class XpathSelector(Selector):
 		Method for performing the content extraction for the given XPath expression.
 		"""
 		try:
+			if selector == "url":
+				return self.url
 			if attr == "text":
 				content = "".join([x.text for x in self.tree.xpath(selector)])
 			else:
