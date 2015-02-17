@@ -27,6 +27,8 @@ def task_{{ config.project_name }}():
 		{%- else %}
 		results.append(r)
 		{%- endif %}
+	except KeyboardInterrupt:
+		pass
 	except Exception as e:
 		print(e)
 	finally:

@@ -61,6 +61,8 @@ class RunCommand(command.Command):
                 for next in self.config['scraping']['next']:
                     for r in traverse_next(selector, next, result):
                         results['data'].append(r)
+        except KeyboardInterrupt:
+            pass
         except Exception, e:
             print(e)
         finally:
