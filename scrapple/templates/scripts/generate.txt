@@ -18,7 +18,7 @@ def task_{{ config.project_name }}():
 		page = {{ config.selector_type|title }}Selector("{{ config['scraping']['url'] }}")
 		{% for attr in config['scraping']['data'] %}
 		{% if not attr.field == "" %}
-		results['data']["{{ attr.field }}"] = page.extract_content("{{ attr.selector }}", "{{ attr.attr }}")
+		results['data']["{{ attr.field }}"] = page.extract_content("{{ attr.selector }}", "{{ attr.attr }}", "{{ attr.default }}")
 		{% endif %}
 		{% endfor %}
 	except Exception as e:
