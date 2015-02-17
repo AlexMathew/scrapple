@@ -107,7 +107,7 @@ function addData(){
     var daa=document.createElement("div");
     daa.className="level-3";
     daa.innerHTML=
-    '<strong>field: </strong><input type="text" name="field_"><br><br><strong>selector: </strong><input type="text" name="selector_"><br><br><strong>attribute:</strong> <input type="text" name="attribute_";><br>';
+    '<strong>field: </strong><input type="text" name="field_"><br><br><strong>selector: </strong><input type="text" name="selector_"><br><br><strong>attribute:</strong> <input type="text" name="attribute_"><br><br><strong>default: </strong><input type="text" name="default_"><br>';
     var daa0=document.createElement("div");
     daa0.innerHTML='<strong>,<br>{</strong><br>';
     var daa2=document.createElement("div");
@@ -121,6 +121,8 @@ function addData(){
     x = document.getElementsByName("selector_");
     x[0].name+=j.toString();
     x = document.getElementsByName("attribute_");
+    x[0].name+=j.toString();
+    x = document.getElementsByName("default_");
     x[0].name+=j.toString();
     j++;
     }
@@ -138,7 +140,8 @@ newobj=document.getElementById('newform');
   txt1+='<strong>data: ['+'<div id="input_fields_wraps">'+'{'+'<div class="level-3">';
   txt1+='field:</strong> '+'</strong><input type="text" name="field_1"><br><br>';
   txt1+='<strong>selector:</strong> '+'<input type="text" name="selector_1"><br><br>';
-  txt1+='<strong>attribute:</strong> '+'<input type="text" name="attribute_1"><br></div><br>';
+  txt1+='<strong>attribute:</strong> '+'<input type="text" name="attribute_1"><br><br>';
+  txt1+='<strong>default:</strong> '+'<input type="text" name="default_1"><br></div><br>';
   txt1+='<strong>}</strong>'+'<br>'+'</div><button type="button" name="add_Data_Btn" class="btn btn-default" onclick="addData();">Add Data</button>'+'<br><strong>]<br>';
   txt1+='</div><br>'+'}'+'</div><br>'+'}'+'</div>';
   txt1+='<br></strong>'+'<br><button type="submit" class="btn btn-default">Submit</button></form>';
