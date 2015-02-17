@@ -13,14 +13,22 @@ def task_{{ config.project_name }}():
 	"""
 	results = dict()
 	results['project'] = "{{ config.project_name }}"
-	results['data'] = dict()
+	results['data'] = list()
 	try:
+		r = dict()
 		page = {{ config.selector_type|title }}Selector("{{ config['scraping']['url'] }}")
-		{% for attr in config['scraping']['data'] %}
-		{% if not attr.field == "" %}
-		results['data']["{{ attr.field }}"] = page.extract_content("{{ attr.selector }}", "{{ attr.attr }}")
-		{% endif %}
-		{% endfor %}
+		{%- for attr in config['scraping']['data'] %}
+		{%- if not attr.field == "" %}
+		r['data']["{{ attr.field }}"] = page.extract_content("{{ attr.selector }}", "{{ attr.attr }}", "{{ attr.default }}")
+		{%- endif %}
+		{%- endfor %}
+		{%- if config['scraping']['next'] %}
+		# Link crawler
+		{%- else %}
+		results.append(r)
+		{%- endif %}
+	except KeyboardInterrupt:
+		pass
 	except Exception as e:
 		print(e)
 	finally:

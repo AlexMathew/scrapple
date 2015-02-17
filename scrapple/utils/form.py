@@ -28,7 +28,8 @@ def form_to_json(form):
 			data = {
 				'field': form['field_' + str(i)],
 				'selector': form['selector_' + str(i)],
-				'attr': form['attribute_' + str(i)]
+				'attr': form['attribute_' + str(i)],
+				'default': form['default_' + str(i)]
 			}
 			config['scraping']['data'].append(data)
 		except KeyError:

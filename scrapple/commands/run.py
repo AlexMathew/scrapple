@@ -54,13 +54,15 @@ class RunCommand(command.Command):
             for attribute in self.config['scraping']['data']:
                 if attribute['field'] != "":
                     print("\nExtracting", attribute['field'], "attribute", sep=' ')
-                    result[attribute['field']] = selector.extract_content(attribute['selector'], attribute['attr'])
+                    result[attribute['field']] = selector.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
             if not self.config['scraping'].get('next'):
                 results['data'].append(result)
             else:
                 for next in self.config['scraping']['next']:
                     for r in traverse_next(selector, next, result):
                         results['data'].append(r)
+        except KeyboardInterrupt:
+            pass
         except Exception, e:
             print(e)
         finally:
