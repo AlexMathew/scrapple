@@ -31,7 +31,7 @@ class CssSelector(Selector):
 			sel = cssselect.CSSSelector(selector)
 			if attr == "text":
 				tag = sel(self.tree)[0]
-				content = "".join([x for x in tag.itertext()])
+				content = " ".join([x for x in tag.itertext()])
 				content = content.replace("\n", " ").strip()				
 			else:
 				content = sel(self.tree)[0].get(attr)
