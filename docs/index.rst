@@ -18,6 +18,9 @@ Overview
    intro/overview
    intro/install
    intro/tutorial
+   intro/tutorials/single_linear
+   intro/tutorials/link_crawler
+   intro/tutorials/single_tabular
 
 :doc:`intro/overview`
     An introduction to Scrapple
