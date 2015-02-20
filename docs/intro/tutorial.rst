@@ -1,3 +1,5 @@
+.. _intro-tutorial:
+
 =================
 Scrapple tutorial
 =================
@@ -8,11 +10,14 @@ In this section, we'll cover some basic tutorials for using Scrapple. We'll cove
 - Single page tabular scrapers
 - Link crawlers
 
-Once you've `installed Scrapple`_, you can see the list of available commands and the related options using the command
+Once you've :doc:`installed Scrapple <install>`, you can see the list of available commands and the related options using the command
 
 ``$ scrapple --help``
 
-.. _installed Scrapple : install.html
+
+The description for the commands provided by Scrapple are described in the :ref:`commands <topics-commands>` section.
+
+The :ref:`configuration file <topics-config>` is the backbone of Scrapple. It specifies the base page URL, selectors for the data extraction, the follow link for the link crawler and several other parameters. 
 
 Examples for each type are given. 
 

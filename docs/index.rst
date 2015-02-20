@@ -39,6 +39,14 @@ Concepts
 .. toctree::
    :hidden:
 
+   topics/commands
+   topics/config
+
+:doc:`topics/commands`
+    Commands provided by the Scrapple CLI
+
+:doc:`topics/config`
+    The configuration file which is used by Scrapple to implement the required extractor/crawler
 
 
 Contribution guide
