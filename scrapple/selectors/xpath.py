@@ -29,7 +29,7 @@ class XpathSelector(Selector):
 				return self.url
 			if attr == "text":
 				tag = self.tree.xpath(selector)[0]
-				content = "".join([x for x in tag.itertext()])
+				content = " ".join([x.strip() for x in tag.itertext()])
 				content = content.replace("\n", " ").strip()
 			else:
 				content = self.tree.xpath(selector)[0].get(attr)
