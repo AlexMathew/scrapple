@@ -1,3 +1,5 @@
+.. _intro-overview:
+
 ====================
 Introducing Scrapple
 ====================

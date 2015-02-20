@@ -28,7 +28,7 @@ from scrapple.utils.exceptions import handle_exceptions
 
 
 def runCLI():
-    args = docopt(__doc__, version='0.1')
+    args = docopt(__doc__, version='0.2.0')
     try:
         handle_exceptions(args)
         command_list = ['genconfig', 'run', 'generate', 'web']

@@ -19,7 +19,7 @@ def traverse_next(page, next, results):
         for attribute in next['scraping'].get('data'):
             if attribute['field'] != "":
                 print("\nExtracting", attribute['field'], "attribute", sep=' ')
-                r[attribute['field']] = link.extract_content(attribute['selector'], attribute['attr'])
+                r[attribute['field']] = link.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
         if not next['scraping'].get('next'):
             yield r
         else:

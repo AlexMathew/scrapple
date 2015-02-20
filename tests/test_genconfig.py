@@ -36,7 +36,7 @@ def test_crawler_generation():
 		{
 			"follow_link": "", 
 			"scraping": {
-				"data": [{"field": "", "selector": "", "attr": ""}]
+				"data": [{"field": "", "selector": "", "attr": "", "default": ""}]
 			}
 		}
 	]

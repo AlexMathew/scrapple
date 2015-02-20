@@ -27,7 +27,7 @@ class Selector(object):
 			raise Exception('Ensure that you are connected to the Internet and that the page exists')
 
 
-	def extract_content(self, selector, attr):
+	def extract_content(self, selector, attr, default):
 		"""
 		Method for performing the content extraction for the particular selector type.
 		"""
