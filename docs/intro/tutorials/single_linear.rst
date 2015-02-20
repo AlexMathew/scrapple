@@ -1,3 +1,5 @@
+.. _intro-tutorials-single-linear:
+
 ===========================
 Single page linear scrapers
 ===========================
@@ -23,7 +25,8 @@ This will create pyvideo.json which will initially look like this -
 	            {
 	                "field": "",
 	                "attr": "",
-	                "selector": ""
+	                "selector": "",
+	                "default": ""
 	            }
 	        ]
 	    },
@@ -46,27 +49,32 @@ For example,
 	            {
 	                "field": "title",
 	                "attr": "text",
-	                "selector": "//h3"
+	                "selector": "//h3",
+	                "default": ""
 	            },
 	            {
 	                "field": "speaker_name",
 	                "attr": "text",
-	                "selector": "//div[@id='sidebar']//dd[2]//a"
+	                "selector": "//div[@id='sidebar']//dd[2]//a",
+	                "default": ""
 	            },
 	            {
 	                "field": "speaker_link",
 	                "attr": "href",
-	                "selector": "//div[@id='sidebar']//dd[2]//a"
+	                "selector": "//div[@id='sidebar']//dd[2]//a",
+	                "default": ""
 	            },
 	            {
 	                "field": "event_name",
 	                "attr": "text",
-	                "selector": "//div[@id='sidebar']//dd[1]//a"
+	                "selector": "//div[@id='sidebar']//dd[1]//a",
+	                "default": ""
 	            },
 	            {
 	                "field": "event_link",
 	                "attr": "href",
-	                "selector": "//div[@id='sidebar']//dd[1]//a"
+	                "selector": "//div[@id='sidebar']//dd[1]//a",
+	                "default": ""
 	            }
 	        ]
 	    },
@@ -95,11 +103,15 @@ This will create talk1.json, which contains the extracted information.
 
 	{
 
-	    "event_name": "PyCon US 2013",
-	    "event_link": "/category/33/pycon-us-2013",
-	    "speaker_link": "/speaker/726/kenneth-reitz",
-	    "speaker_name": "Kenneth Reitz",
-	    "title": "Python for Humans"
+	    "project": "test1",
+	    "data": [
+	        {
+	            "event_name": "PyCon US 2013",
+	            "event_link": "/category/33/pycon-us-2013",
+	            "speaker_link": "/speaker/726/kenneth-reitz",
+	            "speaker_name": "Kenneth Reitz",
+	            "title": "Python for Humans"
+	        }
+	    ]
 
 	}
-

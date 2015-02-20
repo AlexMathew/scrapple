@@ -7,7 +7,7 @@
 Scrapple |version| documentation
 =================================
 
-Scrapple is a project aimed at designing a framework for building semi-automatic web scrapers. This documentation contains everything about how Scrapple works.
+Scrapple is a project aimed at designing a framework for building web content extractors. This documentation contains details about using Scrapple and a description of how Scrapple works.
 
 Overview
 ========
