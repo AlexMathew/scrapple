@@ -1,3 +1,5 @@
+.. _intro-install:
+
 ================
 Install Scrapple
 ================
