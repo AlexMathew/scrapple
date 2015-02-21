@@ -1,0 +1,1 @@
+{"scraping": {"url": "http://pyvideo.org/video/1785/python-for-humans-1", "data": [{"default": "<unknown>", "field": "unknown", "attr": "", "selector": "h1"}, {"default": "", "field": "talk_url", "attr": "", "selector": "url"}, {"default": "", "field": "event_url", "attr": "href", "selector": "div#sidebar dl dd a"}]}, "project_name": "project3", "selector_type": "css"}

@@ -1,0 +1,1 @@
+{"scraping": {"url": "http://pyvideo.org/category/15/bostonpy", "data": [{"default": "", "field": "", "attr": "", "selector": ""}], "next": [{"follow_link": "//div[@class='video-summary-data']/div[1]//a", "scraping": {"data": [{"default": "", "field": "talk", "attr": "text", "selector": "//h3"}]}}]}, "project_name": "project4", "selector_type": "xpath"}
