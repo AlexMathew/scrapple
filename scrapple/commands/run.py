@@ -63,7 +63,7 @@ class RunCommand(command.Command):
                         results['data'].append(r)
         except KeyboardInterrupt:
             pass
-        except Exception, e:
+        except Exception as e:
             print(e)
         finally:
             with open(os.path.join(os.getcwd(), self.args['<output_filename>'] + '.json'), 'w') as f:
