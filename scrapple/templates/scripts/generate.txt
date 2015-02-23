@@ -40,7 +40,7 @@ def task_{{ config.project_name }}():
 			{%- endif %}
 			{%- endfor %}
 		{%- else %}
-		results.append(r)
+		results['data'].append(r0)
 		{%- endif %}
 	except KeyboardInterrupt:
 		pass
