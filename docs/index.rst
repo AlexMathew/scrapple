@@ -7,7 +7,11 @@
 Scrapple |version| documentation
 =================================
 
-Scrapple is a project aimed at designing a framework for building web content extractors. This documentation contains details about using Scrapple and a description of how Scrapple works.
+Scrapple is a project aimed at designing a framework for building web content extractors. Scrapple uses key-value based configuration files to define parameters to be considered in generating the extractor. It considers the base page URL, selectors for each data to be extracted, and the selector for the links to be crawled through. 
+
+Scrapple can be used to generate single page content extractors or link crawlers. 
+
+This documentation contains information about how to use Scrapple and how Scrapple works. 
 
 Overview
 ========
