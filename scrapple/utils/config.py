@@ -6,6 +6,9 @@ Functions related to traversing the configuration file
 """
 
 from __future__ import print_function
+from colorama import init, Fore, Back
+
+init()
 
 
 def traverse_next(page, next, results):
@@ -14,7 +17,7 @@ def traverse_next(page, next, results):
     crawl through the links to be followed
     """
     for link in page.extract_links(next['follow_link']):
-        print("Loading page", link.url)
+        print(Back.YELLOW + Fore.BLUE + "Loading page ", link.url + Back.RESET + Fore.RESET)
         r = results.copy()
         for attribute in next['scraping'].get('data'):
             if attribute['field'] != "":

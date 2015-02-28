@@ -24,13 +24,22 @@ class WebCommand(command.Command):
         self.args = args
         init()
 
+
+    def run_flask(self):
+        try:
+            WebCommand.app.run(host="127.0.0.1", port=5000)
+        except Exception as e:
+            import sys
+            sys.exit()
+
+
     def execute_command(self):
         """
         Execution method of :command: web
         """
         print(Back.GREEN + Fore.BLACK + "Scrapple Web Interface")
         print(Back.RESET + Fore.RESET)
-        p1 = Process(target = lambda : WebCommand.app.run(host="127.0.0.1", port=5000, debug=True))
+        p1 = Process(target = self.run_flask)
         p2 = Process(target = lambda : webbrowser.open('http://127.0.0.1:5000'))
         p1.start()
         p2.start()
