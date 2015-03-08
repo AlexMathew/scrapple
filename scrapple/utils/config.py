@@ -29,3 +29,16 @@ def traverse_next(page, next, results):
             for next2 in next['scraping'].get('next'):
                 for result in traverse_next(link, next2, r):
                     yield result
+
+
+def get_fields(config):
+    """
+    Recursive generator that yields the field names in the config file
+    """
+    for data in config['scraping']['data']:
+        if data['field'] != '': 
+            yield data['field']
+    if 'next' in config['scraping']:
+        for n in config['scraping']['next']:
+            for f in get_fields(n): 
+                yield f
