@@ -42,6 +42,7 @@ tests/project*.py
 tests/trial*.json
 tests/result*.json
 trial*.json
+tests/*.csv
 
 # Coverage
 
