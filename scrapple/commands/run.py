@@ -10,7 +10,7 @@ from colorama import init, Fore, Back
 
 from scrapple.commands import command
 from scrapple.selectors import xpath, css
-from scrapple.utils.config import traverse_next, get_fields
+from scrapple.utils.config import traverse_next, extract_fieldnames
 
 class RunCommand(command.Command):
     """
@@ -75,7 +75,7 @@ class RunCommand(command.Command):
                 import csv
                 with open(os.path.join(os.getcwd(), self.args['<output_filename>'] + '.csv'), \
                     'w') as f:
-                    fields = [x for x in get_fields(self.config)]
+                    fields = extract_fieldnames(self.config)
                     writer = csv.DictWriter(f, fieldnames=fields)
                     writer.writeheader()
                     writer.writerows(results['data'])
