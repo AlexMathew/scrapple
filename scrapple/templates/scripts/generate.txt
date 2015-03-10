@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function
-import json
 import os
 
 from scrapple.selectors.{{ config.selector_type }} import {{ config.selector_type|title }}Selector
@@ -47,9 +46,19 @@ def task_{{ config.project_name }}():
 	except Exception as e:
 		print(e)
 	finally:
+		{%- if config.output_type == 'json' %}
+		import json
 		with open(os.path.join(os.getcwd(), '{{ config.output_file }}.json'), 'w') as f:
 			json.dump(results, f)
-	
+		{%- else %}
+		import csv
+        with open(os.path.join(os.getcwd(), '{{ config.output_file }}.csv'), 'w') as f:
+            fields = {{ config.fields }}
+            writer = csv.DictWriter(f, fieldnames=fields)
+            writer.writeheader()
+            writer.writerows(results['data'])
+        {%- endif %}
+
 
 if __name__ == '__main__':
 	task_{{ config.project_name }}()
