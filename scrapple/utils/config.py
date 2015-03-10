@@ -42,3 +42,16 @@ def get_fields(config):
         for n in config['scraping']['next']:
             for f in get_fields(n): 
                 yield f
+
+
+def extract_fieldnames(config):
+    """
+    Function to return a list of unique field names from the config file
+    """
+    fields = []
+    for x in get_fields(config):
+        if x in fields:
+            fields.append(x + '_' + str(fields.count(x) + 1))
+        else:
+            fields.append(x)
+    return fields
