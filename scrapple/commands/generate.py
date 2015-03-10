@@ -35,7 +35,11 @@ class GenerateCommand(command.Command):
         try:
             with open(self.args['<projectname>'] + '.json', 'r') as f:
                 config = json.load(f)
+            if self.args['--output_type'] == 'csv':
+                from scrapple.utils.config import extract_fieldnames
+                config['fields'] = str(extract_fieldnames(config))
             config['output_file'] = self.args['<output_filename>']
+            config['output_type'] = self.args['--output_type']
             rendered = template.render(config=config)
             with open(self.args['<output_filename>'] + '.py', 'w') as f:
                 f.write(rendered)
