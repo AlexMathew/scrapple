@@ -3,6 +3,11 @@
 History
 =======
 
+0.2.3 - 2015-03-11
+------------------
+
+* Include implementation to use csv as the output format
+
 0.2.2 - 2015-02-22
 ------------------
 
