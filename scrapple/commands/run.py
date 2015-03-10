@@ -28,6 +28,7 @@ class RunCommand(command.Command):
         print(Back.GREEN + Fore.BLACK + "Scrapple Run")
         print(Back.RESET + Fore.RESET)
         try:
+            import json
             with open(self.args['<projectname>'] + '.json', 'r') as f:
                 self.config = json.load(f)
             self.run()
@@ -65,20 +66,20 @@ class RunCommand(command.Command):
         except Exception as e:
             print(e)
         finally:
-            if self.args['<output_type>'] == 'json':
+            if self.args['--output_type'] == 'json':
                 import json
                 with open(os.path.join(os.getcwd(), self.args['<output_filename>'] + '.json'), \
                     'w') as f:
                     json.dump(results, f)
-            elif self.args['<output_type>'] == 'csv':
+            elif self.args['--output_type'] == 'csv':
                 import csv
-                fields = [x for x in get_fields(self.config)]
                 with open(os.path.join(os.getcwd(), self.args['<output_filename>'] + '.csv'), \
                     'w') as f:
+                    fields = [x for x in get_fields(self.config)]
                     writer = csv.DictWriter(f, fieldnames=fields)
                     writer.writeheader()
                     writer.writerows(results['data'])
             print()
             print(Back.WHITE + Fore.RED + self.args['<output_filename>'], \
-                  ".", self.args['<output_type>'], "has been created" \
+                  ".", self.args['--output_type'], " has been created" \
                   + Back.RESET + Fore.RESET, sep="")
