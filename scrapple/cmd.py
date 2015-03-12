@@ -28,6 +28,16 @@ from scrapple.utils.exceptions import handle_exceptions
 
 
 def runCLI():
+    """
+    runCLI
+    ------
+
+    The starting point for the execution of the Scrapple command line tool.
+
+    runCLI uses the docstring as the usage description for the scrapple command. \
+    The class for the required command is selected by a dynamic dispatch, and the \
+    command is executed through the execute_command() method of the command class.
+    """
     args = docopt(__doc__, version='0.2.3')
     try:
         handle_exceptions(args)
