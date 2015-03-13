@@ -29,3 +29,8 @@ You can read the `complete documentation`_.
 
 .. _Scrapple: http://scrappleapp.github.io/scrapple
 .. _complete documentation: http://scrapple.rtfd.org
+
+Maintained by `Alex Mathew`_ and `Harish Balakrishnan`_.
+
+.. _Alex Mathew: http://github.com/AlexMathew
+.. _Harish Balakrishnan: http://github.com/harishb93
