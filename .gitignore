@@ -48,3 +48,8 @@ tests/*.csv
 
 .coverage
 coverage.xml
+
+# Pylint
+
+*.dot
+*.png 
