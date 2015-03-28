@@ -4,7 +4,7 @@
 Scrapple tutorial
 =================
 
-In this section, we'll cover some basic tutorials for using Scrapple. We'll cover three basic types of tools you can build with Scrapple.
+In this section, we'll cover some basic tutorials for using Scrapple. We'll cover two basic types of tools you can build with Scrapple.
 
 - Single page linear scrapers
 - Link crawlers

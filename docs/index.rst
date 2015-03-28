@@ -19,13 +19,11 @@ Overview
 ========
 
 .. toctree::
+   :maxdepth: 3
    :hidden:
 
    intro/overview
    intro/install
-   intro/tutorial
-   intro/tutorials/single_linear
-   intro/tutorials/link_crawler
 
 :doc:`intro/overview`
     An introduction to Scrapple
@@ -33,26 +31,66 @@ Overview
 :doc:`intro/install`
     Instructions for installing Scrapple and the required dependencies
 
-:doc:`intro/tutorial`
-    An intoductory tutorial to using Scrapple for generating the required scrapers/crawlers
-
-.. _section-basics:
+.. _section-concepts:
 
 Concepts
 ========
 
 .. toctree::
+   :maxdepth: 3
    :hidden:
 
-   topics/commands
-   topics/config
 
-:doc:`topics/commands`
+
+.. _section-framework:
+
+The Scrapple framework
+======================
+
+.. toctree::
+   :maxdepth: 3
+   :hidden:
+
+   framework/commands
+   framework/config
+
+:doc:`framework/commands`
     Commands provided by the Scrapple CLI
 
-:doc:`topics/config`
+:doc:`framework/config`
     The configuration file which is used by Scrapple to implement the required extractor/crawler
 
+.. _section-implementation:
+
+Implementation
+==============
+
+.. toctree::
+   :maxdepth: 3
+   :hidden:
+
+
+.. _section-tutorials:
+
+Tutorials
+=========
+
+.. toctree::
+   :maxdepth: 3
+   :hidden:
+
+   intro/tutorial
+   intro/tutorials/single_linear
+   intro/tutorials/link_crawler
+
+:doc:`intro/tutorial`
+    Introduction to the Scrapple tutorials
+
+:doc:`intro/tutorials/single_linear`
+    Tutorial for single page linear extractors
+
+:doc:`intro/tutorials/link_crawler`
+    Tutorial for link crawlers
 
 Contribution guide
 ==================
@@ -60,6 +98,7 @@ Contribution guide
 This part contains information about contributing to the project.
 
 .. toctree::
+   :maxdepth: 3
    :hidden:
 
    dev/authors
