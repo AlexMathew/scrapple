@@ -14,7 +14,13 @@ init()
 def traverse_next(page, next, results):
     """
     Recursive generator to traverse through the next attribute and \
-    crawl through the links to be followed
+    crawl through the links to be followed.
+
+    :param page: The current page being parsed
+    :param next: The next attribute of the current scraping dict
+    :param results: The current extracted content, stored in a dict
+    :return: The extracted content, through a generator
+
     """
     for link in page.extract_links(next['follow_link']):
         print(Back.YELLOW + Fore.BLUE + "Loading page ", link.url + Back.RESET + Fore.RESET)
@@ -34,6 +40,10 @@ def traverse_next(page, next, results):
 def get_fields(config):
     """
     Recursive generator that yields the field names in the config file
+
+    :param config: The configuration file that contains the specification of the extractor
+    :return: The field names in the config file, through a generator
+
     """
     for data in config['scraping']['data']:
         if data['field'] != '': 
@@ -47,6 +57,10 @@ def get_fields(config):
 def extract_fieldnames(config):
     """
     Function to return a list of unique field names from the config file
+
+    :param config: The configuration file that contains the specification of the extractor
+    :return: A list of field names from the config file
+
     """
     fields = []
     for x in get_fields(config):

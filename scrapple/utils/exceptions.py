@@ -9,6 +9,13 @@ import re
 
 
 def handle_exceptions(args):
+	"""
+	Validates the arguments passed through the CLI commands.
+
+	:param args: The arguments passed in the CLI, parsed by the docopt module
+	:return: None
+
+	"""
 	projectname_re = re.compile(r'[^a-zA-Z0-9_]')
 	if args['genconfig']:
 		if args['--type'] not in ['scraper', 'crawler']:
