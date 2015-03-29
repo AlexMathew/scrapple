@@ -20,7 +20,6 @@ class CssSelector(Selector):
 	"""
 	
 	def __init__(self, url):
-		self.url = url
 		super(CssSelector, self).__init__(url)
 
 
@@ -56,10 +55,3 @@ class CssSelector(Selector):
 		for link in links:
 			next_url = urljoin(self.url, link.get('href'))
 			yield CssSelector(next_url)
-
-
-	def extract_tabular(self):
-		"""
-		Method for performing the content extraction from tabular organized data.
-		"""
-		raise NotImplementedError
