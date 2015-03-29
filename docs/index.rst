@@ -21,7 +21,7 @@ Overview
 Web content extraction is a common task in the process of collecting data for data analysis. There are several existing frameworks that aid in this task. In this chapter, a brief introduction of Scrapple is provided, with instructions on setting up the development machine to run Scrapple. 
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :hidden:
 
    intro/overview
@@ -46,11 +46,30 @@ Web content extraction is a common task in the process of collecting data for da
 Concepts
 ========
 
+Creating web content extractors requires a good understanding of the following topics :
+
+- :doc:`concepts/structure`
+- :doc:`concepts/selectors`
+- :doc:`concepts/formats`
+
+In this chapter, a brief overview of the concepts behind Scrapple is given.
+
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :hidden:
 
+   concepts/structure
+   concepts/selectors
+   concepts/formats
 
+:doc:`concepts/structure`
+    The basics of web page structure and element trees
+
+:doc:`concepts/selectors`
+    An introduction to tag selector expressions
+
+:doc:`concepts/formats`
+    The primary data formats involved in handling data
 
 .. _section-framework:
 
@@ -58,7 +77,7 @@ The Scrapple framework
 ======================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :hidden:
 
    framework/basic
@@ -80,7 +99,7 @@ Implementation
 ==============
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :hidden:
 
 
@@ -99,15 +118,15 @@ Once you've :doc:`installed Scrapple <intro/install>`, you can see the list of a
 ``$ scrapple --help``
 
 
-The description for the commands provided by Scrapple are described in the :ref:`commands <topics-commands>` section.
+The description for the commands provided by Scrapple are described in the :ref:`commands <framework-commands>` section.
 
-The :ref:`configuration file <topics-config>` is the backbone of Scrapple. It specifies the base page URL, selectors for the data extraction, the follow link for the link crawler and several other parameters. 
+The :ref:`configuration file <framework-config>` is the backbone of Scrapple. It specifies the base page URL, selectors for the data extraction, the follow link for the link crawler and several other parameters. 
 
 Examples for each type are given. 
 
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :hidden:
 
    intro/tutorials/single_linear
@@ -125,7 +144,7 @@ Experimentation & Results
 =========================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :hidden:
 
 
@@ -135,7 +154,7 @@ Conclusion & Future Work
 ========================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :hidden:
 
 
@@ -145,7 +164,7 @@ Contribution guide
 This part contains information about contributing to the project.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :hidden:
 
    dev/authors

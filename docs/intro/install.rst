@@ -4,12 +4,7 @@
 Install Scrapple
 ================
 
-The basic requirements for running Scrapple are:
-
-* `Python2.7`_ 
-* *pip* or *easy_install* [*pip* is the recommended choice]
-
-.. _Python2.7: https://www.python.org/downloads/release/python-278/
+The :doc:`requirements <requirements>` covers the system requirements in detail.
 
 If you're running Ubuntu, install the necessary C libraries for the lxml module.
 

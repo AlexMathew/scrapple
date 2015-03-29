@@ -1,4 +1,4 @@
-.. _topics-commands:
+.. _framework-commands:
 
 =================
 Scrapple commands

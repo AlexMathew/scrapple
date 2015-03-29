@@ -1,4 +1,4 @@
-.. _topics-config:
+.. _framework-config:
 
 ==================
 Configuration file
