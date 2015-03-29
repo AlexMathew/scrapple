@@ -21,7 +21,7 @@ class WebCommand(command.Command):
     app = Flask(__name__)
 
     def __init__(self, args):
-        self.args = args
+        super(WebCommand, self).__init__(args)
         init()
 
 

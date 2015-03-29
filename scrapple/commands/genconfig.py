@@ -18,7 +18,7 @@ class GenconfigCommand(command.Command):
     """
 
     def __init__(self, args):
-        self.args = args
+        super(GenconfigCommand, self).__init__(args)
         init()
 
     def execute_command(self):

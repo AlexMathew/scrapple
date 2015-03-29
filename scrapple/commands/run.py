@@ -18,7 +18,7 @@ class RunCommand(command.Command):
     """
 
     def __init__(self, args):
-        self.args = args
+        super(RunCommand, self).__init__(args)
         init()
 
     def execute_command(self):
