@@ -6,9 +6,11 @@ Scrapple architecture
 
 Scrapple provides a command line interface (CLI) to access a set of commands which can be used for implementing various types of web content extractors. The basic architecture of Scrapple explains how the various components are related.
 
-.. image:: images/architecture.jpg
+.. figure:: images/architecture.jpg
 	:align: center
 	:alt: Scrapple architecture
+
+	Fig 3.1 : Scrapple architecture
 
 - :ref:`Command line input <framework-commands>`
 	The command line input is the basis of definition of the implementation of the extractor. It specifies the project configuration and the options related to implementing the extractor.

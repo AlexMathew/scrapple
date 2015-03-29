@@ -101,14 +101,37 @@ This section deals with how Scrapple works - the architecture of the Scrapple fr
 Implementation
 ==============
 
+This section deals with the implementation of the Scrapple framework. This includes an explanation of the classes involved in the framework, the interaction scenarios for each of the commands supported by Scrapple, and utility functions that form a part of the implementation of the extractor. 
+
 .. toctree::
    :maxdepth: 2
    :hidden:
 
+   implementation/classes
+   implementation/interaction
+   implementation/cli
+   implementation/commands
    implementation/selectors
+   implementation/utils
+
+:doc:`implementation/classes`
+    The classes involved in the implementation of Scrapple
+
+:doc:`implementation/interaction`
+    Interaction scenarios in the implementation of each of the Scrapple commands
+
+:doc:`implementation/cli`
+    The Scrapple command line interface
+
+:doc:`implementation/commands`
+    The implementation of the command classes
 
 :doc:`implementation/selectors`
     The implementation of the selector classes
+
+:doc:`implementation/utils`
+    Utilities functions that support the implementation of the extractor
+
    
 .. _section-tutorials:
 
@@ -159,6 +182,12 @@ Experimentation & Results
 
 Conclusion & Future Work
 ========================
+
+The goal of Scrapple is to provide a generalized solution to the problem of web content extraction. This framework requires a basic understanding of web page structure, which is necessary to write the necessary selector expressions. Using these selector expressions, the required web content extractors can be implemented to generate the desired datasets. 
+
+Experimentation with a wide range of websites gave consistently accurate results, in terms of the generated dataset. However, larger crawl jobs took a lot of time to complete and it was necessary to run the execution in one stretch. Scrapple could be improved to provide restartable crawlers, using caching mechanisms to keep track of the position in the URL frontier. Tag recommendation systems could also be implemented, using complex learning algorithms, though there would be a trade-off on accuracy.
+
+Improvements to the existing features would include a complete development of the web based configuration file editor, to support editing configuration files for link crawlers.
 
 .. toctree::
    :maxdepth: 2
