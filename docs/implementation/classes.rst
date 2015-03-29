@@ -18,5 +18,5 @@ The following class diagram can be used to represent the relationship between th
 	:alt: Scrapple class diagram
 	:align: center
 
-	Fig 4.1 : Scrapple class diagram
+	Scrapple class diagram
 	
