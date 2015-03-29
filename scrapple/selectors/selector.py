@@ -39,10 +39,3 @@ class Selector(object):
 		Method for performing the link extraction for the crawler.
 		"""
 		raise NotImplementedError
-
-
-	def extract_tabular(self):
-		"""
-		Method for performing the content extraction from tabular organized data.
-		"""
-		raise NotImplementedError
