@@ -11,6 +11,14 @@ import itertools
 
 
 def form_to_json(form):
+	"""
+	Takes the form from the POST request in the web interface, and generates the JSON config\
+	file 
+
+	:param form: The form from the POST request
+	:return: None
+
+	"""
 	config = dict()
 	if form['project_name'] == "":
 		raise Exception('Project name cannot be empty.')

@@ -105,7 +105,11 @@ Implementation
    :maxdepth: 2
    :hidden:
 
+   implementation/selectors
 
+:doc:`implementation/selectors`
+    The implementation of the selector classes
+   
 .. _section-tutorials:
 
 Tutorials

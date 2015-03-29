@@ -29,9 +29,6 @@ from scrapple.utils.exceptions import handle_exceptions
 
 def runCLI():
     """
-    runCLI
-    ------
-
     The starting point for the execution of the Scrapple command line tool.
 
     runCLI uses the docstring as the usage description for the scrapple command. \
