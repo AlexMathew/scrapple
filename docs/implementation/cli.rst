@@ -34,6 +34,8 @@ The ``scrapple`` tool on the command line is included in the system path when Sc
 
 .. autofunction:: scrapple.cmd.runCLI
 
+This functionality is implemented by the following code block -
+
 .. code-block:: python
 
     handle_exceptions(args)
