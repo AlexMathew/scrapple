@@ -18,15 +18,25 @@ This documentation contains information about how to use Scrapple and how Scrapp
 Overview
 ========
 
+Web content extraction is a common task in the process of collecting data for data analysis. There are several existing frameworks that aid in this task. In this chapter, a brief introduction of Scrapple is provided, with instructions on setting up the development machine to run Scrapple. 
+
 .. toctree::
    :maxdepth: 3
    :hidden:
 
    intro/overview
+   intro/existing
+   intro/requirements
    intro/install
 
 :doc:`intro/overview`
     An introduction to Scrapple
+
+:doc:`intro/existing`
+    A review of existing systems
+
+:doc:`intro/requirements`
+    Hardware and software requirements to run Scrapple
 
 :doc:`intro/install`
     Instructions for installing Scrapple and the required dependencies
@@ -51,8 +61,12 @@ The Scrapple framework
    :maxdepth: 3
    :hidden:
 
+   framework/basic
    framework/commands
    framework/config
+
+:doc:`framework/basic`
+    How Scrapple works
 
 :doc:`framework/commands`
     Commands provided by the Scrapple CLI
@@ -75,22 +89,55 @@ Implementation
 Tutorials
 =========
 
+In this section, we'll cover some basic tutorials for using Scrapple. We'll cover two basic types of tools you can build with Scrapple.
+
+- :doc:`intro/tutorials/single_linear`
+- :doc:`intro/tutorials/link_crawler`
+
+Once you've :doc:`installed Scrapple <intro/install>`, you can see the list of available commands and the related options using the command
+
+``$ scrapple --help``
+
+
+The description for the commands provided by Scrapple are described in the :ref:`commands <topics-commands>` section.
+
+The :ref:`configuration file <topics-config>` is the backbone of Scrapple. It specifies the base page URL, selectors for the data extraction, the follow link for the link crawler and several other parameters. 
+
+Examples for each type are given. 
+
+
 .. toctree::
    :maxdepth: 3
    :hidden:
 
-   intro/tutorial
    intro/tutorials/single_linear
    intro/tutorials/link_crawler
-
-:doc:`intro/tutorial`
-    Introduction to the Scrapple tutorials
 
 :doc:`intro/tutorials/single_linear`
     Tutorial for single page linear extractors
 
 :doc:`intro/tutorials/link_crawler`
     Tutorial for link crawlers
+
+.. _section-results:
+
+Experimentation & Results
+=========================
+
+.. toctree::
+   :maxdepth: 3
+   :hidden:
+
+
+.. _section-conclusion:
+
+Conclusion & Future Work
+========================
+
+.. toctree::
+   :maxdepth: 3
+   :hidden:
+
 
 Contribution guide
 ==================
@@ -110,11 +157,3 @@ This part contains information about contributing to the project.
 :doc:`dev/contributing`
     Details about contributing to Scrapple
    
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
