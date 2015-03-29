@@ -76,6 +76,9 @@ In this chapter, a brief overview of the concepts behind Scrapple is given.
 The Scrapple framework
 ======================
 
+This section deals with how Scrapple works - the architecture of the Scrapple framework, the commands and options provided by the framework and the specification of the configuration file.
+
+
 .. toctree::
    :maxdepth: 2
    :hidden:
@@ -85,7 +88,7 @@ The Scrapple framework
    framework/config
 
 :doc:`framework/basic`
-    How Scrapple works
+    The architecture of the Scrapple framework
 
 :doc:`framework/commands`
     Commands provided by the Scrapple CLI

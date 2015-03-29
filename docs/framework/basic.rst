@@ -1,8 +1,8 @@
 .. _framework-basic:
 
-==================
-How Scrapple works
-==================
+=====================
+Scrapple architecture
+=====================
 
 Scrapple provides a command line interface (CLI) to access a set of commands which can be used for implementing various types of web content extractors. The basic architecture of Scrapple explains how the various components are related.
 
