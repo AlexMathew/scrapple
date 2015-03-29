@@ -20,7 +20,6 @@ class CssSelector(Selector):
 	"""
 	
 	def __init__(self, url):
-		self.url = url
 		super(CssSelector, self).__init__(url)
 
 

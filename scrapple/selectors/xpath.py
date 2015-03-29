@@ -19,7 +19,6 @@ class XpathSelector(Selector):
 	"""
 	
 	def __init__(self, url):
-		self.url = url
 		super(XpathSelector, self).__init__(url)
 
 

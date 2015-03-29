@@ -17,6 +17,7 @@ class Selector(object):
 	
 	def __init__(self, url):
 		try:
+			self.url = url
 			self.content = requests.get(url).content
 			self.tree = etree.HTML(self.content)
 		except requests.exceptions.MissingSchema:
