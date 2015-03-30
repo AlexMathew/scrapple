@@ -3,26 +3,22 @@
 Command classes
 ===============
 
-scrapple.commands.genconfig.GenconfigCommand
---------------------------------------------
+.. automodule:: scrapple.commands.genconfig
 
 .. autoclass:: scrapple.commands.genconfig.GenconfigCommand
    :members:
 
-scrapple.commands.generate.GenerateCommand
-------------------------------------------
+.. automodule:: scrapple.commands.generate
 
 .. autoclass:: scrapple.commands.generate.GenerateCommand
    :members:
 
-scrapple.commands.run.RunCommand
---------------------------------
+.. automodule:: scrapple.commands.run
 
 .. autoclass:: scrapple.commands.run.RunCommand
    :members:
 
-scrapple.commands.web.WebCommand
---------------------------------
+.. automodule:: scrapple.commands.web
 
 .. autoclass:: scrapple.commands.web.WebCommand
    :members:

@@ -35,6 +35,25 @@ class WebCommand(command.Command):
 
     def execute_command(self):
         """
+        The web command runs the Scrapple web interface through a simple \
+        `Flask <http://flask.pocoo.org>`_ app. 
+
+        When the execute_command() method is called from the \
+        :ref:`runCLI() <implementation-cli>` function, it starts of two simultaneous \
+        processes : 
+
+        - Calls the run_flask() method to start the Flask app on port 5000 of localhost
+        - Opens the web interface on a web browser
+
+        The '/' view of the Flask app, opens up the Scrapple web interface. This \
+        provides a basic form, to fill in the required configuration file. On submitting \
+        the form, it makes a POST request, passing in the form in the request header. \
+        This form is passed to the form_to_json() \
+        :ref:`utility function <implementation-utils>`, where the form is converted into \
+        the resultant JSON configuration file.
+
+        Currently, closing the web command execution requires making a keyboard interrupt \
+        on the command line after the web interface has been closed.
 
         """
         print(Back.GREEN + Fore.BLACK + "Scrapple Web Interface")

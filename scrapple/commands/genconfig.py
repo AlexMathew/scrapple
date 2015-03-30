@@ -23,9 +23,9 @@ class GenconfigCommand(command.Command):
 
     def execute_command(self):
         """
-        The genconfig command depends on predefined Jinja2 templates for the skeleton \
-        configuration files. Taking the --type argument from the CLI input, the \
-        corresponding template file is used. 
+        The genconfig command depends on predefined `Jinja2 <http://jinja.pocoo.org/>`_ \
+        templates for the skeleton configuration files. Taking the --type argument from the \
+        CLI input, the corresponding template file is used. 
 
         Settings for the configuration file, like project name, selector type and URL \
         are taken from the CLI input and using these as parameters, the template is \
