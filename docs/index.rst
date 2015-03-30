@@ -193,3 +193,17 @@ Improvements to the existing features would include a complete development of th
    :maxdepth: 2
    :hidden:
 
+
+.. _section-tables:
+
+Index
+=====
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+
+
+:ref:`genindex`
+
+:ref:`modindex`
