@@ -14,10 +14,11 @@ Scrapy [5]_, an open source project, provides the framework for web crawlers and
 
 .. [1] Kei Kanaoka, Yotaro Fujii and Motomichi Toyama. Ducky: A Data Extraction System for Various Structured Web Documents. In Proceedings of the 18th International Database Engineering & Applications Symposium, IDEAS ’14, pages 342-347, New York, NY, USA, 2014. ACM 
 
-.. [2] T. Furche, G. Gottlob, G. Grasso, C. Schallhart, and A. Sellers. Oxpath: A language for scalable data extraction, automation, and crawling on the deep web. The VLDB Journal, 22(1):47–72, Feb. 2013
+.. [2] T.Furche, G.Gottlob, G.Grasso, C.Schallhart, and A.Sellers. Oxpath: A language for scalable data extraction, automation, and crawling on the deep web. The VLDB Journal, 22(1):47–72, Feb. 2013
 
-.. [3] V. Crescenzi, P. Merialdo, and D. Qiu. Alfred: Crowd assisted data extraction. In Proceedings of the 22nd International Conference on World Wide Web Companion, WWW ’13 Companion, pages 297–300, Republic and Canton of Geneva, Switzerland, 2013. International World Wide Web Conferences Steering Committee.
+.. [3] V.Crescenzi, P.Merialdo, and D.Qiu. Alfred: Crowd assisted data extraction. In Proceedings of the 22nd International Conference on World Wide Web Companion, WWW ’13 Companion, pages 297–300, Republic and Canton of Geneva, Switzerland, 2013. International World Wide Web Conferences Steering Committee.
 
-.. [4] F. Kokkoras, K. Ntonas, and N. Bassiliades. Deixto: A web data extraction suite. In Proceedings of the 6th Balkan Conference in Informatics, BCI ’13, pages 9–12, New York, NY, USA, 2013. ACM.
+.. [4] F.Kokkoras, K.Ntonas, and N.Bassiliades. Deixto: A web data extraction suite. In Proceedings of the 6th Balkan Conference in Informatics, BCI ’13, pages 9–12, New York, NY, USA, 2013. ACM.
 
-.. [5] `Scrapy <https://www.scrapy.org>`_: A fast and powerful scraping and web crawling framework. 
+.. [5] `Scrapy <https://www.scrapy.org>`_: A fast and powerful scraping and web crawling framework.
+ 
