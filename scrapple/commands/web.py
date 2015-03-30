@@ -15,7 +15,7 @@ from scrapple.utils.form import form_to_json
 
 class WebCommand(command.Command):
     """
-    Defines the execution of :command: web
+    Defines the execution of :ref:`web <command-web>`
     """
 
     app = Flask(__name__)
@@ -35,7 +35,7 @@ class WebCommand(command.Command):
 
     def execute_command(self):
         """
-        Execution method of :command: web
+
         """
         print(Back.GREEN + Fore.BLACK + "Scrapple Web Interface")
         print(Back.RESET + Fore.RESET)

@@ -15,7 +15,7 @@ from scrapple.commands import command
 
 class GenerateCommand(command.Command):
     """
-    Defines the execution of :command: generate
+    Defines the execution of :ref:`generate <command-generate>`
     """
 
     def __init__(self, args):
@@ -24,7 +24,7 @@ class GenerateCommand(command.Command):
 
     def execute_command(self):
         """
-        Execution method of :command: generate
+        
         """
         print(Back.GREEN + Fore.BLACK + "Scrapple Generate")
         print(Back.RESET + Fore.RESET)

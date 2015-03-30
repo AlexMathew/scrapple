@@ -11,6 +11,8 @@ The four commands provided by the Scrapple CLI are
 * run
 * web
 
+.. _command-genconfig:
+
 genconfig
 ---------
 
@@ -39,6 +41,8 @@ Examples :
 - ``$ scrapple genconfig pyvideo http://pyvideo.org/category --type=crawler --selector=css`` creates pyvideo.json, which contains the skeleton configuration file for a crawler which uses CSS selector expressions as the selector.
 
 
+.. _command-generate:
+
 generate
 --------
 
@@ -63,6 +67,8 @@ Examples :
 - ``$ scrapple generate pyvideo talk1 --output_type=csv`` generates talk1.py based on pyvideo.json, where the extracted data is stored in a CSV document.
 
 
+.. _command-run:
+
 run
 ---
 
@@ -86,6 +92,8 @@ Examples :
 - ``$ scrapple run pyvideo talk1`` runs the extractor based on pyvideo.json, and stores the extracted content in talk1.json.
 - ``$ scrapple run pyvideo talk1 --output_type=csv`` runs the extractor based on pyvideo.json, and stores the extracted content in talk1.csv.
 
+
+.. _command-web:
 
 web
 ---

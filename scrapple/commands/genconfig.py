@@ -14,7 +14,7 @@ from scrapple.commands import command
 
 class GenconfigCommand(command.Command):
     """
-    Defines the execution of :command: genconfig
+    Defines the execution of :ref:`genconfig <command-genconfig>`
     """
 
     def __init__(self, args):
@@ -23,7 +23,14 @@ class GenconfigCommand(command.Command):
 
     def execute_command(self):
         """
-        Execution method of :command: genconfig
+        The genconfig command depends on predefined Jinja2 templates for the skeleton \
+        configuration files. Taking the --type argument from the CLI input, the \
+        corresponding template file is used. 
+
+        Settings for the configuration file, like project name, selector type and URL \
+        are taken from the CLI input and using these as parameters, the template is \
+        rendered. This rendered JSON document is saved as <project_name>.json.
+        
         """
         print(Back.GREEN + Fore.BLACK + "Scrapple Genconfig")
         print(Back.RESET + Fore.RESET)

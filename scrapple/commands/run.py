@@ -14,7 +14,7 @@ from scrapple.utils.config import traverse_next, extract_fieldnames
 
 class RunCommand(command.Command):
     """
-    Defines the execution of :command: run
+    Defines the execution of :ref:`run <command-run>`
     """
 
     def __init__(self, args):
@@ -23,7 +23,7 @@ class RunCommand(command.Command):
 
     def execute_command(self):
         """
-        Execution method of :command: run
+        
         """
         print(Back.GREEN + Fore.BLACK + "Scrapple Run")
         print(Back.RESET + Fore.RESET)
