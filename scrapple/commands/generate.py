@@ -24,7 +24,21 @@ class GenerateCommand(command.Command):
 
     def execute_command(self):
         """
-        
+        The generate command uses `Jinja2 <http://jinja.pocoo.org/>`_ templates \
+        to create Python scripts, according to the specification in the configuration \
+        file. The predefined templates use the extract_content() method of the \
+        :ref:`selector classes <implementation-selectors>` to implement linear extractors \
+        and use recursive for loops to implement multiple levels of link crawlers. This \
+        implementation is effectively a representation of the traverse_next() \
+        :ref:`utility function <implementation-utils>`, using the loop depth to \
+        differentiate between levels of the crawler execution. 
+
+        According to the --output_type argument in the CLI input, the results are \
+        written into a JSON document or a CSV document. 
+
+        The Python script is written into <output_filename>.py - running this file \
+        is the equivalent of using the Scrapple :ref:`run command <command-run>`. 
+
         """
         print(Back.GREEN + Fore.BLACK + "Scrapple Generate")
         print(Back.RESET + Fore.RESET)

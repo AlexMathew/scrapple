@@ -2,7 +2,6 @@
 scrapple.selectors.css
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Defines the CSS selector
 """
 
 from lxml import cssselect

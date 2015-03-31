@@ -2,7 +2,6 @@
 scrapple.selectors.xpath
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Defines the XPath selector
 """
 
 try:

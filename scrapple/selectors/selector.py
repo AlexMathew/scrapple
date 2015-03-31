@@ -2,7 +2,6 @@
 scrapple.selectors.selector
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Defines Scrapple selectors
 """
 
 from __future__ import print_function

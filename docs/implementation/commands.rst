@@ -12,7 +12,7 @@ Command classes
 
 .. autoclass:: scrapple.commands.generate.GenerateCommand
    :members:
-
+   
 .. automodule:: scrapple.commands.run
 
 .. autoclass:: scrapple.commands.run.RunCommand

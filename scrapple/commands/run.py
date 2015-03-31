@@ -23,7 +23,29 @@ class RunCommand(command.Command):
 
     def execute_command(self):
         """
-        
+        The run command implements the web content extractor corresponding to the given \
+        configuration file. 
+
+        The execute_command() validates the input project name and opens the JSON \
+        configuration file. The run() method handles the execution of the extractor run.
+
+        The extractor implementation follows these primary steps :
+
+        1. Selects the appropriate :ref:`selector class <implementation-selectors>` through \
+        a dynamic dispatch, with the selector_type argument from the CLI input. 
+
+        #. Iterate through the data section in level-0 of the configuration file. \
+        On each data item, call the extract_content() method from the selector class to \
+        extract the content according to the specified extractor rule. 
+
+        #. If there are multiple levels of the extractor, i.e, if there is a 'next' \
+        attribute in the configuration file, call the traverse_next() \
+        :ref:`utility function <implementation-utils>` and parse through successive levels \
+        of the configuration file.
+
+        #. According to the --output_type argument, the result data is saved in a JSON \
+        document or a CSV document. 
+
         """
         print(Back.GREEN + Fore.BLACK + "Scrapple Run")
         print(Back.RESET + Fore.RESET)
