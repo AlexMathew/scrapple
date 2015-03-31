@@ -14,19 +14,19 @@ On comparison with Ducky [1]_, it can be seen that Ducky also provides an accura
 | Feature                          | Scrapple   | Ducky      |
 |                                  |            |            |
 +==================================+============+============+
-| Configuration file               |     ✔      |     ✔      |
+| Configuration file               |    YES     |    YES     |
 +----------------------------------+------------+------------+
-| CSS selectors                    |     ✔      |     ✔      |
+| CSS selectors                    |    YES     |    YES     |
 +----------------------------------+------------+------------+
-| XPath selectors                  |     ✔      |     ✘      |
+| XPath selectors                  |    YES     |    NO      |
 +----------------------------------+------------+------------+
-| CSV output                       |     ✔      |     ✔      |
+| CSV output                       |    YES     |    YES     |
 +----------------------------------+------------+------------+
-| JSON output                      |     ✔      |     ✔      |
+| JSON output                      |    YES     |    YES     |
 +----------------------------------+------------+------------+
-| XML output                       |     ✘      |     ✔      |
+| XML output                       |    NO      |    YES     |
 +----------------------------------+------------+------------+
-| Generation of extractor script   |     ✔      |     ✘      |
+| Generation of extractor script   |    YES     |    NO      |
 +----------------------------------+------------+------------+
 
 
