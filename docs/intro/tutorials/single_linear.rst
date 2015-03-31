@@ -100,8 +100,6 @@ This will create talk1.py, which is the script that can be run to replicate the 
 
 .. code-block:: python
 
-	# -*- coding: utf-8 -*-
-
 	from __future__ import print_function
 	import json
 	import os

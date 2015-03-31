@@ -14,7 +14,7 @@ There are two main types of selector expressions that are commonly used, and sup
 CSS Selectors
 =============
 
-CSS selectors allow very powerful and robust queries, providing variety of expression and simplicity. They use tag names and tag attributes to represent the traversal through the DOM tree. 
+CSS selectors offer flexible options to design efficient and dynamic tag queries, providing variety of expression and simplicity. They use tag names and tag attributes to represent the traversal through the DOM tree. 
 
 For example, 
 
@@ -32,13 +32,16 @@ XPath Selectors
 XPath is used for navigating documents and selecting nodes. It is based on a tree representation of the document it is to be traversed. Since it can traverse both up and down the DOM, it is used widely used for easy navigation through the page to locate the elements searched for. 
 Here are few simple examples of XPath expressions and their meaning.
 
-``/html/body/p[1]`` : This finds the first p inside the body section of the html
-``//link`` : This selects all the link tags in the page
-``//div[@id="commands"]`` : This selects the div elements which contain the id="commands"
+* ``/html/body/p[1]`` : This finds the first p inside the body section of the html
+* ``//link`` : This selects all the link tags in the page
+* ``//div[@id="commands"]`` : This selects the div elements which contain the id="commands"
 
 XPath expressions can be simplified by looking up for path having unique attributes in the page. For instance, consider the expression 
 
-``//*[@id="guide-container"]/div/ul/li[1]/div/ul/li[@id="what_to_watch-guide-item"]/a``
+::
+
+	//*[@id="guide-container"]/div/ul/li[1]/ \
+	div/ul/li[@id="what_to_watch-guide-item"]/a
 
 This can be simplified further as ``//*[@id="what_to_watch-guide-item"]/a`` based on the unique id=”what_to_watch-guide-item” attribute used. 
 

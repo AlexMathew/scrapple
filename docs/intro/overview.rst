@@ -33,8 +33,8 @@ The inspiration behind Scrapple
 
 Scrapple is based on the best ideas involved in two projects :
 
-* `Scrapy`_ : An application framework for crawling web sites and extracting structured data.
-* `Ducky`_ : A semi-automatic Web Wrapper to extract data according to the pre-defined and simple data extraction rule in the configuration file.
+* `Scrapy`_ : Scrapy is an application framework, designed to build web spiders that extract structured web data.
+* `Ducky`_ : Ducky is a semi-automatic web wrapper, which uses a configuration file to define extraction rules, and extract data accordingly.
 
 
 .. _Scrapy: http://scrapy.org
