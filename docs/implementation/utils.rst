@@ -34,7 +34,7 @@ The function uses regular expressions to validate the CLI input.
 			raise Exception("--output_type has to be 'json' or 'csv'")
 	if args['genconfig'] or args['generate'] or args['run']:
 		if projectname_re.search(args['<projectname>']) is not None:
-			raise Exception("<projectname> should consist of letters, digits or _")
+			raise Exception("Invalid <projectname>")
 	return
 
 
@@ -47,12 +47,11 @@ The recursive generator can be implemented through this code snippet :
 .. code-block:: python
 
 	for link in page.extract_links(next['follow_link']):
-		print(Back.YELLOW + Fore.BLUE + "Loading page ", link.url + Back.RESET + Fore.RESET)
 		r = results.copy()
 		for attribute in next['scraping'].get('data'):
 			if attribute['field'] != "":
-				print("\nExtracting", attribute['field'], "attribute", sep=' ')
-				r[attribute['field']] = link.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
+				r[attribute['field']] = \
+				link.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
 		if not next['scraping'].get('next'):
 			yield r
 		else:
