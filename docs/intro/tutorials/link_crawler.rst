@@ -154,7 +154,8 @@ This will create talk_list.py, which is the script that can be run to replicate 
 
 	def task_pyvideo():
 		"""
-		Script generated using `Scrapple <http://scrappleapp.github.io/scrapple>`_
+		Script generated using 
+		`Scrapple <http://scrappleapp.github.io/scrapple>`_
 		"""
 		results = dict()
 		results['project'] = "pyvideo"
