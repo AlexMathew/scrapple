@@ -30,7 +30,6 @@ The metrics provided by GitHub can be used to visually represent the contributio
 .. figure:: images/weekly.png
 	:alt: Weekly contributions
 	:align: center
-	:scale: 200
 
 	Weekly contributions to the project repository
 
