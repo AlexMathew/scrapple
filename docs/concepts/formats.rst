@@ -60,8 +60,10 @@ Comma Separated Values (CSV) files consists of tabular data where the fields are
 
 For example, 
 
-::
+.. csv-table:: 
+   :header: Name,Marks,Grade,Promotion
+   :widths: 20, 10, 10, 10
+   :stub-columns: 1
 
-	Name,Marks,Grade,Promotion
 	John,96,O,True
 	Doe,45,F,False

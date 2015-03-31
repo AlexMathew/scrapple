@@ -11,7 +11,10 @@ For this example, we will extract content from a `pyvideo`_ page. Let us conside
 
 To generate a skeleton configuration file, use the ``genconfig`` command. The primary arguments for the command are the project name and the URL of the base page. 
 
-``$ scrapple genconfig pyvideo http://pyvideo.org/video/1785/python-for-humans-1``
+::
+
+	$ scrapple genconfig pyvideo \
+	> http://pyvideo.org/video/1785/python-for-humans-1
 
 This will create pyvideo.json which will initially look like this -
 
@@ -89,13 +92,67 @@ The ``generate`` and ``run`` commands take two positional arguments - the projec
 
 To generate the Python script -
 
-``$ scrapple generate pyvideo talk1``
+::
+	
+	$ scrapple generate pyvideo talk1
 
 This will create talk1.py, which is the script that can be run to replicate the action of ``scrapple run``.
 
+.. code-block:: python
+
+	# -*- coding: utf-8 -*-
+
+	from __future__ import print_function
+	import json
+	import os
+
+	from scrapple.selectors.xpath import XpathSelector
+
+
+	def task_pyvideo():
+		"""
+		Script generated using `Scrapple <http://scrappleapp.github.io/scrapple>`_
+		"""
+		results = dict()
+		results['project'] = "pyvideo"
+		results['data'] = list()
+		try:
+			r0 = dict()
+			page0 = XpathSelector("http://pyvideo.org/video/1785/python-for-humans-1")
+			r0["title"] = page0.extract_content(
+			"//h3", "text", ""
+			)
+			r0["speaker_name"] = page0.extract_content(
+			"//div[@id='sidebar']//dd[2]//a", "text", ""
+			)
+			r0["speaker_link"] = page0.extract_content(
+			"//div[@id='sidebar']//dd[2]//a", "href", ""
+			)
+			r0["event_name"] = page0.extract_content(
+			"//div[@id='sidebar']//dd[1]//a", "text", ""
+			)
+			r0["event_link"] = page0.extract_content(
+			"//div[@id='sidebar']//dd[1]//a", "href", ""
+			)
+			results['data'].append(r0)
+		except KeyboardInterrupt:
+			pass
+		except Exception as e:
+			print(e)
+		finally:
+			with open(os.path.join(os.getcwd(), 'pyforhumans.json'), 'w') as f:
+				json.dump(results, f)
+		
+
+	if __name__ == '__main__':
+		task_pyvideo()
+
+
 To run the scraper -
 
-``$ scrapple run pyvideo talk1``
+::
+
+	$ scrapple run pyvideo talk1
 
 This will create talk1.json, which contains the extracted information.
 

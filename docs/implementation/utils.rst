@@ -51,7 +51,9 @@ The recursive generator can be implemented through this code snippet :
 		for attribute in next['scraping'].get('data'):
 			if attribute['field'] != "":
 				r[attribute['field']] = \
-				link.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
+				link.extract_content(attribute['selector'], 
+				attribute['attr'], 
+				attribute['default'])
 		if not next['scraping'].get('next'):
 			yield r
 		else:

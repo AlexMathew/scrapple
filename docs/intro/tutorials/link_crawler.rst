@@ -11,7 +11,10 @@ For this example, we will extract content from all talks on `pyvideo`_. We will 
 
 To generate a skeleton configuration file, use the ``genconfig`` command. The primary arguments for the command are the project name and the URL of the base page. To generate a skeleton configuration file for a crawler, use the ``--type=crawler`` argument.
 
-``$ scrapple genconfig pyvideo http://pyvideo.org/category --type=crawler``
+::
+
+	$ scrapple genconfig pyvideo http://pyvideo.org/category \
+	> --type=crawler
 
 This will create pyvideo.json which will initially look like this -
 
@@ -88,7 +91,9 @@ For example,
 	                    ],
 	                    "next": [
 	                        {
-	                            "follow_link": "//div[@class='video-summary-data']/div[1]//a",
+	                            "follow_link": " \
+	                            //div[@class='video-summary-data']/div[1]//a \
+	                            ",
 	                            "scraping": {
 	                                "data": [
 	                                    {
@@ -100,7 +105,9 @@ For example,
 	                                    {
 	                                        "field": "speaker",
 	                                        "attr": "text",
-	                                        "selector": "//div[@id='sidebar']//dd[2]",
+	                                        "selector": " \
+	                                        //div[@id='sidebar']//dd[2] \
+	                                        ",
 	                                        "default": "<unknown>"
 	                                    },
 	                                    {
@@ -128,13 +135,77 @@ The ``generate`` and ``run`` commands take two positional arguments - the projec
 
 To generate the Python script -
 
-``$ scrapple generate pyvideo talk_list``
+::
+
+	$ scrapple generate pyvideo talk_list
 
 This will create talk_list.py, which is the script that can be run to replicate the action of ``scrapple run``.
 
+.. code-block:: python
+
+	# -*- coding: utf-8 -*-
+
+	from __future__ import print_function
+	import json
+	import os
+
+	from scrapple.selectors.xpath import XpathSelector
+
+
+	def task_pyvideo():
+		"""
+		Script generated using `Scrapple <http://scrappleapp.github.io/scrapple>`_
+		"""
+		results = dict()
+		results['project'] = "pyvideo"
+		results['data'] = list()
+		try:
+			r0 = dict()
+			page0 = XpathSelector("http://pyvideo.org/category/")
+			
+			for page1 in page0.extract_links(
+			"//table//td[1]//a"):
+				r1 = r0.copy()
+				r1["event"] = page1.extract_content(
+				"//h1", "text", ""
+				)
+				r1["event_url"] = page1.extract_content(
+				"url", "", ""
+				)
+				    
+	    		
+	    		for page2 in page1.extract_links(
+	    		"//div[@class='video-summary-data']/div[1]//a"):
+	    			r2 = r1.copy()
+	    			r2["talk_title"] = page2.extract_content(
+	    			"//h3", "text", "<unknown>"
+	    			)
+	    			r2["speaker"] = page2.extract_content(
+	    			"//div[@id='sidebar']//dd[2]", "text", "<unknown>"
+	    			)
+	    			r2["talk_url"] = page2.extract_content(
+	    			"url", "", ""
+	    			)
+	    			results['data'].append(r2)
+		except KeyboardInterrupt:
+			pass
+		except Exception as e:
+			print(e)
+		finally:
+			with open(os.path.join(os.getcwd(), 'talks.json'), 'w') as f:
+				json.dump(results, f)
+		
+
+	if __name__ == '__main__':
+		task_pyvideo()
+
+
+
 To run the scraper -
 
-``$ scrapple run pyvideo talk_list``
+::
+
+	$ scrapple run pyvideo talk_list
 
 This will create talk_list.json, which contains the extracted information.
 
@@ -147,23 +218,23 @@ A portion of the talk_list.json will look like this.
 	    "project": "pyvideo",
 	    "data": [
 	        {
-	            "talk_title": "Boston Python Meetup: How to test the hard stuff",
-	            "talk_url": "http://pyvideo.org/video/591/boston-python-meetup--how-to-test-the-hard-stuff",
-	            "event_url": "http://pyvideo.org/category/15/bostonpy",
+	            "talk_title": "Boston Python Meetup: ...",
+	            "talk_url": "http://pyvideo.org/video/591/...",
+	            "event_url": "http://pyvideo.org/category/15/...",
 	            "speaker": "Stephan Richter",
 	            "event": "Boston Python Meetup"
 	        },
 	        {
-	            "talk_title": "Boston Python Meetup: Testing: Where do I start?",
-	            "talk_url": "http://pyvideo.org/video/592/boston-python-meetup--testing--where-do-i-start",
-	            "event_url": "http://pyvideo.org/category/15/bostonpy",
+	            "talk_title": "Boston Python Meetup: ...",
+	            "talk_url": "http://pyvideo.org/video/592/...",
+	            "event_url": "http://pyvideo.org/category/15/...",
 	            "speaker": "Marshall Weir",
 	            "event": "Boston Python Meetup"
 	        },
 	        {
-	            "talk_title": "November 2014 Chipy Talks",
-	            "talk_url": "http://pyvideo.org/video/3359/november-2014-chipy-talks",
-	            "event_url": "http://pyvideo.org/category/14/chipy",
+	            "talk_title": "November 2014 ...",
+	            "talk_url": "http://pyvideo.org/video/3359/...",
+	            "event_url": "http://pyvideo.org/category/14/...",
 	            "speaker": "Asma Mehjabeen Isaac Adorno",
 	            "event": "ChiPy"
 	        },
@@ -173,9 +244,9 @@ A portion of the talk_list.json will look like this.
 
 
 	        {
-	            "talk_title": "Python 2.7 & Python 3: A Sacred Love Story",
-	            "talk_url": "http://pyvideo.org/video/3373/python-27-python-3-sacred-love-story",
-	            "event_url": "http://pyvideo.org/category/64/twitter-university-2014",
+	            "talk_title": "Python 2.7 & Python 3: ...",
+	            "talk_url": "http://pyvideo.org/video/3373/...",
+	            "event_url": "http://pyvideo.org/category/64/...",
 	            "speaker": "Kenneth Reitz",
 	            "event": "Twitter University 2014"
 	        }
