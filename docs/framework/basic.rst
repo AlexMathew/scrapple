@@ -18,7 +18,7 @@ Scrapple provides a command line interface (CLI) to access a set of commands whi
 - :ref:`Configuration file <framework-config>`
 	The configuration file specifies the rules of the required extractor. It contains the selector expressions for the data to be extracted and the specification of the link crawler.
 
-- Extractor framework
+- :ref:`Extractor framework <concepts-selectors>`
 	The extractor framework handles the implementation of the parsing & extraction. The extractor framework follows the following steps :
 
 	* It makes HTTP requests to fetch the web page to be parsed.
@@ -26,5 +26,5 @@ Scrapple provides a command line interface (CLI) to access a set of commands whi
 	* It extracts the required content, depending on the extractor rules in the configuration file. 
 	* In case of crawlers, this process is repeated for all the pages that the extractor crawls through.
 
-- Data format handler
+- :ref:`Data format handler <concepts-formats>`
 	According to the options specified in the CLI input, the extracted content is stored as a CSV document or a JSON document.
