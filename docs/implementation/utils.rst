@@ -42,7 +42,16 @@ The function uses regular expressions to validate the CLI input.
 
 .. autofunction:: scrapple.utils.config.traverse_next
 
-The recursive generator can be implemented through this code snippet :
+In the case of crawlers, the configuration file can be treated as a tree, with the anchor tag links extracted from the follow link selector as the child nodes. This level-wise representation of the crawler configuration file provides a clear picture of how the file should be parsed. 
+
+.. figure:: images/tree.jpg
+	:alt: Tree representation of crawler
+	:align: center
+
+	Tree representation of crawler
+
+
+This recursive generator performs a depth-first traversal of the config file tree. It can be implemented through this code snippet :
 
 .. code-block:: python
 
@@ -51,7 +60,9 @@ The recursive generator can be implemented through this code snippet :
 		for attribute in next['scraping'].get('data'):
 			if attribute['field'] != "":
 				r[attribute['field']] = \
-				link.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
+				link.extract_content(attribute['selector'], 
+				attribute['attr'], 
+				attribute['default'])
 		if not next['scraping'].get('next'):
 			yield r
 		else:

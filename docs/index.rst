@@ -31,6 +31,7 @@ Web content extraction is a common task in the process of collecting data for da
    intro/existing
    intro/requirements
    intro/install
+   intro/timeline
 
 .. :doc:`intro/overview`
 ..     An introduction to Scrapple
@@ -154,13 +155,13 @@ The :ref:`configuration file <framework-config>` is the backbone of Scrapple. It
 
 Examples for each type are given. 
 
-
 .. toctree::
    :maxdepth: 2
    :hidden:
 
    intro/tutorials/single_linear
    intro/tutorials/link_crawler
+   intro/tutorials/results
 
 .. :doc:`intro/tutorials/single_linear`
 ..     Tutorial for single page linear extractors
@@ -184,3 +185,5 @@ Improvements to the existing features would include a complete development of th
    :maxdepth: 2
    :hidden:
 
+   intro/references
+   
