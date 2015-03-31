@@ -7,6 +7,9 @@
 Scrapple |version| documentation
 =================================
 
+Synopsis
+========
+
 The Internet is a huge source of information. Several people may use data from the Internet to perform various activities, like research or analysis. Data extraction is a primary step involved in data mining and analysis. Extracting content from structured web pages is a vital task to be performed when the Internet is the principal source of data.
 
 The current standards in web structure involve the use of CSS selectors or XPath expressions to select particular tags from which information can be extracted. Web pages are structured as element trees which can be parsed to traverse through the tags. This tree structure, which represents tags as parent/children/siblings, is very useful when tags should be represented in terms of the rest of the web page structure.
@@ -29,17 +32,17 @@ Web content extraction is a common task in the process of collecting data for da
    intro/requirements
    intro/install
 
-:doc:`intro/overview`
-    An introduction to Scrapple
+.. :doc:`intro/overview`
+..     An introduction to Scrapple
 
-:doc:`intro/existing`
-    A review of existing systems
+.. :doc:`intro/existing`
+..     A review of existing systems
 
-:doc:`intro/requirements`
-    Hardware and software requirements to run Scrapple
+.. :doc:`intro/requirements`
+..     Hardware and software requirements to run Scrapple
 
-:doc:`intro/install`
-    Instructions for installing Scrapple and the required dependencies
+.. :doc:`intro/install`
+..     Instructions for installing Scrapple and the required dependencies
 
 .. _section-concepts:
 
@@ -62,14 +65,14 @@ In this chapter, a brief overview of the concepts behind Scrapple is given.
    concepts/selectors
    concepts/formats
 
-:doc:`concepts/structure`
-    The basics of web page structure and element trees
+.. :doc:`concepts/structure`
+..     The basics of web page structure and element trees
 
-:doc:`concepts/selectors`
-    An introduction to tag selector expressions
+.. :doc:`concepts/selectors`
+..     An introduction to tag selector expressions
 
-:doc:`concepts/formats`
-    The primary data formats involved in handling data
+.. :doc:`concepts/formats`
+..     The primary data formats involved in handling data
 
 .. _section-framework:
 
@@ -87,14 +90,14 @@ This section deals with how Scrapple works - the architecture of the Scrapple fr
    framework/commands
    framework/config
 
-:doc:`framework/basic`
-    The architecture of the Scrapple framework
+.. :doc:`framework/basic`
+..     The architecture of the Scrapple framework
 
-:doc:`framework/commands`
-    Commands provided by the Scrapple CLI
+.. :doc:`framework/commands`
+..     Commands provided by the Scrapple CLI
 
-:doc:`framework/config`
-    The configuration file which is used by Scrapple to implement the required extractor/crawler
+.. :doc:`framework/config`
+..     The configuration file which is used by Scrapple to implement the required extractor/crawler
 
 .. _section-implementation:
 
@@ -114,41 +117,38 @@ This section deals with the implementation of the Scrapple framework. This inclu
    implementation/selectors
    implementation/utils
 
-:doc:`implementation/classes`
-    The classes involved in the implementation of Scrapple
+.. :doc:`implementation/classes`
+..     The classes involved in the implementation of Scrapple
 
-:doc:`implementation/interaction`
-    Interaction scenarios in the implementation of each of the Scrapple commands
+.. :doc:`implementation/interaction`
+..     Interaction scenarios in the implementation of each of the Scrapple commands
 
-:doc:`implementation/cli`
-    The Scrapple command line interface
+.. :doc:`implementation/cli`
+..     The Scrapple command line interface
 
-:doc:`implementation/commands`
-    The implementation of the command classes
+.. :doc:`implementation/commands`
+..     The implementation of the command classes
 
-:doc:`implementation/selectors`
-    The implementation of the selector classes
+.. :doc:`implementation/selectors`
+..     The implementation of the selector classes
 
-:doc:`implementation/utils`
-    Utilities functions that support the implementation of the extractor
+.. :doc:`implementation/utils`
+..     Utilities functions that support the implementation of the extractor
 
    
 .. _section-tutorials:
 
-Tutorials
-=========
+Experimentation & Results
+=========================
 
-In this section, we'll cover some basic tutorials for using Scrapple. We'll cover two basic types of tools you can build with Scrapple.
+In this section, some experiments with Scrapple are provided. There are two main types of tools that can be implemented with the Scrapple framework :
 
 - :doc:`intro/tutorials/single_linear`
 - :doc:`intro/tutorials/link_crawler`
 
-Once you've :doc:`installed Scrapple <intro/install>`, you can see the list of available commands and the related options using the command
+Once you've :doc:`installed Scrapple <intro/install>`, you can see the list of available :ref:`commands <framework-commands>` and the related options using the command
 
 ``$ scrapple --help``
-
-
-The description for the commands provided by Scrapple are described in the :ref:`commands <framework-commands>` section.
 
 The :ref:`configuration file <framework-config>` is the backbone of Scrapple. It specifies the base page URL, selectors for the data extraction, the follow link for the link crawler and several other parameters. 
 
@@ -162,20 +162,11 @@ Examples for each type are given.
    intro/tutorials/single_linear
    intro/tutorials/link_crawler
 
-:doc:`intro/tutorials/single_linear`
-    Tutorial for single page linear extractors
+.. :doc:`intro/tutorials/single_linear`
+..     Tutorial for single page linear extractors
 
-:doc:`intro/tutorials/link_crawler`
-    Tutorial for link crawlers
-
-.. _section-results:
-
-Experimentation & Results
-=========================
-
-.. toctree::
-   :maxdepth: 2
-   :hidden:
+.. :doc:`intro/tutorials/link_crawler`
+..     Tutorial for link crawlers
 
 
 .. _section-conclusion:

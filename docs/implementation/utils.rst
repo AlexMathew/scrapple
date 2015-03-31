@@ -11,9 +11,9 @@ This function is implemented through this simple code block :
 
 .. code-block:: python
 
-    from scrapple.commands import genconfig, generate, run, web
-    cmdClass = getattr(eval(command), command.title() + 'Command')
-    return cmdClass
+		from scrapple.commands import genconfig, generate, run, web
+		cmdClass = getattr(eval(command), command.title() + 'Command')
+		return cmdClass
 
 .. automodule:: scrapple.utils.exceptions
 
@@ -46,19 +46,19 @@ The recursive generator can be implemented through this code snippet :
 
 .. code-block:: python
 
-    for link in page.extract_links(next['follow_link']):
-        print(Back.YELLOW + Fore.BLUE + "Loading page ", link.url + Back.RESET + Fore.RESET)
-        r = results.copy()
-        for attribute in next['scraping'].get('data'):
-            if attribute['field'] != "":
-                print("\nExtracting", attribute['field'], "attribute", sep=' ')
-                r[attribute['field']] = link.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
-        if not next['scraping'].get('next'):
-            yield r
-        else:
-            for next2 in next['scraping'].get('next'):
-                for result in traverse_next(link, next2, r):
-                    yield result
+	for link in page.extract_links(next['follow_link']):
+		print(Back.YELLOW + Fore.BLUE + "Loading page ", link.url + Back.RESET + Fore.RESET)
+		r = results.copy()
+		for attribute in next['scraping'].get('data'):
+			if attribute['field'] != "":
+				print("\nExtracting", attribute['field'], "attribute", sep=' ')
+				r[attribute['field']] = link.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
+		if not next['scraping'].get('next'):
+			yield r
+		else:
+			for next2 in next['scraping'].get('next'):
+				for result in traverse_next(link, next2, r):
+					yield result
 
 .. autofunction:: scrapple.utils.config.get_fields
 
@@ -66,13 +66,13 @@ get_fields() parses the configuration file through a recursive generator, yieldi
 
 .. code-block:: python
 
-    for data in config['scraping']['data']:
-        if data['field'] != '': 
-            yield data['field']
-    if 'next' in config['scraping']:
-        for n in config['scraping']['next']:
-            for f in get_fields(n): 
-                yield f
+	for data in config['scraping']['data']:
+		if data['field'] != '': 
+			yield data['field']
+	if 'next' in config['scraping']:
+		for n in config['scraping']['next']:
+			for f in get_fields(n): 
+				yield f
 
 
 .. autofunction:: scrapple.utils.config.extract_fieldnames
@@ -81,13 +81,13 @@ The extract_fieldnames() function uses the get_fields() generator, and handles c
 
 .. code-block:: python
 
-    fields = []
-    for x in get_fields(config):
-        if x in fields:
-            fields.append(x + '_' + str(fields.count(x) + 1))
-        else:
-            fields.append(x)
-    return fields
+	fields = []
+	for x in get_fields(config):
+		if x in fields:
+			fields.append(x + '_' + str(fields.count(x) + 1))
+		else:
+			fields.append(x)
+	return fields
 
 
 .. automodule:: scrapple.utils.form
