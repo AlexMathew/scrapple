@@ -143,7 +143,7 @@ This will create talk1.py, which is the script that can be run to replicate the 
 		except Exception as e:
 			print(e)
 		finally:
-			with open(os.path.join(os.getcwd(), 'pyvideo.json'), 'w') as f:
+			with open(os.path.join(os.getcwd(), 'talk1.json'), 'w') as f:
 				json.dump(results, f)
 		
 
