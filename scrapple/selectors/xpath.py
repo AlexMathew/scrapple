@@ -2,7 +2,6 @@
 scrapple.selectors.xpath
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Defines the XPath selector
 """
 
 try:
@@ -15,7 +14,8 @@ from scrapple.selectors.selector import Selector
 
 class XpathSelector(Selector):
 	"""
-	XpathSelector defines the XPath selector
+	The ``XpathSelector`` object defines XPath expressions.
+
 	"""
 	
 	def __init__(self, url):
