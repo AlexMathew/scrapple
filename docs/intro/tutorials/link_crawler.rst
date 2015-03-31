@@ -143,8 +143,6 @@ This will create talk_list.py, which is the script that can be run to replicate 
 
 .. code-block:: python
 
-	# -*- coding: utf-8 -*-
-
 	from __future__ import print_function
 	import json
 	import os

@@ -8,7 +8,7 @@ From the experiments performed with the Scrapple framework, we see that correctl
 
 The accuracy of the implementation of the Scrapple framework is dependent on the user's understanding of :ref:`web structure <concepts-structure>` and the ability to write correct :ref:`selector expressions <concepts-selectors>`. 
 
-On comparison with Ducky [1]_, it can be seen that Ducky also provides an accuracy of 100%. The primary difference between the Scrapple framework and the Ducky framework is the features provided.
+On comparison with Ducky [1], it can be seen that Ducky also provides an accuracy of 100%. The primary difference between the Scrapple framework and the Ducky framework is the features provided.
 
 +----------------------------------+------------+------------+
 | Feature                          | Scrapple   | Ducky      |
@@ -29,7 +29,4 @@ On comparison with Ducky [1]_, it can be seen that Ducky also provides an accura
 | Generation of extractor script   |    YES     |    NO      |
 +----------------------------------+------------+------------+
 
-
-
-.. [1] Kei Kanaoka, Yotaro Fujii and Motomichi Toyama. Ducky: A Data Extraction System for Various Structured Web Documents. In Proceedings of the 18th International Database Engineering & Applications Symposium, IDEAS ’14, pages 342-347, New York, NY, USA, 2014. ACM 
 
