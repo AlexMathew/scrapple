@@ -111,14 +111,17 @@ This will create talk1.py, which is the script that can be run to replicate the 
 
 	def task_pyvideo():
 		"""
-		Script generated using `Scrapple <http://scrappleapp.github.io/scrapple>`_
+		Script generated using 
+		`Scrapple <http://scrappleapp.github.io/scrapple>`_
 		"""
 		results = dict()
 		results['project'] = "pyvideo"
 		results['data'] = list()
 		try:
 			r0 = dict()
-			page0 = XpathSelector("http://pyvideo.org/video/1785/python-for-humans-1")
+			page0 = XpathSelector(
+			"http://pyvideo.org/video/1785/python-for-humans-1"
+			)
 			r0["title"] = page0.extract_content(
 			"//h3", "text", ""
 			)
@@ -140,7 +143,7 @@ This will create talk1.py, which is the script that can be run to replicate the 
 		except Exception as e:
 			print(e)
 		finally:
-			with open(os.path.join(os.getcwd(), 'pyforhumans.json'), 'w') as f:
+			with open(os.path.join(os.getcwd(), 'pyvideo.json'), 'w') as f:
 				json.dump(results, f)
 		
 
