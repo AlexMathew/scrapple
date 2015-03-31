@@ -11,9 +11,16 @@ This presents the usage description and an explanation of the optional arguments
 
 Usage:
     scrapple (-h | --help | --version)
-    scrapple genconfig <projectname> <url> [--type=<type>] [--selector=<selector>]
-    scrapple run <projectname> <output_filename> [--output_type=<output_type>]
-    scrapple generate <projectname> <output_filename> [--output_type=<output_type>]
+    
+    scrapple genconfig <projectname> <url> 
+    	[--type=<type>] [--selector=<selector>]
+    
+    scrapple run <projectname> <output_filename> 
+    	[--output_type=<output_type>]
+    
+    scrapple generate <projectname> <output_filename> 
+    	[--output_type=<output_type>]
+    
     scrapple web
 
 Options:
