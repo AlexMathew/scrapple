@@ -10,16 +10,14 @@ Scrapple is primarily run through a command line interface. The CLI is used to e
 This presents the usage description and an explanation of the optional arguments provided by the commands.
 
 Usage:
+
     scrapple (-h | --help | --version)
     
-    scrapple genconfig <projectname> <url> 
-    	[--type=<type>] [--selector=<selector>]
+    scrapple genconfig <projectname> <url> [--type=<type>] [--selector=<selector>]
     
-    scrapple run <projectname> <output_filename> 
-    	[--output_type=<output_type>]
+    scrapple run <projectname> <output_filename> [--output_type=<output_type>]
     
-    scrapple generate <projectname> <output_filename> 
-    	[--output_type=<output_type>]
+    scrapple generate <projectname> <output_filename> [--output_type=<output_type>]
     
     scrapple web
 
