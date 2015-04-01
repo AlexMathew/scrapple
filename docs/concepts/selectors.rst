@@ -29,7 +29,7 @@ CSS selectors are faster in many browsers. They rely on the structure as well as
 XPath Selectors
 ===============
 
-XPath is used for navigating documents and selecting nodes. It is based on a tree representation of the document it is to be traversed. Since it can traverse both up and down the DOM, it is used widely used for easy navigation through the page to locate the elements searched for. 
+XPath [11] is used for navigating documents and selecting nodes. It is based on a tree representation [10] of the document it is to be traversed. Since it can traverse both up and down the DOM, it is used widely used for easy navigation through the page to locate the elements searched for. 
 Here are few simple examples of XPath expressions and their meaning.
 
 * ``/html/body/p[1]`` : This finds the first p inside the body section of the html
