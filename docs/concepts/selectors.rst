@@ -14,7 +14,7 @@ There are two main types of selector expressions that are commonly used, and sup
 CSS Selectors
 =============
 
-CSS selectors offer flexible options to design efficient and dynamic tag queries, providing variety of expression and simplicity. They use tag names and tag attributes to represent the traversal through the DOM tree. 
+CSS selectors [12] offer flexible options to design efficient and dynamic tag queries, providing variety of expression and simplicity. They use tag names and tag attributes to represent the traversal through the DOM tree. 
 
 For example, 
 
