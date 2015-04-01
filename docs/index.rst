@@ -47,6 +47,11 @@ The configuration file is a JSON document, consisting of the required key-value 
 Application of Scrapple
 -----------------------
 
+Scrapple can be used to create custom web content extractors, to build datasets required for various applications. 
+
+For example, to perform an analysis of the `trending repositories on GitHub <http://github.com/trending/>`_, the user would require a dataset of statistics, like commits on each repository, number of followers of the repository etc. To obtain this data, the user could use Scrapple to create an extractor, that would crawl through the repository list on the page and extract the required data for each repository. 
+
+Scrapple is experimented with an :ref:`example of talk listings from Pyvideo <section-experimentation>`.
 
 
 The inspiration behind Scrapple
@@ -178,6 +183,7 @@ It also deals with the implementation of the Scrapple framework. This includes a
    implementation/selectors
    implementation/utils
 
+.. _section-experimentation:
 
 Experimentation & Results
 =========================
@@ -227,19 +233,14 @@ References
 
 [5] F.Kokkoras, K. Ntonas, and N. Bassiliades. Deixto: A web data extraction suite. In Proceedings of the 6th Balkan Conference in Informatics, BCI ’13, pages 9–12, New York, NY, USA, 2013. ACM.
 
-[6] Boris Katz , Sue Felshin , Deniz Yuret , Ali Ibrahim , Jimmy Lin , Gregory Marton , Alton Jerome McFarland , Baris Temelkuran. Omnibase: Uniform Access to Heterogeneous Data for Question Answering. In Proceedings of the 7th International Workshop on Applications Of Natural Language To Information Systems. NLDB 2002. Stockholm. Sweden. June 2002.
+[6] Elements and Element Trees [Online]. Available: http://effbot.org/zone/element.htm
 
-[7] BeautifulSoup vs. lxml benchmark[Online]. Available: http://blog.dispatched.ch/2010/08/16/beautifulsoup-vslxml-performance/
+[7] Selectors[Online]. Available: http://www.w3.org/TR/CSS21/selector.html
 
-[8] lxml - Processing XML and HTML with Python [Online]. Available: http://lxml.de/
+[8] XML Path language(XPath)[Online]. Available: http://www.w3.org/TR/xpath/
 
-[9] Elements and Element Trees [Online]. Available: http://effbot.org/zone/element.htm
+[9] XPath support in ElementTree[Online]. Available: http://effbot.org/zone/element-xpath.htm
 
-[10] XPath support in ElementTree[Online]. Available: http://effbot.org/zone/element-xpath.htm
-
-[11] XML Path language(XPath)[Online]. Available: http://www.w3.org/TR/xpath/
-
-[12] Selectors[Online]. Available: http://www.w3.org/TR/CSS21/selector.html
 
 Appendix
 ========
