@@ -16,7 +16,6 @@ The current standards in web structure involve the use of CSS selectors or XPath
 
 Scrapple is a project aimed at designing a framework for building web content extractors. Scrapple uses key-value based configuration files to define parameters to be considered in generating the extractor. It considers the base page URL, selectors for the data to be extracted, and the selector for the links to be crawled through. At its core, Scrapple abstracts the implementation of the extractor, focussing more on representing the selectors for the required tags. Scrapple can be used to generate single page content extractors or link crawlers. 
 
-This documentation contains information about how to use Scrapple and how Scrapple works. 
 
 Introduction
 ============
@@ -45,13 +44,23 @@ Scrapple helps to reduce the hassle in manually writing the scripts needed to ex
 
 The configuration file is a JSON document, consisting of the required key-value pairs. The user specifies the base URL of the page to work on, and also the tags of the data to be extracted. The user has a choice between CSS selectors and XPath expressions for specifying the target tags. Once the target tags have been specified, the other parameters are filled and the configuration file is completed. This configuration file is used by Scrapple to generate the required script and the execution is performed to generate the output of the scraper as a CSV/JSON document (depending on the argument passed while running the script). Thus, the user can obtain data they need without having extensive programming expertise to manually write the scripts required. 
 
+Application of Scrapple
+-----------------------
+
+Scrapple can be used to create custom web content extractors, to build datasets required for various applications. 
+
+For example, to perform an analysis of the `trending repositories on GitHub <http://github.com/trending/>`_, the user would require a dataset of statistics, like commits on each repository, number of followers of the repository etc. To obtain this data, the user could use Scrapple to create an extractor, that would crawl through the repository list on the page and extract the required data for each repository. 
+
+Scrapple is experimented with an :ref:`example of talk listings from Pyvideo <section-experimentation>`.
+
+
 The inspiration behind Scrapple
 -------------------------------
 
 Scrapple is based on the best ideas involved in two projects :
 
-* `Scrapy <http://scrapy.org>`_ : Scrapy is an application framework, designed to build web spiders that extract structured web data.
-* `Ducky <http://dl.acm.org/citation.cfm?id=2628244>`_ : Ducky is a semi-automatic web wrapper, which uses a configuration file to define extraction rules, and extract data accordingly.
+* Scrapy [1] : Scrapy is an application framework, designed to build web spiders that extract structured web data.
+* Ducky [2] : Ducky is a semi-automatic web wrapper, which uses a configuration file to define extraction rules, and extract data accordingly.
 
 
 Project timeline
@@ -65,20 +74,13 @@ The overall project work can be summarized in this Gantt chart.
 
   Gantt chart - Project timeline
 
-The project repository was hosted on `GitHub <http://github.com/>`_. This provided multiple benefits :
-
-* Ease of collaboration between project members
-* Convenient version control of project
-* Setting up continuous integration testing on the project
-* Metrics for analysis of project progress
-
-The metrics provided by GitHub can be used to visually represent the contributions to the project over the duration of the project work.
+The metrics on `the Scrapple GitHub repository <http://github.com/scrappleapp/scrapple>`_ can be used to visually represent the contributions to the project over the duration of the project work.
 
 .. figure:: intro/images/commits.png
   :alt: GitHub commits
   :align: center
 
-  Commit frequency on `the Scrapple GitHub repository <http://github.com/scrappleapp/scrapple>`_ 
+  Commit frequency on the project
 
 .. figure:: intro/images/weekly.png
   :alt: Weekly contributions
@@ -90,13 +92,34 @@ The metrics provided by GitHub can be used to visually represent the contributio
 Review of existing systems
 ==========================
 
-Data extraction process from the web can be classified based on the selectors used. Selectors can be CSS or XPath expressions. CSS selectors are said to be faster and are used by many browsers. Ducky [1] uses CSS selectors for extracting data from pages that are similarly structured. 
+Data extraction process from the web can be classified based on the selectors used. Selectors can be CSS or XPath expressions. CSS selectors are said to be faster and are used by many browsers. Ducky [2] uses CSS selectors for extracting data from pages that are similarly structured. 
 
 On the other hand, XPath expressions are more reliable, handles text recognition better and a powerful option to locate elements when compared to CSS selectors. Many researches are going on presently in this topic. Oxpath [3] provides an extension for XPath expressions. The system created by V. Crescenzi, P. Merialdo, and D. Qiu [4] uses XPath expressions for locating the training data to create queries posed to the workers of a crowd sourcing platform. 
 
 Systems like Ducky and Deixto [5] use the concept of Configuration files where the user inputs the simple details like base pages, a “next” column if there are multiple pages to be parsed. Deixto uses the concept of tag filtering where the unnecessary html tags can be ignored when the DOM (Document Object Model) tree is created.
 
-Scrapy [2], an open source project, provides the framework for web crawlers and extractors. This framework provides support for spider programs that are manually written to extract data from the web. It uses XPath expression to locate the content. The output formats of Ducky and Scrapy include XML, CSV and JSON files.
+Scrapy [1], an open source project, provides the framework for web crawlers and extractors. This framework provides support for spider programs that are manually written to extract data from the web. It uses XPath expression to locate the content. The output formats of Ducky and Scrapy include XML, CSV and JSON files.
+
+
+Concepts
+========
+
+Creating web content extractors requires a good understanding of the following topics :
+
+- :doc:`concepts/structure`
+- :doc:`concepts/selectors`
+- :doc:`concepts/formats`
+
+A brief overview of the concepts behind Scrapple is given.
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+
+   concepts/structure
+   concepts/selectors
+   concepts/formats
+
 
  
 Requirement specification & Installation instructions
@@ -160,6 +183,7 @@ It also deals with the implementation of the Scrapple framework. This includes a
    implementation/selectors
    implementation/utils
 
+.. _section-experimentation:
 
 Experimentation & Results
 =========================
@@ -199,9 +223,9 @@ Improvements to the existing features would include a complete development of th
 References
 ==========
 
-[1] Kei Kanaoka, Yotaro Fujii and Motomichi Toyama. Ducky: A Data Extraction System for Various Structured Web Documents. In Proceedings of the 18th International Database Engineering & Applications Symposium, IDEAS ’14, pages 342-347, New York, NY, USA, 2014. ACM
+[1] Scrapy: A fast and powerful scraping and web crawling framework.[Online] Available: https://www.scrapy.org
 
-[2] Scrapy: A fast and powerful scraping and web crawling framework.[Online] Available: https://www.scrapy.org
+[2] Kei Kanaoka, Yotaro Fujii and Motomichi Toyama. Ducky: A Data Extraction System for Various Structured Web Documents. In Proceedings of the 18th International Database Engineering & Applications Symposium, IDEAS ’14, pages 342-347, New York, NY, USA, 2014. ACM
 
 [3] T.Furche, G. Gottlob, G. Grasso, C. Schallhart, and A. Sellers. Oxpath: A language for scalable data extraction, automation, and crawling on the deep web. The VLDB Journal, 22(1):47–72, Feb. 2013
 
@@ -209,39 +233,24 @@ References
 
 [5] F.Kokkoras, K. Ntonas, and N. Bassiliades. Deixto: A web data extraction suite. In Proceedings of the 6th Balkan Conference in Informatics, BCI ’13, pages 9–12, New York, NY, USA, 2013. ACM.
 
-[6] Boris Katz , Sue Felshin , Deniz Yuret , Ali Ibrahim , Jimmy Lin , Gregory Marton , Alton Jerome McFarland , Baris Temelkuran. Omnibase: Uniform Access to Heterogeneous Data for Question Answering. In Proceedings of the 7th International Workshop on Applications Of Natural Language To Information Systems. NLDB 2002. Stockholm. Sweden. June 2002.
+[6] Elements and Element Trees [Online]. Available: http://effbot.org/zone/element.htm
 
-[7] BeautifulSoup vs. lxml benchmark[Online]. Available: http://blog.dispatched.ch/2010/08/16/beautifulsoup-vslxml-performance/
+[7] Selectors[Online]. Available: http://www.w3.org/TR/CSS21/selector.html
 
-[8] lxml - Processing XML and HTML with Python [Online]. Available: http://lxml.de/
+[8] XML Path language(XPath)[Online]. Available: http://www.w3.org/TR/xpath/
 
-[9] Elements and Element Trees [Online]. Available: http://effbot.org/zone/element.htm
+[9] XPath support in ElementTree[Online]. Available: http://effbot.org/zone/element-xpath.htm
 
-[10] XPath support in ElementTree[Online]. Available: http://effbot.org/zone/element-xpath.htm
-
-[11] XML Path language(XPath)[Online]. Available: http://www.w3.org/TR/xpath/
-
-[12] Selectors[Online]. Available: http://www.w3.org/TR/CSS21/selector.html
 
 Appendix
 ========
 
-Creating web content extractors requires a good understanding of the following topics :
+Plagiarism report
+-----------------
 
-- :doc:`concepts/structure`
-- :doc:`concepts/selectors`
-- :doc:`concepts/formats`
-
-A brief overview of the concepts behind Scrapple is given.
-
-.. toctree::
-   :maxdepth: 2
-   :hidden:
-
-   concepts/structure
-   concepts/selectors
-   concepts/formats
-
+.. image:: intro/images/plagiarism.jpg
+   :alt: Plagiarism report
+   :align: center
 
 
 .. Overview

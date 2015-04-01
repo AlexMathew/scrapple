@@ -14,7 +14,7 @@ There are two main types of selector expressions that are commonly used, and sup
 CSS Selectors
 =============
 
-CSS selectors [10] offer flexible options to design efficient and dynamic tag queries, providing variety of expression and simplicity. They use tag names and tag attributes to represent the traversal through the DOM tree. 
+CSS selectors [7] offer flexible options to design efficient and dynamic tag queries, providing variety of expression and simplicity. They use tag names and tag attributes to represent the traversal through the DOM tree. 
 
 For example, 
 
@@ -24,12 +24,12 @@ In recent times, the use of CSS selectors is becoming more common because of the
 
 CSS selectors are faster in many browsers. They rely on the structure as well as the attributes of the page to find elements. They provide a good balance between structure and attributes. Though the property values cannot be specified as expressions, it is widely used due to its simplicity and flexibility. They can traverse down a DOM(Document Object Model) according to the path specified in the selector expression. 
 
-`A detailed study on CSS selectors can be found here <http://www.w3.org/TR/CSS21/selector.html>`_.
+`A detailed study on CSS selectors can be found on W3C <http://www.w3.org/TR/CSS21/selector.html>`_.
 
 XPath Selectors
 ===============
 
-XPath [9] is used for navigating documents and selecting nodes. It is based on a tree representation [8] of the document it is to be traversed. Since it can traverse both up and down the DOM, it is used widely used for easy navigation through the page to locate the elements searched for. 
+XPath [8] is used for navigating documents and selecting nodes. It is based on a tree representation [9] of the document it is to be traversed. Since it can traverse both up and down the DOM, it is used widely used for easy navigation through the page to locate the elements searched for. 
 Here are few simple examples of XPath expressions and their meaning.
 
 * ``/html/body/p[1]`` : This finds the first p inside the body section of the html
@@ -49,4 +49,4 @@ They can also be simplified by shortening the reference path. For instance, cons
 
 There are several other advanced methods of representing XPath expressions, like expressing the ancestors or siblings, normalizing spaces etc.
 
-`A detailed study on XPath expressions can be found here <http://www.w3.org/TR/xpath/>`_.
+`A detailed study on XPath expressions can be found on W3C <http://www.w3.org/TR/xpath/>`_.
