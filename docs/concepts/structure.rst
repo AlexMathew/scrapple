@@ -18,9 +18,9 @@ The main elements that comprise a web page are :
 ElementTree
 ===========
 
-The Element type [8] is a data object that can contain tree-like data structures. 
+The Element type [7] is a data object that can contain tree-like data structures. 
 
-The ElementTree wrapper [8] type adds code to load web pages as trees of Element objects. 
+The ElementTree wrapper [7] type adds code to load web pages as trees of Element objects. 
 An element consists of properties like a tag(identify the element type), number of attributes, text string holding the textual content and the number of child nodes. 
 
 To create a tree, we create the root element and add children elements to the root element. A method called Subelement can be used for creating and adding an element to the parent element.

@@ -14,7 +14,7 @@ There are two main types of selector expressions that are commonly used, and sup
 CSS Selectors
 =============
 
-CSS selectors [11] offer flexible options to design efficient and dynamic tag queries, providing variety of expression and simplicity. They use tag names and tag attributes to represent the traversal through the DOM tree. 
+CSS selectors [10] offer flexible options to design efficient and dynamic tag queries, providing variety of expression and simplicity. They use tag names and tag attributes to represent the traversal through the DOM tree. 
 
 For example, 
 
@@ -29,7 +29,7 @@ CSS selectors are faster in many browsers. They rely on the structure as well as
 XPath Selectors
 ===============
 
-XPath [10] is used for navigating documents and selecting nodes. It is based on a tree representation [9] of the document it is to be traversed. Since it can traverse both up and down the DOM, it is used widely used for easy navigation through the page to locate the elements searched for. 
+XPath [9] is used for navigating documents and selecting nodes. It is based on a tree representation [8] of the document it is to be traversed. Since it can traverse both up and down the DOM, it is used widely used for easy navigation through the page to locate the elements searched for. 
 Here are few simple examples of XPath expressions and their meaning.
 
 * ``/html/body/p[1]`` : This finds the first p inside the body section of the html
