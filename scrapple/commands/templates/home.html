@@ -2,14 +2,12 @@
 <html>
   <head>
       <title>Scrapple Online</title>
-      <script src="http://fb.me/react-0.12.2.js"></script>
-      <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="/static/css/bootstrap.min.css">
       <script src="/static/js/jquery-1.11.2.min.js"></script>
       <script src="/static/js/bootstrap.min.js"></script>
-
+      
 
       <style>
         .level-0{
@@ -24,9 +22,6 @@
         .level-3{
           margin: 0px 0px 0px 90px;
         }
-        .level-4{
-          margin: 0px 0px 0px 120px;
-        }
       </style>
     </head>
 <body>
@@ -34,8 +29,7 @@
   <div class="container">
     <a class="navbar-brand" href="#">Scrapple</a>
     <div class="btn-group" role="group" aria-label="...">
-    <button type="button" class="btn btn-default navbar-btn" onclick="writeformScraper();">Scraper</button>
-    <button type="button" class="btn btn-default navbar-btn" onclick="writeformCrawler();">Crawler</button>
+<!--    <button type="button" class="btn btn-default navbar-btn" onclick="writeformScraper();">Scraper</button> -->
     </div>
   </div>
 </nav>
@@ -47,55 +41,44 @@
 
       <div id="selform" style="display: block;" class="panel panel-default">
         <div class="panel-heading" id="head-title">
+            <h3 class="panel-title">Scraper</h3>
         </div>
         <div id="newform" class="panel-body">
+
+            <form action="{{ url_for("home") }}" method="post" role="form" class="navbar-form navbar-left">
+                <div class="level-0">
+                    <strong>{<br>
+                    <div class="level-1">
+                        Project_name: </strong><input type="text" name="project_name"><br><br><strong>
+                        Selector_type: </strong><input type="text" name="selector_type"><br><br><strong>
+                        scraping: {
+                        <div id="data-field" class="level-2"><br>
+                            url:</strong><input type="text" name="url"><br><br><strong>
+                            data: [
+                            <div id="input_fields_wraps">{
+                                <div class="level-3">
+                                    field:</strong></strong><input type="text" name="field_1"><br><br><strong>
+                                    selector:</strong><input type="text" name="selector_1"><br><br><strong>
+                                    attribute:</strong><input type="text" name="attribute_1"><br><br><strong>
+                                    default:</strong><input type="text" name="default_1"><br>
+                                </div>
+                                <br><strong>}</strong><br>
+                            </div>
+                            <button type="button" name="add_Data_Btn" class="btn btn-default" onclick="addData();">Add Data</button>
+                            <br><strong>]<br>
+                        </div>
+                        <br>}
+                    </div>
+                    <br>}
+                </div>
+                <br></strong><br><button type="submit" class="btn btn-default">Submit</button>
+            </form>
+   
         </div>
       </div>
-      
-<!-- Scraper -->
-  
-<!-- Crawler -->
 <br><br>
-
-  
-<!--      
-      <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-      Action <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Scraper</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Crawler</a></li>
-      </ul>
-      </div>
-
-     
- <script type="text/jsx" > 
-function addData(){
-  dat='<br>data: ['+'<br>'+'{'+'<div class="level-3">';
-  dat+='field: '+'<input type="text" name="field"  required><br><br>';
-  dat+='selector: '+'<input type="text" name="selector" required><br></div><br>';
-  dat+='}'+'<br><br>'+']';
-  document.getElementById('data-field').innerHTML+=dat;
-}
-
-
-    $(function() {
-    var wrapper = $("#input_fields_wraps"); //Fields wrapper
-    var add_button = $("#add_Data_Btn"); //Add button ID
-    var dat1='<br>'+'{'+'<div class="level-3">'+'field: '+'<input type="text" name="field"><br><br>'+'selector: '+'<input type="text" name="selector"><br></div><br>'+'}'+'<br>';
-  
-    $(add_button).click(function(e){ //on add input button click
-        e.preventDefault();
-        $(wrapper).append(dat1); //add input box
-        
-    });
-      
-});    
--->
-
-
+    
+    
 <script type="text/javascript">
 
 var j=2;
@@ -105,10 +88,10 @@ function addData(){
     var slr="selector_"+j.toString();
     var atr="attribute_"+j.toString();
     var daa=document.createElement("div");
-    daa.className="level-3";
     daa.innerHTML=
     '<strong>field: </strong><input type="text" name="field_"><br><br><strong>selector: </strong><input type="text" name="selector_"><br><br><strong>attribute:</strong> <input type="text" name="attribute_"><br><br><strong>default: </strong><input type="text" name="default_"><br>';
     var daa0=document.createElement("div");
+    daa.className='level-3';
     daa0.innerHTML='<strong>,<br>{</strong><br>';
     var daa2=document.createElement("div");
     daa2.innerHTML='<br><strong>}</strong><br>';
@@ -126,55 +109,7 @@ function addData(){
     x[0].name+=j.toString();
     j++;
     }
-
     
-function writeformScraper(){
-selobj=document.getElementById('selform');
-headobj=document.getElementById('head-title');
-newobj=document.getElementById('newform');
- txt1='<form action="' + '{{ url_for("home") }}' + '" method="post" role="form" class="navbar-form navbar-left"><div class="level-0">'+'<strong>{'+'<br><div class="level-1">';
-  txt1+='Project_name: </strong> '+'<input type="text" name="project_name"><br><br>';
-  txt1+='<strong>Selector_type: </strong> '+'<input type="text" name="selector_type"><br><br>';
-  txt1+='<strong>scraping: {'+'<div id="data-field" class="level-2"><br>'+'url:</strong> ';
-  txt1+='<input type="text" name="url"><br><br>';
-  txt1+='<strong>data: ['+'<div id="input_fields_wraps">'+'{'+'<div class="level-3">';
-  txt1+='field:</strong> '+'</strong><input type="text" name="field_1"><br><br>';
-  txt1+='<strong>selector:</strong> '+'<input type="text" name="selector_1"><br><br>';
-  txt1+='<strong>attribute:</strong> '+'<input type="text" name="attribute_1"><br><br>';
-  txt1+='<strong>default:</strong> '+'<input type="text" name="default_1"><br></div><br>';
-  txt1+='<strong>}</strong>'+'<br>'+'</div><button type="button" name="add_Data_Btn" class="btn btn-default" onclick="addData();">Add Data</button>'+'<br><strong>]<br>';
-  txt1+='</div><br>'+'}'+'</div><br>'+'}'+'</div>';
-  txt1+='<br></strong>'+'<br><button type="submit" class="btn btn-default">Submit</button></form>';
-   
-headobj.innerHTML='<h3 class="panel-title">Scraper</h3>';
-newobj.innerHTML=txt1;selobj.style.display='block';
-
-}
-
-function writeformCrawler(){
-  selobj=document.getElementById('selform');
-  headobj=document.getElementById('head-title');
-  newobj=document.getElementById('newform');
-  txt1='<form action="' + '{{ url_for("home") }}' + '" method="post" class="navbar-form navbar-left"><div class="level-0">'+'<strong>{'+'<br><div class="level-1">';
-  txt1+='Project_name: </strong>'+'<input type="text" name="project_name"><br><br>';
-  txt1+='<strong>Selector_type: </strong>'+'<input type="text" name="selector_type"><br><br>';
-  txt1+='<strong>scraping: {'+'<div class="level-2"><br>'+'url: </strong>';
-  txt1+='<input type="text" name="url"><br><br>';
-  txt1+='<strong>data: ['+'<br>'+'{'+'<div class="level-3">';
-  txt1+='field: '+'</strong><input type="text" name="field"><br><br>';
-  txt1+='<strong>selector: </strong>'+'<input type="text" name="selector"><br><br>';
-  txt1+='<strong>attribute:</strong> '+'<input type="text" name="attribute_1"><br>';
-  txt1+='<strong></div>}'+'<br><br>'+']'+'<br><br>'+'next:{'+'<div class="level-3">'+'<br>follow-link: </strong>';
-  txt1+='<input type="text" name="field"><br><br>'+'<strong>data: ['+'<br>{';
-  txt1+='<div class="level-4">'+'field: </strong>'+'<input type="text" name="field"><br><br>';
-  txt1+='<strong>selector: </strong>'+'<input type="text" name="selector"><br><br>';
-  txt1+='<strong>attribute:</strong> '+'<input type="text" name="attribute_1"><br></div><br>'+'<strong>}';
-  txt1+='<br><br>'+']'+'</div><br>'+'}'+'</div>'+'}'+'</div><br>'+'</div>'+'}'+'</strong>';
-  txt1+='<br><br><button type="submit" class="btn btn-default">Submit</button></form>';
-  
-  headobj.innerHTML='<h3 class="panel-title">Crawler</h3>';
-  newobj.innerHTML=txt1;selobj.style.display='block';
-}
 </script>
 
   </body>
