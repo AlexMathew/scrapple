@@ -242,7 +242,6 @@ Web content extraction is a common task in the process of collecting data for da
    intro/existing
    intro/requirements
    intro/install
-   intro/timeline
 
 :doc:`intro/overview`
     An introduction to Scrapple
@@ -381,16 +380,35 @@ Examples for each type are given.
     Tutorial for link crawlers
 
 
+Contributing to Scrapple
+========================
+
+Scrapple is on `GitHub <http://github.com/scrappleapp/scrapple>`_ !
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+
+   contributing/authors
+   contributing/history
+   contributing/guide
+
+:doc:`contributing/authors`
+    The creators of Scrapple
+
+:doc:`contributing/history`
+    History of Scrapple releases
+
+:doc:`contributing/guide`
+    The Scrapple contribution guide
+
+
 .. _section-conclusion:
 
-Conclusion & Future Work
-========================
 
 The goal of Scrapple is to provide a generalized solution to the problem of web content extraction. This framework requires a basic understanding of web page structure, which is necessary to write the necessary selector expressions. Using these selector expressions, the required web content extractors can be implemented to generate the desired datasets. 
 
 Experimentation with a wide range of websites gave consistently accurate results, in terms of the generated dataset. However, larger crawl jobs took a lot of time to complete and it was necessary to run the execution in one stretch. Scrapple could be improved to provide restartable crawlers, using caching mechanisms to keep track of the position in the URL frontier. Tag recommendation systems could also be implemented, using complex learning algorithms, though there would be a trade-off on accuracy.
-
-Improvements to the existing features would include a complete development of the web based configuration file editor, to support editing configuration files for link crawlers.
 
 .. toctree::
    :maxdepth: 2

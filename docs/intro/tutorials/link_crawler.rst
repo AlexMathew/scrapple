@@ -92,7 +92,7 @@ For example,
 	                    "next": [
 	                        {
 	                            "follow_link": " \
-	                            //div[@class='video-summary-data']/div[1]//a \
+	                            //div[@id='video-summary-content']/div//strong/a \
 	                            ",
 	                            "scraping": {
 	                                "data": [
