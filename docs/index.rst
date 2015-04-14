@@ -242,7 +242,6 @@ Web content extraction is a common task in the process of collecting data for da
    intro/existing
    intro/requirements
    intro/install
-   intro/timeline
 
 :doc:`intro/overview`
     An introduction to Scrapple
