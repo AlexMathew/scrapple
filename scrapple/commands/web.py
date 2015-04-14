@@ -69,7 +69,10 @@ class WebCommand(command.Command):
         if request.method == 'POST':
             try:
                 form_to_json(request.form)
-                return render_template('complete.html')
+                return render_template(
+                    'complete.html',
+                    filename=request.form['project_name']
+                    )
             except Exception as e:
                 return render_template('error.html', error=e)
         else:    
