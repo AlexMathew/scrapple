@@ -40,10 +40,217 @@ Otherwise, you could clone this repository and install the package.
 	$ pip install -r requirements.txt
 	$ python setup.py install
 
+How to use Scrapple
+===================
+
+Scrapple provides 4 commands to create and implement extractors.
+
+- `genconfig`_
+- `generate`_
+- `run`_
+- `web`_
+
+.. _genconfig: http://scrapple.readthedocs.org/en/latest/framework/commands.html#genconfig
+.. _generate: http://scrapple.readthedocs.org/en/latest/framework/commands.html#generate
+.. _run: http://scrapple.readthedocs.org/en/latest/framework/commands.html#run
+.. _web: http://scrapple.readthedocs.org/en/latest/framework/commands.html#web
+
+Scrapple implements the desired extractor on the basis of the user-specified configuration file. There are guidelines regarding how to write these configuration files.
+
+The configuration file is the basic specification of the extractor required. It contains the URL for the web page to be loaded, the selector expressions for the data to be extracted and in the case of crawlers, the selector expression for the links to be crawled through. 
+
+The keys used in the configuration file are :
+
+- **project_name** : Specifies the name of the project with which the configuration file is associated.
+- **selector_type** : Specifies the type of selector expressions used. This could be "xpath" or "css".
+- **scraping** : Specifies parameters for the extractor to be created.
+	* **url** : Specifies the URL of the base web page to be loaded.
+	* **data** : Specifies a list of selectors for the data to be extracted.
+		+ **selector** : Specifies the selector expression.
+		+ **attr** : Specifies the attribute to be extracted from the result of the selector expression.
+		+ **field** : Specifies the field name under which this data is to stored.
+		+ **default** : Specifies the default value to be used if the selector expression fails.
+	* **next** : Specifies the crawler implementation.
+		+ **follow_link** : Specifies the selector expression for the ``<a>`` tags to be crawled through.
+
+The main objective of the configuration file is to specify extraction rules in terms of selector expressions and the attribute to be extracted. There are certain set forms of selector/attribute value pairs that perform various types of content extraction.
+
+Selector expressions :
+
+- CSS selector or XPath expressions that specify the tag to be selected.
+- "url" to take the URL of the current page on which extraction is being performed. 
+
+Attribute selectors :
+
+- "text" to extract the textual content from that tag.
+- "href", "src" etc., to extract any of the other attributes of the selected tag.
+
+
 Tutorials
 =========
 
-(Updates soon)
+[For a more detailed tutorial, check out the `tutorial in the documentation`_]
+
+.. _tutorial in the documentation: http://scrapple.readthedocs.org/en/latest/#experimentation-results
+
+In this simple example for using Scrapple, we'll extract NBA player information from `the ESPN website <http://espn.go.com/nba/teams>`_.
+
+To first create the skeleton configuration file, we use the genconfig command.
+
+::
+
+	$ scrapple genconfig nba http://espn.go.com/nba/teams --type=crawler
+
+
+This creates nba.json - a sample Scrapple configuration file for a crawler, which uses XPath expressions as selectors. This can be edited and the required follow link selector, data selectors and attributes can be specified.
+
+.. code-block:: javascript
+
+	{
+		"project_name": "nba",
+		"selector_type": "xpath",
+		"scraping": {
+			"url": "http://espn.go.com/nba/teams",
+			"data": [
+				{
+					"field": "",
+					"selector": "",
+					"attr": "",
+					"default": ""
+				}
+			],
+			"next": [
+				{
+					"follow_link": "//*[@class='mod-content']//a[3]/@href",
+					"scraping": {
+						"data": [
+							{
+								"field": "team",
+								"selector": "//h2",
+								"attr": "text",
+								"default": "<no_team>"
+							}
+						],
+						"next": [
+							{
+								"follow_link": "//*[@class='mod-content']/table[1]//tr[@class!='colhead']//a/@href",
+								"scraping": {
+									"data": [
+										{
+											"field": "name",
+											"selector": "//h1",
+											"attr": "text",
+											"default": "<no_name>"
+										},
+										{
+											"field": "headshot_link",
+											"selector": "//*[@class='main-headshot']/img",
+											"attr": "src",
+											"default": "<no_image>"
+										},
+										{
+											"field": "number & position",
+											"selector": "//ul[@class='general-info']/li[1]",
+											"attr": "text",
+											"default": "<00> #<GFC>"
+										},
+										{
+											"field": "career points/game",
+											"selector": "//table[@class='header-stats']//tr[@class='career']/td[1]",
+											"attr": "text",
+											"default": "0.0"
+										},
+										{
+											"field": "career assists/game",
+											"selector": "//table[@class='header-stats']//tr[@class='career']/td[2]",
+											"attr": "text",
+											"default": "0.0"
+										},
+										{
+											"field": "career rebounds/game",
+											"selector": "//table[@class='header-stats']//tr[@class='career']/td[3]",
+											"attr": "text",
+											"default": "0.0"
+										}
+									]
+								}
+							}
+						]					
+					}
+				}
+			]
+		}
+	}
+
+
+The extractor can be run using the run command - 
+
+::
+
+	$ scrapple run nba nba_players -o json
+
+This creates nba_players.json which contains the extracted data. An example snippet of this data :
+
+.. code-block:: javascript
+
+	{
+
+	    "project": "nba",
+	    "data": [
+
+	        # nba_players.json continues
+	        
+	        {
+	            "career points/game": "8.0",
+	            "name": "DeAndre Jordan",
+	            "team": "Los Angeles Clippers",
+	            "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3442.png&w=350&h=254",
+	            "career assists/game": "9.0",
+	            "number & position": "#6 C",
+	            "career rebounds/game": "1.7"
+	        },
+	        {
+	            "career points/game": "18.7",
+	            "name": "Chris Paul",
+	            "team": "Los Angeles Clippers",
+	            "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2779.png&w=350&h=254",
+	            "career assists/game": "9.9",
+	            "number & position": "#3 PG",
+	            "career rebounds/game": "4.4"
+	        },
+	        {
+	            "career points/game": "10.8",
+	            "name": "J.J. Redick",
+	            "team": "Los Angeles Clippers",
+	            "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3024.png&w=350&h=254",
+	            "career assists/game": "2.0",
+	            "number & position": "#4 SG",
+	            "career rebounds/game": "1.9"
+	        },
+	        {
+	            "career points/game": "7.0",
+	            "name": "Austin Rivers",
+	            "team": "Los Angeles Clippers",
+	            "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/6617.png&w=350&h=254",
+	            "career assists/game": "2.1",
+	            "number & position": "#25 SG",
+	            "career rebounds/game": "1.9"
+	        },
+
+	        # nba_players.json continues
+	    ]
+
+	}
+
+The run command can also be used to create a CSV file with the extracted data, using the --output_type=csv argument.
+
+The generate command can be used to generate a Python script that implements this extractor. In essence, it replicates the execution of the run command.
+
+::
+
+	$ scrapple generate nba nba_script -o json
+
+This creates nba_script.py, which extracts the required data and stores the data in a JSON document.
 
 
 Documentation
