@@ -104,7 +104,7 @@ To first create the skeleton configuration file, we use the genconfig command.
 
 This creates nba.json - a sample Scrapple configuration file for a crawler, which uses XPath expressions as selectors. This can be edited and the required follow link selector, data selectors and attributes can be specified.
 
-::
+.. code-block:: javascript
 
 	{
 		"project_name": "nba",
@@ -191,7 +191,7 @@ The extractor can be run using the run command -
 
 This creates nba_players.json which contains the extracted data. An example snippet of this data :
 
-::
+.. code-block:: javascript
 
 	{
 
