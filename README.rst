@@ -121,7 +121,7 @@ This creates nba.json - a sample Scrapple configuration file for a crawler, whic
 			],
 			"next": [
 				{
-					"follow_link": "//*[@class='mod-content']//a[3]/@href",
+					"follow_link": "//*[@class='mod-content']//a[3]",
 					"scraping": {
 						"data": [
 							{
@@ -133,7 +133,7 @@ This creates nba.json - a sample Scrapple configuration file for a crawler, whic
 						],
 						"next": [
 							{
-								"follow_link": "//*[@class='mod-content']/table[1]//tr[@class!='colhead']//a/@href",
+								"follow_link": "//*[@class='mod-content']/table[1]//tr[@class!='colhead']//a",
 								"scraping": {
 									"data": [
 										{
@@ -155,23 +155,65 @@ This creates nba.json - a sample Scrapple configuration file for a crawler, whic
 											"default": "<00> #<GFC>"
 										},
 										{
-											"field": "career points/game",
+											"field": "stat1 career",
 											"selector": "//table[@class='header-stats']//tr[@class='career']/td[1]",
 											"attr": "text",
 											"default": "0.0"
 										},
 										{
-											"field": "career assists/game",
+											"field": "stat2 career",
 											"selector": "//table[@class='header-stats']//tr[@class='career']/td[2]",
 											"attr": "text",
 											"default": "0.0"
 										},
 										{
-											"field": "career rebounds/game",
+											"field": "stat3 career",
 											"selector": "//table[@class='header-stats']//tr[@class='career']/td[3]",
 											"attr": "text",
 											"default": "0.0"
-										}
+										},
+										{
+											"field": "stat1 season",
+											"selector": "//table[@class='header-stats']//tr[1]/td[1]",
+											"attr": "text",
+											"default": "0.0"
+										},
+										{
+											"field": "stat2 season",
+											"selector": "//table[@class='header-stats']//tr[1]/td[2]",
+											"attr": "text",
+											"default": "0.0"
+										},
+										{
+											"field": "stat3 season",
+											"selector": "//table[@class='header-stats']//tr[1]/td[2]",
+											"attr": "text",
+											"default": "0.0"
+										},
+										{
+											"field": "season PER",
+											"selector": "//table[@class='header-stats']//tr[1]/td[4]",
+											"attr": "text",
+											"default": "0.0"
+										},
+										{
+											"field": "stat1",
+											"selector": "//table[@class='header-stats']//th[1]",
+											"attr": "text",
+											"default": "0.0"
+										},
+										{
+											"field": "stat2",
+											"selector": "//table[@class='header-stats']//th[2]",
+											"attr": "text",
+											"default": "0.0"
+										},
+										{
+											"field": "stat3",
+											"selector": "//table[@class='header-stats']//th[3]",
+											"attr": "text",
+											"default": "0.0"
+										}												
 									]
 								}
 							}
@@ -200,42 +242,54 @@ This creates nba_players.json which contains the extracted data. An example snip
 
 	        # nba_players.json continues
 	        
-	        {
-	            "career points/game": "8.0",
-	            "name": "DeAndre Jordan",
-	            "team": "Los Angeles Clippers",
-	            "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3442.png&w=350&h=254",
-	            "career assists/game": "9.0",
-	            "number & position": "#6 C",
-	            "career rebounds/game": "1.7"
-	        },
-	        {
-	            "career points/game": "18.7",
-	            "name": "Chris Paul",
-	            "team": "Los Angeles Clippers",
-	            "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2779.png&w=350&h=254",
-	            "career assists/game": "9.9",
-	            "number & position": "#3 PG",
-	            "career rebounds/game": "4.4"
-	        },
-	        {
-	            "career points/game": "10.8",
-	            "name": "J.J. Redick",
-	            "team": "Los Angeles Clippers",
-	            "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3024.png&w=350&h=254",
-	            "career assists/game": "2.0",
-	            "number & position": "#4 SG",
-	            "career rebounds/game": "1.9"
-	        },
-	        {
-	            "career points/game": "7.0",
-	            "name": "Austin Rivers",
-	            "team": "Los Angeles Clippers",
-	            "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/6617.png&w=350&h=254",
-	            "career assists/game": "2.1",
-	            "number & position": "#25 SG",
-	            "career rebounds/game": "1.9"
-	        },
+        {
+            "stat3 season": "15.0",
+            "stat2 career": "9.0",
+            "stat1 career": "8.0",
+            "stat3": "BLKPG",
+            "name": "DeAndre Jordan",
+            "stat1": "PPG",
+            "stat3 career": "1.7",
+            "team": "Los Angeles Clippers",
+            "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3442.png&w=350&h=254",
+            "stat2 season": "15.0",
+            "stat1 season": "11.5",
+            "number & position": "#6 C",
+            "season PER": "21.05",
+            "stat2": "RPG"
+        },
+        {
+            "stat3 season": "10.2",
+            "stat2 career": "9.9",
+            "stat1 career": "18.7",
+            "stat3": "RPG",
+            "name": "Chris Paul",
+            "stat1": "PPG",
+            "stat3 career": "4.4",
+            "team": "Los Angeles Clippers",
+            "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2779.png&w=350&h=254",
+            "stat2 season": "10.2",
+            "stat1 season": "19.1",
+            "number & position": "#3 PG",
+            "season PER": "26.04",
+            "stat2": "APG"
+        },
+        {
+            "stat3 season": "1.8",
+            "stat2 career": "2.0",
+            "stat1 career": "10.8",
+            "stat3": "RPG",
+            "name": "J.J. Redick",
+            "stat1": "PPG",
+            "stat3 career": "1.9",
+            "team": "Los Angeles Clippers",
+            "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3024.png&w=350&h=254",
+            "stat2 season": "1.8",
+            "stat1 season": "16.4",
+            "number & position": "#4 SG",
+            "season PER": "16.23",
+            "stat2": "APG"
+        },
 
 	        # nba_players.json continues
 	    ]
