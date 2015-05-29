@@ -99,7 +99,7 @@ To first create the skeleton configuration file, we use the genconfig command.
 
 ::
 
-	$ scrapple genconfig nba http://espn.go.com/nba/teams --type=crawler
+	$ scrapple genconfig nba http://espn.go.com/nba/teams --type=crawler --levels=2
 
 
 This creates nba.json - a sample Scrapple configuration file for a crawler, which uses XPath expressions as selectors. This can be edited and the required follow link selector, data selectors and attributes can be specified.
