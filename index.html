@@ -1,47 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <meta charset="UTF-8">
+    <title>Scrapple by AlexMathew</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>Scrapple by scrappleapp</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>Scrapple</h1>
-        <h2>A framework for creating web scrapers and web crawlers</h2>
-        <a href="https://github.com/scrappleapp/scrapple" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
+    <section class="page-header">
+      <h1 class="project-name">Scrapple</h1>
+      <h2 class="project-tagline">A framework for creating web scrapers and web crawlers</h2>
+      <a href="https://github.com/AlexMathew/scrapple" class="btn">View on GitHub</a>
+      <a href="https://github.com/AlexMathew/scrapple/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/AlexMathew/scrapple/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
+    <section class="main-content">
+      <h1>
 <a id="scrapple" class="anchor" href="#scrapple" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scrapple</h1>
 
-  <a href="https://travis-ci.org/scrappleapp/scrapple">
-    <img src="https://travis-ci.org/scrappleapp/scrapple.svg?branch=master" alt="Build Status">
-  </a>
-  <a href="https://pypi.python.org/pypi//scrapple">
-    <img src="https://pypip.in/download/scrapple/badge.svg" alt="Downloads">
-  </a>
-  <a href="https://pypi.python.org/pypi/scrapple">
-    <img src="https://pypip.in/version/scrapple/badge.svg?text=version" alt="Latest Version">
-  </a>
+<p><img src="https://travis-ci.org/scrappleapp/scrapple.svg%0A%20:target:%20https://travis-ci.org/scrappleapp/scrapple%0A%20:alt:%20Travis-CI%20Build%20Status" alt="image"></p>
 
-<p>Scrapple is a framework for creating web content extractors according to a key-value based configuration file. It provides a command line interface to run the script on a given JSON-based configuration input, as well as a web interface to provide the necessary input.</p>
+<p><img src="https://pypip.in/download/scrapple/badge.svg%0A%20:target:%20https://pypi.python.org/pypi//scrapple%0A%20:alt:%20Downloads" alt="image"></p>
+
+<p><img src="https://pypip.in/version/scrapple/badge.svg?text=version%0A%20:target:%20https://pypi.python.org/pypi/scrapple%0A%20:alt:%20Latest%20Version" alt="image"></p>
+
+<p><a href="http://scrappleapp.github.io/scrapple">Scrapple</a> is a framework for creating web scrapers and web crawlers according to a key-value based configuration file. It provides a command line interface to run the script on a given JSON-based configuration input, as well as a web interface to provide the necessary input.</p>
+
+<p>The primary goal of Scrapple is to abstract the process of designing web content extractors. The focus is laid on what to extract, rather than how to do it. The user-specified configuration file contains selector expressions (XPath expressions or CSS selectors) and the attribute to be selected. Scrapple does the work of running this extractor, without the user worrying about writing a program. Scrapple can also be used to generate a Python script that implements the desired extractor.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>You can install Scrapple by using</p>
 
@@ -49,25 +41,309 @@
 $ pip install scrapple
 </code></pre>
 
-<p>You can read the complete documentation <a href="http://scrapple.rtfd.org">here</a>.</p>
-        </section>
+<p>Otherwise, you could clone this repository and install the package.</p>
 
-        <aside id="sidebar">
-          <a href="https://github.com/scrappleapp/scrapple/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/scrappleapp/scrapple/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+<pre><code>$ git clone http://github.com/scrappleapp/scrapple scrapple
+$ cd scrapple
+$ pip install -r requirements.txt
+$ python setup.py install
+</code></pre>
 
-          <p class="repo-owner"><a href="https://github.com/scrappleapp/scrapple"></a> is maintained by <a href="https://github.com/scrappleapp">scrappleapp</a>.</p>
+<h2>
+<a id="how-to-use-scrapple" class="anchor" href="#how-to-use-scrapple" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use Scrapple</h2>
 
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
+<p>Scrapple provides 4 commands to create and implement extractors.</p>
+
+<ul>
+<li>  <a href="http://scrapple.readthedocs.org/en/latest/framework/commands.html#genconfig">genconfig</a>
+</li>
+<li>  <a href="http://scrapple.readthedocs.org/en/latest/framework/commands.html#generate">generate</a>
+</li>
+<li>  <a href="http://scrapple.readthedocs.org/en/latest/framework/commands.html#run">run</a>
+</li>
+<li>  <a href="http://scrapple.readthedocs.org/en/latest/framework/commands.html#web">web</a>
+</li>
+</ul>
+
+<p>Scrapple implements the desired extractor on the basis of the user-specified configuration file. There are guidelines regarding how to write these configuration files.</p>
+
+<p>The configuration file is the basic specification of the extractor required. It contains the URL for the web page to be loaded, the selector expressions for the data to be extracted and in the case of crawlers, the selector expression for the links to be crawled through.</p>
+
+<p>The keys used in the configuration file are :</p>
+
+<ul>
+<li>  <strong>project_name</strong> : Specifies the name of the project with which the configuration file is associated.</li>
+<li>  <strong>selector_type</strong> : Specifies the type of selector expressions used. This could be "xpath" or "css".</li>
+<li>
+<p><strong>scraping</strong> : Specifies parameters for the extractor to be created.  </p>
+
+<ul>
+<li>  <strong>url</strong> : Specifies the URL of the base web page to be loaded.</li>
+<li>
+<p><strong>data</strong> : Specifies a list of selectors for the data to be extracted.  </p>
+
+<ul>
+<li>  <strong>selector</strong> : Specifies the selector expression.</li>
+<li>  <strong>attr</strong> : Specifies the attribute to be extracted from the result of the selector expression.</li>
+<li>  <strong>field</strong> : Specifies the field name under which this data is to stored.</li>
+<li>  <strong>default</strong> : Specifies the default value to be used if the selector expression fails.</li>
+</ul>
+</li>
+<li>
+<p><strong>next</strong> : Specifies the crawler implementation.  </p>
+
+<ul>
+<li>  <strong>follow_link</strong> : Specifies the selector expression for the <code>&lt;a&gt;</code> tags to be crawled through.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>The main objective of the configuration file is to specify extraction rules in terms of selector expressions and the attribute to be extracted. There are certain set forms of selector/attribute value pairs that perform various types of content extraction.</p>
+
+<p>Selector expressions :</p>
+
+<ul>
+<li>  CSS selector or XPath expressions that specify the tag to be selected.</li>
+<li>  "url" to take the URL of the current page on which extraction is being performed.</li>
+</ul>
+
+<p>Attribute selectors :</p>
+
+<ul>
+<li>  "text" to extract the textual content from that tag.</li>
+<li>  "href", "src" etc., to extract any of the other attributes of the selected tag.</li>
+</ul>
+
+<h2>
+<a id="tutorials" class="anchor" href="#tutorials" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tutorials</h2>
+
+<p>[For a more detailed tutorial, check out the <a href="http://scrapple.readthedocs.org/en/latest/#experimentation-results">tutorial in the documentation</a>]</p>
+
+<p>In this simple example for using Scrapple, we'll extract NBA player information from <a href="http://espn.go.com/nba/teams">the ESPN website</a>.</p>
+
+<p>To first create the skeleton configuration file, we use the genconfig command.</p>
+
+<pre><code>$ scrapple genconfig nba http://espn.go.com/nba/teams --type=crawler
+</code></pre>
+
+<p>This creates nba.json - a sample Scrapple configuration file for a crawler, which uses XPath expressions as selectors. This can be edited and the required follow link selector, data selectors and attributes can be specified.</p>
+
+<pre lang="sourceCode"><code>{
+    "project_name": "nba",
+    "selector_type": "xpath",
+    "scraping": {
+        "url": "http://espn.go.com/nba/teams",
+        "data": [
+            {
+                "field": "",
+                "selector": "",
+                "attr": "",
+                "default": ""
+            }
+        ],
+        "next": [
+            {
+                "follow_link": "//*[@class='mod-content']//a[3]",
+                "scraping": {
+                    "data": [
+                        {
+                            "field": "team",
+                            "selector": "//h2",
+                            "attr": "text",
+                            "default": "&lt;no_team&gt;"
+                        }
+                    ],
+                    "next": [
+                        {
+                            "follow_link": "//*[@class='mod-content']/table[1]//tr[@class!='colhead']//a",
+                            "scraping": {
+                                "data": [
+                                    {
+                                        "field": "name",
+                                        "selector": "//h1",
+                                        "attr": "text",
+                                        "default": "&lt;no_name&gt;"
+                                    },
+                                    {
+                                        "field": "headshot_link",
+                                        "selector": "//*[@class='main-headshot']/img",
+                                        "attr": "src",
+                                        "default": "&lt;no_image&gt;"
+                                    },
+                                    {
+                                        "field": "number &amp; position",
+                                        "selector": "//ul[@class='general-info']/li[1]",
+                                        "attr": "text",
+                                        "default": "&lt;00&gt; #&lt;GFC&gt;"
+                                    },
+                                    {
+                                        "field": "stat1 career",
+                                        "selector": "//table[@class='header-stats']//tr[@class='career']/td[1]",
+                                        "attr": "text",
+                                        "default": "0.0"
+                                    },
+                                    {
+                                        "field": "stat2 career",
+                                        "selector": "//table[@class='header-stats']//tr[@class='career']/td[2]",
+                                        "attr": "text",
+                                        "default": "0.0"
+                                    },
+                                    {
+                                        "field": "stat3 career",
+                                        "selector": "//table[@class='header-stats']//tr[@class='career']/td[3]",
+                                        "attr": "text",
+                                        "default": "0.0"
+                                    },
+                                    {
+                                        "field": "stat1 season",
+                                        "selector": "//table[@class='header-stats']//tr[1]/td[1]",
+                                        "attr": "text",
+                                        "default": "0.0"
+                                    },
+                                    {
+                                        "field": "stat2 season",
+                                        "selector": "//table[@class='header-stats']//tr[1]/td[2]",
+                                        "attr": "text",
+                                        "default": "0.0"
+                                    },
+                                    {
+                                        "field": "stat3 season",
+                                        "selector": "//table[@class='header-stats']//tr[1]/td[2]",
+                                        "attr": "text",
+                                        "default": "0.0"
+                                    },
+                                    {
+                                        "field": "season PER",
+                                        "selector": "//table[@class='header-stats']//tr[1]/td[4]",
+                                        "attr": "text",
+                                        "default": "0.0"
+                                    },
+                                    {
+                                        "field": "stat1",
+                                        "selector": "//table[@class='header-stats']//th[1]",
+                                        "attr": "text",
+                                        "default": "0.0"
+                                    },
+                                    {
+                                        "field": "stat2",
+                                        "selector": "//table[@class='header-stats']//th[2]",
+                                        "attr": "text",
+                                        "default": "0.0"
+                                    },
+                                    {
+                                        "field": "stat3",
+                                        "selector": "//table[@class='header-stats']//th[3]",
+                                        "attr": "text",
+                                        "default": "0.0"
+                                    }                                               
+                                ]
+                            }
+                        }
+                    ]                   
+                }
+            }
+        ]
+    }
+}
+</code></pre>
+
+<p>The extractor can be run using the run command -</p>
+
+<pre><code>$ scrapple run nba nba_players -o json
+</code></pre>
+
+<p>This creates nba_players.json which contains the extracted data. An example snippet of this data :</p>
+
+<pre lang="sourceCode"><code>{
+
+    "project": "nba",
+    "data": [
+
+        # nba_players.json continues
+
+    {
+        "stat3 season": "15.0",
+        "stat2 career": "9.0",
+        "stat1 career": "8.0",
+        "stat3": "BLKPG",
+        "name": "DeAndre Jordan",
+        "stat1": "PPG",
+        "stat3 career": "1.7",
+        "team": "Los Angeles Clippers",
+        "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3442.png&amp;w=350&amp;h=254",
+        "stat2 season": "15.0",
+        "stat1 season": "11.5",
+        "number &amp; position": "#6 C",
+        "season PER": "21.05",
+        "stat2": "RPG"
+    },
+    {
+        "stat3 season": "10.2",
+        "stat2 career": "9.9",
+        "stat1 career": "18.7",
+        "stat3": "RPG",
+        "name": "Chris Paul",
+        "stat1": "PPG",
+        "stat3 career": "4.4",
+        "team": "Los Angeles Clippers",
+        "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2779.png&amp;w=350&amp;h=254",
+        "stat2 season": "10.2",
+        "stat1 season": "19.1",
+        "number &amp; position": "#3 PG",
+        "season PER": "26.04",
+        "stat2": "APG"
+    },
+    {
+        "stat3 season": "1.8",
+        "stat2 career": "2.0",
+        "stat1 career": "10.8",
+        "stat3": "RPG",
+        "name": "J.J. Redick",
+        "stat1": "PPG",
+        "stat3 career": "1.9",
+        "team": "Los Angeles Clippers",
+        "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3024.png&amp;w=350&amp;h=254",
+        "stat2 season": "1.8",
+        "stat1 season": "16.4",
+        "number &amp; position": "#4 SG",
+        "season PER": "16.23",
+        "stat2": "APG"
+    },
+
+        # nba_players.json continues
+    ]
+
+}
+</code></pre>
+
+<p>The run command can also be used to create a CSV file with the extracted data, using the --output_type=csv argument.</p>
+
+<p>The generate command can be used to generate a Python script that implements this extractor. In essence, it replicates the execution of the run command.</p>
+
+<pre><code>$ scrapple generate nba nba_script -o json
+</code></pre>
+
+<p>This creates nba_script.py, which extracts the required data and stores the data in a JSON document.</p>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>You can read the <a href="http://scrapple.rtfd.org">complete documentation</a> for an extensive coverage on the background behind Scrapple, a thorough explanation on the Scrapple package implementation and a complete coverage of tutorials on how to use Scrapple to run your scraper/crawler jobs.</p>
+
+<h2>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors</h2>
+
+<p>Scrapple is maintained by <a href="http://github.com/AlexMathew">Alex Mathew</a> and <a href="http://github.com/harishb93">Harish Balakrishnan</a>.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/AlexMathew/scrapple">Scrapple</a> is maintained by <a href="https://github.com/AlexMathew">AlexMathew</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
 
   
   </body>
