@@ -29,16 +29,19 @@ The two optional arguments for the genconfig command are :
 
 - The type of extractor
 - The selector type
+- Number of crawl levels
 
 The extractor could be a scraper or a crawler, and this can be specified in the --type argument. By default, it is a scraper. When the crawler option is provided, it adds the "next" parameter in the skeleton configuration file. 
 
 With the --selector option, the selector type to be used can be specified. This can be "css" or "xpath". By default, it is "xpath".
 
+For crawler configuration specifications, the number of levels of the crawler can be specified using the --levels argument. By default, it is 1. According to the number of levels specified, :ref:`nested "next" fields <framework-config>` are created.
+
 Examples :
 
 - ``$ scrapple genconfig pyvideo http://pyvideo.org/category`` creates pyvideo.json, which contains the skeleton configuration file for a scraper which uses XPath expressions as the selector.
-- ``$ scrapple genconfig pyvideo http://pyvideo.org/category --type=crawler`` creates pyvideo.json, which contains the skeleton configuration file for a crawler which uses XPath expressions as the selector.
-- ``$ scrapple genconfig pyvideo http://pyvideo.org/category --type=crawler --selector=css`` creates pyvideo.json, which contains the skeleton configuration file for a crawler which uses CSS selector expressions as the selector.
+- ``$ scrapple genconfig pyvideo http://pyvideo.org/category --type=crawler`` creates pyvideo.json, which contains the skeleton configuration file for a single level crawler which uses XPath expressions as the selector.
+- ``$ scrapple genconfig pyvideo http://pyvideo.org/category --type=crawler --selector=css --levels=2`` creates pyvideo.json, which contains the skeleton configuration file for a 2 level crawler which uses CSS selector expressions as the selector.
 
 
 .. _command-generate:

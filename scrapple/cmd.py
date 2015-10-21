@@ -1,7 +1,8 @@
 """
 Usage:
     scrapple (-h | --help | --version)
-    scrapple genconfig <projectname> <url> [--type=<type>] [--selector=<selector>]
+    scrapple genconfig <projectname> <url> [--type=<type>] [--selector=<selector>] \
+[--levels=<levels>]
     scrapple run <projectname> <output_filename> [--output_type=<output_type>]
     scrapple generate <projectname> <output_filename> [--output_type=<output_type>]
     scrapple web
@@ -15,6 +16,8 @@ Options:
         Specifies if the script generated is a page scraper or a crawler [default: scraper]
     --selector=<selector>, -s <selector>
         Specifies if XPath expressions or CSS selectors are used [default: xpath]
+    --levels=<levels>, -l <levels>
+        Specifies the number of levels for the crawler configuration file [default: 1]
     --output_type=<output_type>, -o <output_type>
         Specifies if the generated output is stored as CSV or JSON [default: json]
 """

@@ -42,7 +42,8 @@ class GenconfigCommand(command.Command):
         settings = {
             'projectname': self.args['<projectname>'],
             'selector_type': self.args['--selector'],
-            'url': self.args['<url>']
+            'url': self.args['<url>'],
+            'levels': int(self.args['--levels'])
         }
         rendered = template.render(settings=settings)
         with open(self.args['<projectname>'] + '.json', 'w') as f:

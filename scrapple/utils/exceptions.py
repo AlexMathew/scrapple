@@ -28,4 +28,6 @@ def handle_exceptions(args):
 	if args['genconfig'] or args['generate'] or args['run']:
 		if projectname_re.search(args['<projectname>']) is not None:
 			raise Exception("<projectname> should consist of letters, digits or _")
+	if int(args['--levels']) < 1:
+		raise Exception("--levels should be greater than, or equal to 1")
 	return
