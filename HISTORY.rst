@@ -3,6 +3,11 @@
 History
 =======
 
+0.2.5 - 2015-05-28
+------------------
+
+* Add levels argument for genconfig command, to create crawler config files for a specific depth
+
 0.2.4 - 2015-04-13
 ------------------
 
