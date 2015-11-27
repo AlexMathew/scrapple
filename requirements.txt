@@ -1,8 +1,8 @@
-Flask==0.10.1
-Jinja2==2.7.3
-lxml==3.4.0
-requests==2.3.0
-colorama==0.3.3
-docopt==0.6.1
-cssselect==0.9.1
+Flask>=0.10.1
+Jinja2>=2.7.3
+lxml>=3.4.0
+requests>=2.3.0
+colorama>=0.3.3
+docopt>=0.6.1
+cssselect>=0.9.1
 scrapple
