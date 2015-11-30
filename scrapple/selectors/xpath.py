@@ -94,3 +94,45 @@ class XpathSelector(Selector):
 				yield XpathSelector(next_url)
 		except XPathError:
 			raise Exception("Invalid XPath selector " + selector)
+
+
+	def extract_tabular(self, results={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="", default=""):
+		"""
+		"""
+		result_list = []
+		if type(header) is str:
+			try:
+				header_list = self.tree.xpath(header)
+				table_headers = [prefix + h.text + suffix for h in header_list]
+			except XPathError:
+				raise Exception("Invalid XPath selector " + header)
+		else:
+			table_headers = [prefix + h + suffix for h in header]
+		if table_type not in ["rows", "columns"]:
+			raise Exception("Specify 'rows' or 'columns' in table_type")
+		if table_type == "rows":
+			try:
+				values = self.tree.xpath(selector)
+				if len(table_headers) >= len(values):
+					from itertools import izip_longest
+					pairs = izip_longest(table_headers, values, fillvalue=default)
+				else:
+					from itertools import izip
+					pairs = izip(table_headers, values)
+				for head, val in pairs:
+					if attr == "text":
+						content = " ".join([x.strip() for x in val.itertext()])
+						content = content.replace("\n", " ").strip()
+					else:
+						content = val.get(attr)
+						if attr in ["href", "src"]:
+							content = urljoin(self.url, content)
+					results[head] = content
+				result_list.append(results)
+			except XPathError:
+				raise Exception("Invalid XPath selector " + selector)
+			except TypeError:
+				raise Exception("Selector expression string to be provided. Got " + selector)
+		else:
+			result_list.append(results)
+		return result_list
