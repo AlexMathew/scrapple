@@ -9,6 +9,7 @@ try:
 except ImportError:
 	from urllib.parse import urljoin
 
+from lxml.etree import XPathError
 from scrapple.selectors.selector import Selector
 
 
@@ -65,6 +66,8 @@ class XpathSelector(Selector):
 			if default is not "":
 				return default
 			raise Exception("There is no content for the selector " + selector)
+		except XPathError:
+			raise Exception("Invalid XPath selector " + selector)
 
 
 	def extract_links(self, selector):
@@ -84,7 +87,10 @@ class XpathSelector(Selector):
 		:return: A ``CssSelector`` object for every page to be crawled through 
 		
 		"""
-		links = self.tree.xpath(selector)
-		for link in links:
-			next_url = urljoin(self.url, link.get('href'))
-			yield XpathSelector(next_url)
+		try:
+			links = self.tree.xpath(selector)
+			for link in links:
+				next_url = urljoin(self.url, link.get('href'))
+				yield XpathSelector(next_url)
+		except XPathError:
+			raise Exception("Invalid XPath selector " + selector)
