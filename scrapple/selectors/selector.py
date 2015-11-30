@@ -25,8 +25,14 @@ class Selector(object):
 
 		"""
 		try:
+			headers = {
+				'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:30.0) Gecko/20100101 Firefox/30.0',
+				'content-encoding': 'gzip', 
+				'Accept-Encoding': 'identity, compress, gzip', 
+				'Accept': '*/*'
+			}
 			self.url = url
-			self.content = requests.get(url).content
+			self.content = requests.get(url, headers=headers).content
 			self.tree = etree.HTML(self.content)
 		except requests.exceptions.MissingSchema:
 			raise Exception('URL should be of the form "http://<page_link>')
