@@ -4,6 +4,8 @@ scrapple.selectors.xpath
 
 """
 
+from __future__ import print_function
+
 try:
 	from urlparse import urljoin
 except ImportError:
@@ -100,7 +102,7 @@ class XpathSelector(Selector):
 		"""
 		"""
 		result_list = []
-		if type(header) is str:
+		if type(header) in [str, unicode]:
 			try:
 				header_list = self.tree.xpath(header)
 				table_headers = [prefix + h.text + suffix for h in header_list]
@@ -120,8 +122,12 @@ class XpathSelector(Selector):
 					from itertools import izip
 					pairs = izip(table_headers, values)
 				for head, val in pairs:
+					print("\nExtracting", head, "attribute", sep=' ')
 					if attr == "text":
-						content = " ".join([x.strip() for x in val.itertext()])
+						try:
+							content = " ".join([x.strip() for x in val.itertext()])
+						except Exception:
+							content = default
 						content = content.replace("\n", " ").strip()
 					else:
 						content = val.get(attr)
@@ -135,4 +141,4 @@ class XpathSelector(Selector):
 				raise Exception("Selector expression string to be provided. Got " + selector)
 		else:
 			result_list.append(result)
-		return result_list
+		return table_headers, result_list

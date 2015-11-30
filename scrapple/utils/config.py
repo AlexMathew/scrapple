@@ -11,7 +11,7 @@ from colorama import init, Fore, Back
 init()
 
 
-def traverse_next(page, next, results):
+def traverse_next(page, next, results, tabular_data_headers=[]):
     """
     Recursive generator to traverse through the next attribute and \
     crawl through the links to be followed.
@@ -32,24 +32,26 @@ def traverse_next(page, next, results):
         if not next['scraping'].get('table'):
             result_list = [r]
         else:
-            table = next['scraping'].get('table')
-            result_list = link.extract_tabular(
-                result=r,
-                table_type=table.get('table_type', 'rows'),
-                header=table.get('header', []),
-                prefix=table.get('prefix', ''),
-                suffix=table.get('suffix', ''),
-                selector=table.get('selector', ''),
-                attr=table.get('attr', 'text'),
-                default=table.get('default', '')
-                )
+            tables = next['scraping'].get('table')
+            for table in tables:
+                table_headers, result_list = link.extract_tabular(
+                    result=r,
+                    table_type=table.get('table_type', 'rows'),
+                    header=table.get('header', []),
+                    prefix=table.get('prefix', ''),
+                    suffix=table.get('suffix', ''),
+                    selector=table.get('selector', ''),
+                    attr=table.get('attr', 'text'),
+                    default=table.get('default', '')
+                    )
+                tabular_data_headers.extend(table_headers)
         if not next['scraping'].get('next'):
             for r in result_list:
-                yield r
+                yield (tabular_data_headers, r)
         else:
             for next2 in next['scraping'].get('next'):
-                for result in traverse_next(link, next2, r):
-                    yield result
+                for tdh, result in traverse_next(link, next2, r, tabular_data_headers=tabular_data_headers):
+                    yield (tdh, result)
 
 
 def get_fields(config):

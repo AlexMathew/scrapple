@@ -69,6 +69,7 @@ class RunCommand(command.Command):
         results['data'] = list()
         try:
             result = dict()
+            tabular_data_headers = dict()
             print()
             print(Back.YELLOW + Fore.BLUE + "Loading page ", self.config['scraping']['url'] \
                 + Back.RESET + Fore.RESET)
@@ -80,23 +81,30 @@ class RunCommand(command.Command):
             if not self.config['scraping'].get('table'):
                 result_list = [result]
             else:
-                table = self.config['scraping'].get('table')
-                result_list = selector.extract_tabular(
-                    result=result,
-                    table_type=table.get('table_type', 'rows'),
-                    header=table.get('header', []),
-                    prefix=table.get('prefix', ''),
-                    suffix=table.get('suffix', ''),
-                    selector=table.get('selector', ''),
-                    attr=table.get('attr', 'text'),
-                    default=table.get('default', '')
-                    )
+                tables = self.config['scraping'].get('table')
+                for table in tables:
+                    table_headers, result_list = selector.extract_tabular(
+                        result=result,
+                        table_type=table.get('table_type', 'rows'),
+                        header=table.get('header', []),
+                        prefix=table.get('prefix', ''),
+                        suffix=table.get('suffix', ''),
+                        selector=table.get('selector', ''),
+                        attr=table.get('attr', 'text'),
+                        default=table.get('default', '')
+                        )
+                    for th in table_headers:
+                        if not th in tabular_data_headers:
+                            tabular_data_headers[th] = len(tabular_data_headers)
             if not self.config['scraping'].get('next'):
                 results['data'].extend(result_list)
             else:
                 for next in self.config['scraping']['next']:
-                    for r in traverse_next(selector, next, result):
+                    for tdh, r in traverse_next(selector, next, result):
                         results['data'].append(r)
+                        for th in tdh:
+                            if not th in tabular_data_headers:
+                                tabular_data_headers[th] = len(tabular_data_headers)
         except KeyboardInterrupt:
             pass
         except Exception as e:
@@ -112,6 +120,8 @@ class RunCommand(command.Command):
                 with open(os.path.join(os.getcwd(), self.args['<output_filename>'] + '.csv'), \
                     'w') as f:
                     fields = extract_fieldnames(self.config)
+                    data_headers = sorted(tabular_data_headers, key=lambda x:tabular_data_headers[x])
+                    fields.extend(data_headers)
                     writer = csv.DictWriter(f, fieldnames=fields)
                     writer.writeheader()
                     writer.writerows(results['data'])
