@@ -29,8 +29,23 @@ def traverse_next(page, next, results):
             if attribute['field'] != "":
                 print("\nExtracting", attribute['field'], "attribute", sep=' ')
                 r[attribute['field']] = link.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
+        if not next['scraping'].get('table'):
+            result_list = [r]
+        else:
+            table = next['scraping'].get('table')
+            result_list = link.extract_tabular(
+                result=r,
+                table_type=table.get('table_type', 'rows'),
+                header=table.get('header', []),
+                prefix=table.get('prefix', ''),
+                suffix=table.get('suffix', ''),
+                selector=table.get('selector', ''),
+                attr=table.get('attr', 'text'),
+                default=table.get('default', '')
+                )
         if not next['scraping'].get('next'):
-            yield r
+            for r in result_list:
+                yield r
         else:
             for next2 in next['scraping'].get('next'):
                 for result in traverse_next(link, next2, r):

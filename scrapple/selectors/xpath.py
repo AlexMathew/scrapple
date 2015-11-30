@@ -96,7 +96,7 @@ class XpathSelector(Selector):
 			raise Exception("Invalid XPath selector " + selector)
 
 
-	def extract_tabular(self, results={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="", default=""):
+	def extract_tabular(self, result={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="text", default=""):
 		"""
 		"""
 		result_list = []
@@ -127,12 +127,12 @@ class XpathSelector(Selector):
 						content = val.get(attr)
 						if attr in ["href", "src"]:
 							content = urljoin(self.url, content)
-					results[head] = content
-				result_list.append(results)
+					result[head] = content
+				result_list.append(result)
 			except XPathError:
 				raise Exception("Invalid XPath selector " + selector)
 			except TypeError:
 				raise Exception("Selector expression string to be provided. Got " + selector)
 		else:
-			result_list.append(results)
+			result_list.append(result)
 		return result_list

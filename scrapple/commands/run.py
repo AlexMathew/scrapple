@@ -77,8 +77,22 @@ class RunCommand(command.Command):
                 if attribute['field'] != "":
                     print("\nExtracting", attribute['field'], "attribute", sep=' ')
                     result[attribute['field']] = selector.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
+            if not self.config['scraping'].get('table'):
+                result_list = [result]
+            else:
+                table = self.config['scraping'].get('table')
+                result_list = selector.extract_tabular(
+                    result=result,
+                    table_type=table.get('table_type', 'rows'),
+                    header=table.get('header', []),
+                    prefix=table.get('prefix', ''),
+                    suffix=table.get('suffix', ''),
+                    selector=table.get('selector', ''),
+                    attr=table.get('attr', 'text'),
+                    default=table.get('default', '')
+                    )
             if not self.config['scraping'].get('next'):
-                results['data'].append(result)
+                results['data'].extend(result_list)
             else:
                 for next in self.config['scraping']['next']:
                     for r in traverse_next(selector, next, result):
