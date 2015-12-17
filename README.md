@@ -1,6 +1,8 @@
 Scrapple
 ========
 
+[![Join the chat at https://gitter.im/AlexMathew/scrapple](https://badges.gitter.im/AlexMathew/scrapple.svg)](https://gitter.im/AlexMathew/scrapple?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ![image](https://travis-ci.org/scrappleapp/scrapple.svg%0A%20:target:%20https://travis-ci.org/scrappleapp/scrapple%0A%20:alt:%20Travis-CI%20Build%20Status)
 
 ![image](https://pypip.in/download/scrapple/badge.svg%0A%20:target:%20https://pypi.python.org/pypi//scrapple%0A%20:alt:%20Downloads)
