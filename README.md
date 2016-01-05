@@ -3,11 +3,10 @@ Scrapple
 
 [![Join the chat at https://gitter.im/AlexMathew/scrapple](https://badges.gitter.im/AlexMathew/scrapple.svg)](https://gitter.im/AlexMathew/scrapple?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-![image](https://travis-ci.org/scrappleapp/scrapple.svg%0A%20:target:%20https://travis-ci.org/scrappleapp/scrapple%0A%20:alt:%20Travis-CI%20Build%20Status)
+[![Scrapple on PyPI](https://badge.fury.io/py/scrapple.svg)](https://badge.fury.io/py/scrapple)
 
-![image](https://pypip.in/download/scrapple/badge.svg%0A%20:target:%20https://pypi.python.org/pypi//scrapple%0A%20:alt:%20Downloads)
+[![Build Status](https://travis-ci.org/AlexMathew/scrapple.svg?branch=master)](https://travis-ci.org/AlexMathew/scrapple)
 
-![image](https://pypip.in/version/scrapple/badge.svg?text=version%0A%20:target:%20https://pypi.python.org/pypi/scrapple%0A%20:alt:%20Latest%20Version)
 
 [Scrapple](http://scrappleapp.github.io/scrapple) is a framework for creating web scrapers and web crawlers according to a key-value based configuration file. It provides a command line interface to run the script on a given JSON-based configuration input, as well as a web interface to provide the necessary input.
 
