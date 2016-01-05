@@ -76,7 +76,7 @@ In this simple example for using Scrapple, we'll extract NBA player information 
 
 To first create the skeleton configuration file, we use the genconfig command.
 
-    $ scrapple genconfig nba http://espn.go.com/nba/teams --type=crawler
+    $ scrapple genconfig nba http://espn.go.com/nba/teams --type=crawler --levels=2
 
 This creates nba.json - a sample Scrapple configuration file for a crawler, which uses XPath expressions as selectors. This can be edited and the required follow link selector, data selectors and attributes can be specified.
 
@@ -128,67 +128,27 @@ This creates nba.json - a sample Scrapple configuration file for a crawler, whic
                                         "selector": "//ul[@class='general-info']/li[1]",
                                         "attr": "text",
                                         "default": "<00> #<GFC>"
-                                    },
-                                    {
-                                        "field": "stat1 career",
-                                        "selector": "//table[@class='header-stats']//tr[@class='career']/td[1]",
-                                        "attr": "text",
-                                        "default": "0.0"
-                                    },
-                                    {
-                                        "field": "stat2 career",
-                                        "selector": "//table[@class='header-stats']//tr[@class='career']/td[2]",
-                                        "attr": "text",
-                                        "default": "0.0"
-                                    },
-                                    {
-                                        "field": "stat3 career",
-                                        "selector": "//table[@class='header-stats']//tr[@class='career']/td[3]",
-                                        "attr": "text",
-                                        "default": "0.0"
-                                    },
-                                    {
-                                        "field": "stat1 season",
-                                        "selector": "//table[@class='header-stats']//tr[1]/td[1]",
-                                        "attr": "text",
-                                        "default": "0.0"
-                                    },
-                                    {
-                                        "field": "stat2 season",
-                                        "selector": "//table[@class='header-stats']//tr[1]/td[2]",
-                                        "attr": "text",
-                                        "default": "0.0"
-                                    },
-                                    {
-                                        "field": "stat3 season",
-                                        "selector": "//table[@class='header-stats']//tr[1]/td[2]",
-                                        "attr": "text",
-                                        "default": "0.0"
-                                    },
-                                    {
-                                        "field": "season PER",
-                                        "selector": "//table[@class='header-stats']//tr[1]/td[4]",
-                                        "attr": "text",
-                                        "default": "0.0"
-                                    },
-                                    {
-                                        "field": "stat1",
-                                        "selector": "//table[@class='header-stats']//th[1]",
-                                        "attr": "text",
-                                        "default": "0.0"
-                                    },
-                                    {
-                                        "field": "stat2",
-                                        "selector": "//table[@class='header-stats']//th[2]",
-                                        "attr": "text",
-                                        "default": "0.0"
-                                    },
-                                    {
-                                        "field": "stat3",
-                                        "selector": "//table[@class='header-stats']//th[3]",
-                                        "attr": "text",
-                                        "default": "0.0"
                                     }                                               
+                                ],
+                                "table": [
+                                    {
+                                        "table_type": "rows",
+                                        "header": "//div[@class='player-stats']//table//th",
+                                        "prefix": "season_",
+                                        "suffix": "",
+                                        "selector": "//div[@class='player-stats']//table//tr[1]/td",
+                                        "attr": "text",
+                                        "default": ""
+                                    },
+                                    {
+                                        "table_type": "rows",
+                                        "header": "//div[@class='player-stats']//table//th",
+                                        "prefix": "career_",
+                                        "suffix": "",
+                                        "selector": "//div[@class='player-stats']//table//tr[@class='career']/td",
+                                        "attr": "text",
+                                        "default": ""
+                                    }
                                 ]
                             }
                         }
@@ -214,54 +174,62 @@ This creates nba\_players.json which contains the extracted data. An example sni
 
         # nba_players.json continues
 
-    {
-        "stat3 season": "15.0",
-        "stat2 career": "9.0",
-        "stat1 career": "8.0",
-        "stat3": "BLKPG",
-        "name": "DeAndre Jordan",
-        "stat1": "PPG",
-        "stat3 career": "1.7",
-        "team": "Los Angeles Clippers",
-        "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3442.png&w=350&h=254",
-        "stat2 season": "15.0",
-        "stat1 season": "11.5",
-        "number & position": "#6 C",
-        "season PER": "21.05",
-        "stat2": "RPG"
-    },
-    {
-        "stat3 season": "10.2",
-        "stat2 career": "9.9",
-        "stat1 career": "18.7",
-        "stat3": "RPG",
-        "name": "Chris Paul",
-        "stat1": "PPG",
-        "stat3 career": "4.4",
-        "team": "Los Angeles Clippers",
-        "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2779.png&w=350&h=254",
-        "stat2 season": "10.2",
-        "stat1 season": "19.1",
-        "number & position": "#3 PG",
-        "season PER": "26.04",
-        "stat2": "APG"
-    },
-    {
-        "stat3 season": "1.8",
-        "stat2 career": "2.0",
-        "stat1 career": "10.8",
-        "stat3": "RPG",
-        "name": "J.J. Redick",
-        "stat1": "PPG",
-        "stat3 career": "1.9",
-        "team": "Los Angeles Clippers",
-        "headshot_link": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3024.png&w=350&h=254",
-        "stat2 season": "1.8",
-        "stat1 season": "16.4",
-        "number & position": "#4 SG",
-        "season PER": "16.23",
-        "stat2": "APG"
-    },
+        { 
+            "career_APG" : "9.9",
+            "career_PER" : "",
+            "career_PPG" : "18.6",
+            "career_RPG" : "4.4",
+            "headshot_link" : "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2779.png&w=350&h=254",
+            "name" : "Chris Paul",
+            "number & position" : "#3 PG",
+            "season_APG" : "9.2",
+            "season_PER" : "23.49",
+            "season_PPG" : "17.6",
+            "season_RPG" : "3.5",
+            "team" : "Los Angeles Clippers"
+        },
+        { 
+            "career_APG" : "3.6",
+            "career_PER" : "",
+            "career_PPG" : "20.3",
+            "career_RPG" : "5.8",
+            "headshot_link" : "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/662.png&w=350&h=254",
+            "name" : "Paul Pierce",
+            "number & position" : "#34 SF",
+            "season_APG" : "0.9",
+            "season_PER" : "7.55",
+            "season_PPG" : "5.0",
+            "season_RPG" : "2.6",
+            "team" : "Los Angeles Clippers"
+        },
+        { 
+            "career_APG" : "2.9",
+            "career_PER" : "",
+            "career_PPG" : "3.7",
+            "career_RPG" : "1.8",
+            "headshot_link" : "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4182.png&w=350&h=254",
+            "name" : "Pablo Prigioni",
+            "number & position" : "#9 PG",
+            "season_APG" : "1.9",
+            "season_PER" : "8.72",
+            "season_PPG" : "2.3",
+            "season_RPG" : "1.5",
+            "team" : "Los Angeles Clippers"
+        },
+        { 
+            "career_APG" : "2.0",
+            "career_PER" : "",
+            "career_PPG" : "11.1",
+            "career_RPG" : "1.9",
+            "headshot_link" : "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3024.png&w=350&h=254",
+            "name" : "J.J. Redick",
+            "number & position" : "#4 SG",
+            "season_APG" : "1.6",
+            "season_PER" : "18.10",
+            "season_PPG" : "15.9",
+            "season_RPG" : "1.5",
+            "team" : "Los Angeles Clippers"
+        },
 
         # nba_players.json continues
     ]
