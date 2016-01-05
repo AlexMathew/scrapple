@@ -2,9 +2,7 @@ Scrapple
 ========
 
 [![Join the chat at https://gitter.im/AlexMathew/scrapple](https://badges.gitter.im/AlexMathew/scrapple.svg)](https://gitter.im/AlexMathew/scrapple?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 [![Scrapple on PyPI](https://badge.fury.io/py/scrapple.svg)](https://badge.fury.io/py/scrapple)
-
 [![Build Status](https://travis-ci.org/AlexMathew/scrapple.svg?branch=master)](https://travis-ci.org/AlexMathew/scrapple)
 
 
