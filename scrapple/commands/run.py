@@ -47,13 +47,20 @@ class RunCommand(command.Command):
         document or a CSV document. 
 
         """
-        print(Back.GREEN + Fore.BLACK + "Scrapple Run")
-        print(Back.RESET + Fore.RESET)
         try:
+            self.args['--verbosity'] = int(self.args['--verbosity'])
+            if self.args['--verbosity'] not in [0, 1, 2]:
+                raise ValueError
+            if self.args['--verbosity'] > 0:
+                print(Back.GREEN + Fore.BLACK + "Scrapple Run")
+                print(Back.RESET + Fore.RESET)
             import json
             with open(self.args['<projectname>'] + '.json', 'r') as f:
                 self.config = json.load(f)
             self.run()
+        except ValueError:
+            print(Back.WHITE + Fore.RED + "Use 0, 1 or 2 for verbosity." \
+                + Back.RESET + Fore.RESET, sep="")
         except IOError:
             print(Back.WHITE + Fore.RED + self.args['<projectname>'], ".json does not ", \
                   "exist. Use ``scrapple genconfig``." + Back.RESET + Fore.RESET, sep="")
@@ -70,13 +77,15 @@ class RunCommand(command.Command):
         try:
             result = dict()
             tabular_data_headers = dict()
-            print()
-            print(Back.YELLOW + Fore.BLUE + "Loading page ", self.config['scraping']['url'] \
-                + Back.RESET + Fore.RESET)
+            if self.args['--verbosity'] > 0:
+                print()
+                print(Back.YELLOW + Fore.BLUE + "Loading page ", self.config['scraping']['url'] \
+                    + Back.RESET + Fore.RESET, end='')
             selector = selectorClass(self.config['scraping']['url'])
             for attribute in self.config['scraping']['data']:
                 if attribute['field'] != "":
-                    print("\nExtracting", attribute['field'], "attribute", sep=' ')
+                    if self.args['--verbosity'] > 1:
+                        print("\nExtracting", attribute['field'], "attribute", sep=' ', end='')
                     result[attribute['field']] = selector.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
             if not self.config['scraping'].get('table'):
                 result_list = [result]
@@ -91,7 +100,8 @@ class RunCommand(command.Command):
                         suffix=table.get('suffix', ''),
                         selector=table.get('selector', ''),
                         attr=table.get('attr', 'text'),
-                        default=table.get('default', '')
+                        default=table.get('default', ''),
+                        verbosity=self.args['--verbosity']
                         )
                     for th in table_headers:
                         if not th in tabular_data_headers:
@@ -100,7 +110,7 @@ class RunCommand(command.Command):
                 results['data'].extend(result_list)
             else:
                 for next in self.config['scraping']['next']:
-                    for tdh, r in traverse_next(selector, next, result):
+                    for tdh, r in traverse_next(selector, next, result, verbosity=self.args['--verbosity']):
                         results['data'].append(r)
                         for th in tdh:
                             if not th in tabular_data_headers:
@@ -125,7 +135,8 @@ class RunCommand(command.Command):
                     writer = csv.DictWriter(f, fieldnames=fields)
                     writer.writeheader()
                     writer.writerows(results['data'])
-            print()
-            print(Back.WHITE + Fore.RED + self.args['<output_filename>'], \
-                  ".", self.args['--output_type'], " has been created" \
-                  + Back.RESET + Fore.RESET, sep="")
+            if self.args['--verbosity'] > 0:        
+                print()
+                print(Back.WHITE + Fore.RED + self.args['<output_filename>'], \
+                      ".", self.args['--output_type'], " has been created" \
+                      + Back.RESET + Fore.RESET, sep="")

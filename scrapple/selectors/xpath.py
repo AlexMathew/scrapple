@@ -98,7 +98,7 @@ class XpathSelector(Selector):
 			raise Exception("Invalid XPath selector " + selector)
 
 
-	def extract_tabular(self, result={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="text", default=""):
+	def extract_tabular(self, result={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="text", default="", verbosity=0):
 		"""
 		"""
 		result_list = []
@@ -122,7 +122,8 @@ class XpathSelector(Selector):
 					from itertools import izip
 					pairs = izip(table_headers, values)
 				for head, val in pairs:
-					print("\nExtracting", head, "attribute", sep=' ')
+					if verbosity > 1:
+						print("\nExtracting", head, "attribute", sep=' ', end='')
 					if attr == "text":
 						try:
 							content = " ".join([x.strip() for x in val.itertext()])

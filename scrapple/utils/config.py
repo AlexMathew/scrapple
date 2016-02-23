@@ -11,7 +11,7 @@ from colorama import init, Fore, Back
 init()
 
 
-def traverse_next(page, next, results, tabular_data_headers=[]):
+def traverse_next(page, next, results, tabular_data_headers=[], verbosity=0):
     """
     Recursive generator to traverse through the next attribute and \
     crawl through the links to be followed.
@@ -23,11 +23,14 @@ def traverse_next(page, next, results, tabular_data_headers=[]):
 
     """
     for link in page.extract_links(next['follow_link']):
-        print(Back.YELLOW + Fore.BLUE + "Loading page ", link.url + Back.RESET + Fore.RESET)
+        if verbosity > 0:
+            print('\n')
+            print(Back.YELLOW + Fore.BLUE + "Loading page ", link.url + Back.RESET + Fore.RESET, end='')
         r = results.copy()
         for attribute in next['scraping'].get('data'):
             if attribute['field'] != "":
-                print("\nExtracting", attribute['field'], "attribute", sep=' ')
+                if verbosity > 1:
+                    print("\nExtracting", attribute['field'], "attribute", sep=' ', end='')
                 r[attribute['field']] = link.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
         if not next['scraping'].get('table'):
             result_list = [r]
@@ -42,7 +45,8 @@ def traverse_next(page, next, results, tabular_data_headers=[]):
                     suffix=table.get('suffix', ''),
                     selector=table.get('selector', ''),
                     attr=table.get('attr', 'text'),
-                    default=table.get('default', '')
+                    default=table.get('default', ''),
+                    verbosity=verbosity
                     )
                 tabular_data_headers.extend(table_headers)
         if not next['scraping'].get('next'):
@@ -50,7 +54,7 @@ def traverse_next(page, next, results, tabular_data_headers=[]):
                 yield (tabular_data_headers, r)
         else:
             for next2 in next['scraping'].get('next'):
-                for tdh, result in traverse_next(link, next2, r, tabular_data_headers=tabular_data_headers):
+                for tdh, result in traverse_next(link, next2, r, tabular_data_headers=tabular_data_headers, verbosity=verbosity):
                     yield (tdh, result)
 
 

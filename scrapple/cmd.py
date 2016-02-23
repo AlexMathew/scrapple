@@ -3,14 +3,15 @@ Usage:
     scrapple (-h | --help | --version)
     scrapple genconfig <projectname> <url> [--type=<type>] [--selector=<selector>] \
 [--levels=<levels>]
-    scrapple run <projectname> <output_filename> [--output_type=<output_type>]
+    scrapple run <projectname> <output_filename> [--output_type=<output_type>] \
+[--verbosity=<verbosity>]
     scrapple generate <projectname> <output_filename> [--output_type=<output_type>]
     scrapple web
 
 Options:
     -h, --help
         Show this help message and exit
-    --version
+    --version, -V
         Display the version of Scrapple
     --type=<type>, -t <type>
         Specifies if the script generated is a page scraper or a crawler [default: scraper]
@@ -20,6 +21,10 @@ Options:
         Specifies the number of levels for the crawler configuration file [default: 1]
     --output_type=<output_type>, -o <output_type>
         Specifies if the generated output is stored as CSV or JSON [default: json]
+    --verbosity=<verbosity>, -v <verbosity>
+        Specifies how much of the running is logged. 0 runs the implementation silently; 1 gives basic \
+information, like the URL currently being processed; 2 gives a detailed description of the fields being \
+extracted [default: 0]
 """
 
 from __future__ import print_function
