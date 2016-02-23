@@ -4,6 +4,7 @@ scrapple.selectors.css
 
 """
 
+from __future__ import print_function
 from lxml import cssselect
 try:
 	from urlparse import urljoin
@@ -97,3 +98,52 @@ class CssSelector(Selector):
 		for link in links:
 			next_url = urljoin(self.url, link.get('href'))
 			yield CssSelector(next_url)
+
+
+	def extract_tabular(self, result={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="text", default="", verbosity=0):
+		"""
+		"""
+		result_list = []
+		if type(header) in [str, unicode]:
+			try:
+				sel = cssselect.CSSSelector(header)
+				header_list = sel(self.tree)
+				table_headers = [prefix + h.text + suffix for h in header_list]
+				if len(table_headers) == 0:
+					raise Exception("Invalid CSS selector " + header)
+			except TypeError:
+				raise Exception("Selector expression string to be provided. Got " + selector)
+		else:
+			table_headers = [prefix + h + suffix for h in header]
+		if table_type not in ["rows", "columns"]:
+			raise Exception("Specify 'rows' or 'columns' in table_type")
+		if table_type == "rows":
+			try:
+				sel = cssselect.CSSSelector(selector)
+				values = sel(self.tree)
+				if len(table_headers) >= len(values):
+					from itertools import izip_longest
+					pairs = izip_longest(table_headers, values, fillvalue=default)
+				else:
+					from itertools import izip
+					pairs = izip(table_headers, values)
+				for head, val in pairs:
+					if verbosity > 1:
+						print("\nExtracting", head, "attribute", sep=' ', end='')
+					if attr == "text":
+						try:
+							content = " ".join([x.strip() for x in val.itertext()])
+						except Exception:
+							content = default
+						content = content.replace("\n", " ").strip()
+					else:
+						content = val.get(attr)
+						if attr in ["href", "src"]:
+							content = urljoin(self.url, content)
+					result[head] = content
+				result_list.append(result)
+			except TypeError:
+				raise Exception("Selector expression string to be provided. Got " + selector)
+		else:
+			result_list.append(result)
+		return table_headers, result_list
