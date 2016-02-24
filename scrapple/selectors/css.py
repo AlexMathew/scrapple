@@ -102,6 +102,22 @@ class CssSelector(Selector):
 
 	def extract_tabular(self, result={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="text", default="", verbosity=0):
 		"""
+		Method for performing the extraction of tabular data.
+
+		As in the extract_content method, the cssselect library is used to translate \
+		the CSS selector expression into an XPath expression. 
+
+		:param result:
+		:param table_type:
+		:param header:
+		:param prefix:
+		:param suffix:
+		:param selector:
+		:param attr:
+		:param default:
+		:param verbosity:
+		:return: A 2-tuple containing the list of all the column headers extracted and the list of \
+		dictionaries which contain (header, content) pairs
 		"""
 		result_list = []
 		if type(header) in [str, unicode]:
