@@ -154,5 +154,30 @@ class XpathSelector(Selector):
 			except TypeError:
 				raise Exception("Selector expression string to be provided. Got " + selector)
 		else:
-			result_list.append(result)
+			try:
+				if type(selector) in [str, unicode]:
+					selectors = [selector]
+				elif type(selector) == list:
+					selectors = selector
+				else:
+					raise Exception("Use a list of selector expressions for the various columns")
+				from itertools import izip, count
+				pairs = izip(table_headers, selectors)
+				columns = {}
+				for head, selector in pairs:
+					columns[head] = self.tree.xpath(selector)
+				try:
+					for i in count(start=0):
+						r = result.copy()
+						for head in columns.keys():
+							if verbosity > 1:
+								print("\nExtracting", head, "attribute", sep=' ', end='')
+							r[head] = columns[head][i]
+						result_list.append(r)
+				except IndexError:
+					pass
+			except XPathError:
+				raise Exception("Invalid XPath selector " + selector)
+			except TypeError:
+				raise Exception("Selector expression string to be provided. Got " + selector)
 		return table_headers, result_list
