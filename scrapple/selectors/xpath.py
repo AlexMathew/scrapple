@@ -15,6 +15,13 @@ from lxml.etree import XPathError
 from scrapple.selectors.selector import Selector
 
 
+def make_ascii(s):
+    """
+    Convert text to ASCII
+    """
+    return "".join(i for i in s if ord(i) < 128)
+
+
 class XpathSelector(Selector):
 	"""
 	The ``XpathSelector`` object defines XPath expressions.
@@ -57,7 +64,7 @@ class XpathSelector(Selector):
 				return self.url
 			if attr == "text":
 				tag = self.tree.xpath(selector)[0]
-				content = " ".join([x.strip() for x in tag.itertext()])
+				content = " ".join([make_ascii(x).strip() for x in tag.itertext()])
 				content = content.replace("\n", " ").strip()
 			else:
 				content = self.tree.xpath(selector)[0].get(attr)
@@ -139,7 +146,7 @@ class XpathSelector(Selector):
 						print("\nExtracting", head, "attribute", sep=' ', end='')
 					if attr == "text":
 						try:
-							content = " ".join([x.strip() for x in val.itertext()])
+							content = " ".join([make_ascii(x).strip() for x in val.itertext()])
 						except Exception:
 							content = default
 						content = content.replace("\n", " ").strip()
@@ -172,7 +179,18 @@ class XpathSelector(Selector):
 						for head in columns.keys():
 							if verbosity > 1:
 								print("\nExtracting", head, "attribute", sep=' ', end='')
-							r[head] = columns[head][i]
+							col = columns[head][i]
+							if attr == "text":
+								try:
+									content = " ".join([make_ascii(x).strip() for x in col.itertext()])
+								except Exception:
+									content = default
+								content = content.replace("\n", " ").strip()
+							else:
+								content = col.get(attr)
+								if attr in ["href", "src"]:
+									content = urljoin(self.url, content)
+							r[head] = content
 						result_list.append(r)
 				except IndexError:
 					pass

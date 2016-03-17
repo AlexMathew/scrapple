@@ -14,6 +14,13 @@ except ImportError:
 from scrapple.selectors.selector import Selector
 
 
+def make_ascii(s):
+    """
+    Convert text to ASCII
+    """
+    return "".join(i for i in s if ord(i) < 128)
+
+
 class CssSelector(Selector):
 	"""
 	The ``CssSelector`` object defines CSS selector expressions.
@@ -60,7 +67,7 @@ class CssSelector(Selector):
 			sel = cssselect.CSSSelector(selector)
 			if attr == "text":
 				tag = sel(self.tree)[0]
-				content = " ".join([x.strip() for x in tag.itertext()])
+				content = " ".join([make_ascii(x).strip() for x in tag.itertext()])
 				content = content.replace("\n", " ").strip()				
 			else:
 				content = sel(self.tree)[0].get(attr)
@@ -148,7 +155,7 @@ class CssSelector(Selector):
 						print("\nExtracting", head, "attribute", sep=' ', end='')
 					if attr == "text":
 						try:
-							content = " ".join([x.strip() for x in val.itertext()])
+							content = " ".join([make_ascii(x).strip() for x in val.itertext()])
 						except Exception:
 							content = default
 						content = content.replace("\n", " ").strip()
@@ -161,5 +168,40 @@ class CssSelector(Selector):
 			except TypeError:
 				raise Exception("Selector expression string to be provided. Got " + selector)
 		else:
-			result_list.append(result)
+			try:
+				if type(selector) in [str, unicode]:
+					selectors = [selector]
+				elif type(selector) == list:
+					selectors = selector
+				else:
+					raise Exception("Use a list of selector expressions for the various columns")
+				from itertools import izip, count
+				pairs = izip(table_headers, selectors)
+				columns = {}
+				for head, selector in pairs:
+					sel = cssselect.CSSSelector(selector)
+					columns[head] = sel(self.tree)
+				try:
+					for i in count(start=0):
+						r = result.copy()
+						for head in columns.keys():
+							if verbosity > 1:
+								print("\nExtracting", head, "attribute", sep=' ', end='')
+							col = columns[head][i]
+							if attr == "text":
+								try:
+									content = " ".join([make_ascii(x).strip() for x in col.itertext()])
+								except Exception:
+									content = default
+								content = content.replace("\n", " ").strip()
+							else:
+								content = col.get(attr)
+								if attr in ["href", "src"]:
+									content = urljoin(self.url, content)
+							r[head] = content
+						result_list.append(r)
+				except IndexError:
+					pass
+			except TypeError:
+				raise Exception("Selector expression string to be provided. Got " + selector)
 		return table_headers, result_list
