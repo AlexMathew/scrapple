@@ -10,6 +10,17 @@
 				"attr": "",
 				"default": ""
 			}
-		]
+		],
+        "table": [
+            {
+                "table_type": "",
+                "header": "",
+                "prefix": "",
+                "suffix": "",
+                "selector": "",
+                "attr": "",
+                "default": ""
+            }
+        ]
 	}
 }

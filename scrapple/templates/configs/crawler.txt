@@ -23,10 +23,19 @@
 							"attr": "",
 							"default": ""
 						}
+					],
+					"table": [
+						{
+							"table_type": "",
+							"header": "",
+							"prefix": "",
+							"suffix": "",
+							"selector": "",
+							"attr": "",
+							"default": ""
+						}
 					]{%- if level != settings.levels %},{% endif %}
-					{%- if level != settings.levels %}
-					{{ loop([level+1])|indent(2 + level*3, true) }}
-					{% endif %}
+{%- if level != settings.levels %}{{ loop([level+1])|indent(4 + (level+1)*4, False) }}{% endif %}
 				}
 			}
 		]
