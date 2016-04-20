@@ -86,14 +86,14 @@ class XpathSelector(Selector):
 		The selector passed as the argument is a selector to point to the anchor tags \
 		that the crawler should pass through. A list of links is obtained, and the links \
 		are iterated through. The relative paths are converted into absolute paths and \
-		a ``CssSelector`` object is created with the URL of the next page as the argument \
+		a ``XpathSelector`` object is created with the URL of the next page as the argument \
 		and this created object is yielded. 
 
-		The extract_links method basically generates ``CssSelector`` objects for all of \
+		The extract_links method basically generates ``XpathSelector`` objects for all of \
 		the links to be crawled through.
 
 		:param selector: The selector for the anchor tags to be crawled through
-		:return: A ``CssSelector`` object for every page to be crawled through 
+		:return: A ``XpathSelector`` object for every page to be crawled through 
 		
 		"""
 		try:
@@ -109,15 +109,18 @@ class XpathSelector(Selector):
 		"""
 		Method for performing the extraction of tabular data.
 
-		:param result:
-		:param table_type:
-		:param header:
-		:param prefix:
-		:param suffix:
-		:param selector:
-		:param attr:
-		:param default:
-		:param verbosity:
+		:param result: A dictionary containing the extracted data so far
+		:param table_type: Can be "rows" or "columns". This determines the type of table to be extracted. \
+		A row extraction is when there is a single row to be extracted and mapped to a set of headers. \
+		A column extraction is when a set of rows have to be extracted, giving a list of header-value mappings.
+		:param header: The headers to be used for the table. This can be a list of headers, or a selector that gives the list of headers
+		:param prefix: A prefix to be added to each header
+		:param suffix: A suffix to be added to each header
+		:param selector: For row extraction, this is a selector that gives the row to be extracted. \
+		For column extraction, this is a list of selectors for each column.
+		:param attr: The attribute to be extracted from the selected tag
+		:param default: The default value to be used if the selector does not return any data
+		:param verbosity: The verbosity set as the argument for scrapple run
 		:return: A 2-tuple containing the list of all the column headers extracted and the list of \
 		dictionaries which contain (header, content) pairs
 		"""
