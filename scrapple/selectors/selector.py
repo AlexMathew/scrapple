@@ -9,6 +9,8 @@ import requests
 from lxml import etree
 import random
 
+requests.warnings.filterwarnings('ignore')
+
 
 class Selector(object):
 	"""
