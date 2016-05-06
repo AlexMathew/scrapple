@@ -11,11 +11,6 @@ def test_version():
 	assert_equals(args['--version'], True)
 
 
-def test_web():
-	args = docopt(doc, "web")
-	assert_equals(args['web'], True)
-
-
 def test_genconfig():
 	args1 = docopt(doc, "genconfig project1 google.com")
 	assert_equals(args1['<projectname>'], 'project1')
