@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+
 try:
     from setuptools import setup, find_packages
 except ImportError:
@@ -29,7 +31,7 @@ setup(
     install_requires=requirements,
     license="MIT",
     zip_safe=False,
-    keywords=['scrapple', 'web', 'content', 'scraper', 'crawler'],
+    keywords=['scrapple', 'web', 'content', 'scraper', 'crawler', 'scraping', 'crawling', 'website', 'data', 'scrapy'],
     entry_points={
         'console_scripts': ['scrapple = scrapple.cmd:runCLI']
     },
@@ -50,3 +52,9 @@ setup(
     test_suite='tests',
     tests_require=test_requirements
 )
+
+from subprocess import call
+print("Setting up argument completion")
+x = call(["bash", "scrapple.sh"])
+
+print("\nScrapple has been installed. Use ```scrapple --help``` for instructions\n")

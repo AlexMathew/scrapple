@@ -6,7 +6,6 @@ Usage:
     scrapple run <projectname> <output_filename> [--output_type=<output_type>] \
 [--verbosity=<verbosity>]
     scrapple generate <projectname> <output_filename> [--output_type=<output_type>]
-    scrapple web
 
 Options:
     -h, --help
@@ -46,8 +45,8 @@ def runCLI():
     args = docopt(__doc__, version='0.2.6')
     try:
         handle_exceptions(args)
-        command_list = ['genconfig', 'run', 'generate', 'web']
-        select = itemgetter('genconfig', 'run', 'generate', 'web')
+        command_list = ['genconfig', 'run', 'generate']
+        select = itemgetter('genconfig', 'run', 'generate')
         selectedCommand = command_list[select(args).index(True)]
         cmdClass = get_command_class(selectedCommand)
         obj = cmdClass(args)
