@@ -125,7 +125,7 @@ class RunCommand(command.Command):
                 import json
                 with open(os.path.join(os.getcwd(), self.args['<output_filename>'] + '.json'), \
                     'w') as f:
-                    json.dump(results, f)
+                    json.dump(results, f, indent=3)
             elif self.args['--output_type'] == 'csv':
                 import csv
                 with open(os.path.join(os.getcwd(), self.args['<output_filename>'] + '.csv'), \
