@@ -92,20 +92,21 @@ class RunCommand(command.Command):
             else:
                 tables = self.config['scraping'].get('table')
                 for table in tables:
-                    table_headers, result_list = selector.extract_tabular(
-                        result=result,
-                        table_type=table.get('table_type', 'rows'),
-                        header=table.get('header', []),
-                        prefix=table.get('prefix', ''),
-                        suffix=table.get('suffix', ''),
-                        selector=table.get('selector', ''),
-                        attr=table.get('attr', 'text'),
-                        default=table.get('default', ''),
-                        verbosity=self.args['--verbosity']
-                        )
-                    for th in table_headers:
-                        if not th in tabular_data_headers:
-                            tabular_data_headers[th] = len(tabular_data_headers)
+                    if table.get('selector', '').strip() != '':
+                        table_headers, result_list = selector.extract_tabular(
+                            result=result,
+                            table_type=table.get('table_type', 'rows'),
+                            header=table.get('header', []),
+                            prefix=table.get('prefix', ''),
+                            suffix=table.get('suffix', ''),
+                            selector=table.get('selector', ''),
+                            attr=table.get('attr', 'text'),
+                            default=table.get('default', ''),
+                            verbosity=self.args['--verbosity']
+                            )
+                        for th in table_headers:
+                            if not th in tabular_data_headers:
+                                tabular_data_headers[th] = len(tabular_data_headers)
             if not self.config['scraping'].get('next'):
                 results['data'].extend(result_list)
             else:
