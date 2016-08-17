@@ -1,1 +1,1 @@
-{"project": "project4", "data": [{"talk": "Boston Python Meetup: How to test the hard stuff"}, {"talk": "Boston Python Meetup: Testing: Where do I start?"}]}
+{"project": "project4", "data": [{"event": "Event: Boston Python Meetup", "talk": "How to test the hard stuff"}, {"event": "Event: Boston Python Meetup", "talk": "Testing: Where do I start?"}]}

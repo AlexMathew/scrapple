@@ -40,7 +40,7 @@ def test_xpath_scraper_generate():
 	with open(os.path.join(os.getcwd(), 'project1.py'), 'r') as f:
 		program = f.read()
 	assert_in("from scrapple.selectors.xpath import XpathSelector", program)
-	assert_in('page0 = XpathSelector("http://pyvideo.org/video/1785/python-for-humans-1")', program)
+	assert_in('page0 = XpathSelector("https://trakt.tv/shows/mr-robot")', program)
 
 
 def test_css_scraper_generate():
@@ -50,7 +50,7 @@ def test_css_scraper_generate():
 	with open(os.path.join(os.getcwd(), 'project2.py'), 'r') as f:
 		program = f.read()
 	assert_in("from scrapple.selectors.css import CssSelector", program)
-	assert_in('page0 = CssSelector("http://pyvideo.org/category/15/bostonpy")', program)
+	assert_in('page0 = CssSelector("http://pyvideo.org/events/boston-python-meetup.html")', program)
 
 
 def test_nonexistent_project():

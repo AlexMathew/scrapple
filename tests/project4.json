@@ -1,1 +1,30 @@
-{"scraping": {"url": "http://pyvideo.org/category/15/bostonpy", "data": [{"default": "", "field": "", "attr": "", "selector": ""}], "next": [{"follow_link": "//div[@id='video-summary-content']/div//strong/a", "scraping": {"data": [{"default": "", "field": "talk", "attr": "text", "selector": "//h3"}]}}]}, "project_name": "project4", "selector_type": "xpath"}
+{
+	"project_name": "new_project4",
+	"selector_type": "xpath",
+	"scraping": {
+		"url": "http://pyvideo.org/events/boston-python-meetup.html",
+		"data": [
+			{
+				"field": "event",
+				"selector": "//h2",
+				"attr": "text",
+				"default": "<event>"
+			}
+		],
+		"next": [
+			{
+				"follow_link": "//ul[@class='content-list']/li//div[@class='thumb']/a",
+				"scraping": {
+					"data": [
+						{
+							"field": "talk",
+							"selector": "//h2",
+							"attr": "text",
+							"default": "<talk>"
+						}
+					]
+				}
+			}
+		]
+	}
+}

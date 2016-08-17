@@ -1,1 +1,33 @@
-{"scraping": {"url": "http://pyvideo.org/video/1785/python-for-humans-1", "data": [{"default": "", "field": "talk_url", "attr": "", "selector": "url"}, {"default": "", "field": "title", "attr": "text", "selector": "//h3"}, {"default": "<unknown>", "field": "unknown", "attr": "text", "selector": "//h1"}, {"default": "", "field": "event_url", "attr": "href", "selector": "//div[@id='sidebar']//dd[1]//a"}]}, "project_name": "project1", "selector_type": "xpath"}
+{
+	"project_name": "project1",
+	"selector_type": "xpath",
+	"scraping": {
+		"url": "https://trakt.tv/shows/mr-robot",
+		"data": [
+			{
+				"field": "show_url",
+				"selector": "url",
+				"attr": "",
+				"default": "<url>"
+			},
+			{
+				"field": "unknown",
+				"selector": "//h6",
+				"attr": "text",
+				"default": "<unknown>"
+			},
+			{
+				"field": "year",
+				"selector": "//span[@class='year']",
+				"attr": "text",
+				"default": "<year>"
+			},
+			{
+				"field": "image",
+				"selector": "//div[@class='poster']/img[@class='real']",
+				"attr": "src",
+				"default": "<image>"
+			}
+		]
+	}
+}

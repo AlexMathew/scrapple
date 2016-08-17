@@ -1,1 +1,33 @@
-{"scraping": {"url": "http://pyvideo.org/video/1785/python-for-humans-1", "data": [{"default": "<unknown>", "field": "unknown", "attr": "", "selector": "h1"}, {"default": "", "field": "talk_url", "attr": "", "selector": "url"}, {"default": "", "field": "event_url", "attr": "href", "selector": "div#sidebar dl dd a"}]}, "project_name": "project3", "selector_type": "css"}
+{
+	"project_name": "project3",
+	"selector_type": "css",
+	"scraping": {
+		"url": "http://pyvideo.org/pycon-us-2013/python-for-humans-1.html",
+		"data": [
+			{
+				"field": "unknown",
+				"selector": "h1",
+				"attr": "text",
+				"default": "<unknown>"
+			},
+			{
+				"field": "talk_url",
+				"selector": "url",
+				"attr": "",
+				"default": "<talk_url>"
+			},
+			{
+				"field": "title",
+				"selector": "h2",
+				"attr": "text",
+				"default": "<title>"
+			},
+			{
+				"field": "speaker",
+				"selector": ".author a",
+				"attr": "text",
+				"default": "<speaker>"
+			}
+		]
+	}
+}
