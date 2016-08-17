@@ -7,6 +7,7 @@ scrapple.commands.genconfig
 from __future__ import print_function
 from jinja2 import Template
 import os
+import json
 from colorama import init, Fore, Back
 
 import scrapple
@@ -47,6 +48,7 @@ class GenconfigCommand(command.Command):
         }
         rendered = template.render(settings=settings)
         with open(self.args['<projectname>'] + '.json', 'w') as f:
-            f.write(rendered)
+            rendered_data = json.loads(rendered)
+            json.dump(rendered_data, f, indent=3)
         print(Back.WHITE + Fore.RED + self.args['<projectname>'], ".json has been created" \
             + Back.RESET + Fore.RESET, sep="")

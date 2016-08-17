@@ -35,7 +35,7 @@
 							"default": ""
 						}
 					]{%- if level != settings.levels %},{% endif %}
-{%- if level != settings.levels %}{{ loop([level+1])|indent(4 + (level+1)*4, False) }}{% endif %}
+{%- if level != settings.levels %}{{ loop([level+1]) }}{% endif %}
 				}
 			}
 		]
