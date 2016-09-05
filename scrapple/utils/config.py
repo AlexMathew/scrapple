@@ -11,7 +11,7 @@ from colorama import init, Fore, Back
 init()
 
 
-def traverse_next(page, next, results, tabular_data_headers=[], verbosity=0):
+def traverse_next(page, nextx, results, tabular_data_headers=[], verbosity=0):
     """
     Recursive generator to traverse through the next attribute and \
     crawl through the links to be followed.
@@ -22,20 +22,20 @@ def traverse_next(page, next, results, tabular_data_headers=[], verbosity=0):
     :return: The extracted content, through a generator
 
     """
-    for link in page.extract_links(next['follow_link']):
+    for link in page.extract_links(nextx['follow_link']):
         if verbosity > 0:
             print('\n')
             print(Back.YELLOW + Fore.BLUE + "Loading page ", link.url + Back.RESET + Fore.RESET, end='')
         r = results.copy()
-        for attribute in next['scraping'].get('data'):
+        for attribute in nextx['scraping'].get('data'):
             if attribute['field'] != "":
                 if verbosity > 1:
                     print("\nExtracting", attribute['field'], "attribute", sep=' ', end='')
                 r[attribute['field']] = link.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
-        if not next['scraping'].get('table'):
+        if not nextx['scraping'].get('table'):
             result_list = [r]
         else:
-            tables = next['scraping'].get('table')
+            tables = nextx['scraping'].get('table')
             for table in tables:
                 table_headers, result_list = link.extract_tabular(
                     result=r,
@@ -49,12 +49,12 @@ def traverse_next(page, next, results, tabular_data_headers=[], verbosity=0):
                     verbosity=verbosity
                     )
                 tabular_data_headers.extend(table_headers)
-        if not next['scraping'].get('next'):
+        if not nextx['scraping'].get('next'):
             for r in result_list:
                 yield (tabular_data_headers, r)
         else:
-            for next2 in next['scraping'].get('next'):
-                for tdh, result in traverse_next(link, next2, r, tabular_data_headers=tabular_data_headers, verbosity=verbosity):
+            for nextx2 in nextx['scraping'].get('next'):
+                for tdh, result in traverse_next(link, nextx2, r, tabular_data_headers=tabular_data_headers, verbosity=verbosity):
                     yield (tdh, result)
 
 

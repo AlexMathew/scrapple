@@ -110,8 +110,8 @@ class RunCommand(command.Command):
             if not self.config['scraping'].get('next'):
                 results['data'].extend(result_list)
             else:
-                for next in self.config['scraping']['next']:
-                    for tdh, r in traverse_next(selector, next, result, verbosity=self.args['--verbosity']):
+                for nextx in self.config['scraping']['next']:
+                    for tdh, r in traverse_next(selector, nextx, result, verbosity=self.args['--verbosity']):
                         results['data'].append(r)
                         for th in tdh:
                             if not th in tabular_data_headers:
