@@ -4,7 +4,7 @@
 Link crawlers
 =============
 
-**(Check out another example on the `Github repo readme`_.)**
+(Check out another example on the `Github repo readme`_.)
 
 For this example, we will extract content from all talks on `pyvideo`_. We will use the `event listing`_ as the base page.
 
