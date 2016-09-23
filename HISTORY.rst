@@ -3,6 +3,12 @@
 History
 =======
 
+0.3.0 - 2016-09-23
+------------------
+
+* Set up table scraping parameters and execution
+* Fix json configuration generation
+
 0.2.6 - 2015-11-27
 ------------------
 

@@ -59,7 +59,7 @@ copyright = u'2015, Alex Mathew, Harish Balakrishnan'
 # built documents.
 #
 # The short X.Y version.
-version = '0.2.7'
+version = '0.3.0'
 # The full version, including alpha/beta/rc tags.
 release = ''
 
