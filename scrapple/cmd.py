@@ -42,7 +42,7 @@ def runCLI():
     The class for the required command is selected by a dynamic dispatch, and the \
     command is executed through the execute_command() method of the command class.
     """
-    args = docopt(__doc__, version='0.2.6')
+    args = docopt(__doc__, version='0.2.7')
     try:
         handle_exceptions(args)
         command_list = ['genconfig', 'run', 'generate']

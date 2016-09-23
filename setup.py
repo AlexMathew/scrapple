@@ -18,7 +18,7 @@ test_requirements = open('test_requirements.txt').read().split('\n')
 
 setup(
     name='scrapple',
-    version='0.2.6',
+    version='0.2.7',
     description='A framework for creating web content extractors',
     long_description=readme + '\n\n' + history,
     author='Alex Mathew',
