@@ -45,11 +45,21 @@ The keys used in the configuration file are :
 -   **selector\_type** : Specifies the type of selector expressions used. This could be "xpath" or "css".
 -   **scraping** : Specifies parameters for the extractor to be created.  
     -   **url** : Specifies the URL of the base web page to be loaded.
+
     -   **data** : Specifies a list of selectors for the data to be extracted.  
         -   **selector** : Specifies the selector expression.
         -   **attr** : Specifies the attribute to be extracted from the result of the selector expression.
         -   **field** : Specifies the field name under which this data is to stored.
         -   **default** : Specifies the default value to be used if the selector expression fails.
+
+    -   **table** : Specifies a description for scraping tabular data.
+        -   **table_type** : Specifies the type of table ("rows" or "columns"). This determines the type of table to be extracted. A row extraction is when there is a single row to be extracted and mapped to a set of headers. A column extraction is when a set of rows have to be extracted, giving a list of header-value mappings.
+        -   **header** : Specifies the headers to be used for the table. This can be a list of headers, or a selector that gives the list of headers.
+        -   **prefix** : Specifies a prefix to be added to each header.
+        -   **suffix** : Specifies a suffix to be added to each header.
+        -   **selector** : Specifies the selector for the data. For row extraction, this is a selector that gives the row to be extracted. For column extraction, this is a list of selectors for each column.
+        -   **attr** : Specifies the attribute to be extracted from the selected tag.
+        -   **default** : Specifies the default value to be used if the selector does not return any data.
 
     -   **next** : Specifies the crawler implementation.  
         -   **follow\_link** : Specifies the selector expression for the `<a>` tags to be crawled through.
