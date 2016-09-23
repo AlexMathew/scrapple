@@ -36,7 +36,7 @@ setup(
         'console_scripts': ['scrapple = scrapple.cmd:runCLI']
     },
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: MIT License',
