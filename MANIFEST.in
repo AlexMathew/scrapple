@@ -1,4 +1,7 @@
 include README.md
+include README.rst
+include HISTORY.rst
+include requirements.txt
 include AUTHORS.rst
 include LICENSE
 include MANIFEST.in
