@@ -21,12 +21,6 @@
 				"selector": "//span[@class='year']",
 				"attr": "text",
 				"default": "<year>"
-			},
-			{
-				"field": "image",
-				"selector": "//div[@class='poster']/img[@class='real']",
-				"attr": "src",
-				"default": "<image>"
 			}
 		]
 	}
