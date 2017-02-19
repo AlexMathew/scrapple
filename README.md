@@ -4,6 +4,7 @@ Scrapple
 [![Join the chat at https://gitter.im/AlexMathew/scrapple](https://badges.gitter.im/AlexMathew/scrapple.svg)](https://gitter.im/AlexMathew/scrapple?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Scrapple on PyPI](https://badge.fury.io/py/scrapple.svg)](https://badge.fury.io/py/scrapple)
 [![Build Status](https://travis-ci.org/AlexMathew/scrapple.svg?branch=master)](https://travis-ci.org/AlexMathew/scrapple)
+[![Code Climate](https://codeclimate.com/github/AlexMathew/scrapple/badges/gpa.svg)](https://codeclimate.com/github/AlexMathew/scrapple)
 
 
 [Scrapple](http://scrappleapp.github.io/scrapple) is a framework for creating web scrapers and web crawlers according to a key-value based configuration file. It provides a command line interface to run the script on a given JSON-based configuration input, as well as a web interface to provide the necessary input.
