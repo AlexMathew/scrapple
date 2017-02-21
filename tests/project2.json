@@ -13,7 +13,7 @@
 		],
 		"next": [
 			{
-				"follow_link": "ul.content-list li div.thumb a",
+				"follow_link": "div.content-list div.row h4.entry-title a",
 				"scraping": {
 					"data": [
 						{
