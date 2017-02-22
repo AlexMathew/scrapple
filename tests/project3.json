@@ -8,24 +8,28 @@
 				"field": "unknown",
 				"selector": "h1",
 				"attr": "text",
+				"connector": "",
 				"default": "<unknown>"
 			},
 			{
 				"field": "talk_url",
 				"selector": "url",
 				"attr": "",
+				"connector": "",
 				"default": "<talk_url>"
 			},
 			{
 				"field": "title",
 				"selector": "h2",
 				"attr": "text",
+				"connector": "",
 				"default": "<title>"
 			},
 			{
 				"field": "speaker",
 				"selector": ".author a",
 				"attr": "text",
+				"connector": "",
 				"default": "<speaker>"
 			}
 		]

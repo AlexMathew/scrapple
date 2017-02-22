@@ -8,6 +8,7 @@
 				"field": "event",
 				"selector": "//h2",
 				"attr": "text",
+				"connector": "",
 				"default": "<event>"
 			}
 		],
@@ -20,6 +21,7 @@
 							"field": "talk",
 							"selector": "//h2",
 							"attr": "text",
+							"connector": "",
 							"default": "<talk>"
 						}
 					]
