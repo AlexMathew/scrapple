@@ -8,7 +8,20 @@
 				"field": "",
 				"selector": "",
 				"attr": "",
-				"default": ""
+				"default": "",
+				"connector": ""
+			}
+		],
+		"table": [
+			{
+				"table_type": "",
+				"header": "",
+				"prefix": "",
+				"suffix": "",
+				"selector": "",
+				"attr": "",
+				"default": "",
+				"connector": ""
 			}
 		],
 		{%- for level in [1] recursive %}
@@ -21,7 +34,8 @@
 							"field": "",
 							"selector": "",
 							"attr": "",
-							"default": ""
+							"default": "",
+							"connector": ""
 						}
 					],
 					"table": [
@@ -32,7 +46,8 @@
 							"suffix": "",
 							"selector": "",
 							"attr": "",
-							"default": ""
+							"default": "",
+							"connector": ""
 						}
 					]{%- if level != settings.levels %},{% endif %}
 {%- if level != settings.levels %}{{ loop([level+1]) }}{% endif %}
