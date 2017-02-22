@@ -31,7 +31,7 @@ def traverse_next(page, nextx, results, tabular_data_headers=[], verbosity=0):
             if attribute['field'] != "":
                 if verbosity > 1:
                     print("\nExtracting", attribute['field'], "attribute", sep=' ', end='')
-                r[attribute['field']] = link.extract_content(attribute['selector'], attribute['attr'], attribute['default'])
+                r[attribute['field']] = link.extract_content(attribute['selector'], attribute['attr'], default=attribute['default'], connector=attribute['connector'])
         if not nextx['scraping'].get('table'):
             result_list = [r]
         else:
@@ -46,6 +46,7 @@ def traverse_next(page, nextx, results, tabular_data_headers=[], verbosity=0):
                     selector=table.get('selector', ''),
                     attr=table.get('attr', 'text'),
                     default=table.get('default', ''),
+                    connector=table.get('connector', ''),
                     verbosity=verbosity
                     )
                 tabular_data_headers.extend(table_headers)
