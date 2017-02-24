@@ -35,20 +35,13 @@ def traverse_next(page, nextx, results, tabular_data_headers=[], verbosity=0):
         if not nextx['scraping'].get('table'):
             result_list = [r]
         else:
-            tables = nextx['scraping'].get('table')
+            tables = nextx['scraping'].get('table', [])
             for table in tables:
-                table_headers, result_list = link.extract_tabular(
-                    result=r,
-                    table_type=table.get('table_type', 'rows'),
-                    header=table.get('header', []),
-                    prefix=table.get('prefix', ''),
-                    suffix=table.get('suffix', ''),
-                    selector=table.get('selector', ''),
-                    attr=table.get('attr', 'text'),
-                    default=table.get('default', ''),
-                    connector=table.get('connector', ''),
-                    verbosity=verbosity
-                    )
+                table.update({
+                    'result': r,
+                    'verbosity': verbosity
+                })
+                table_headers, result_list = link.extract_tabular(**table)
                 tabular_data_headers.extend(table_headers)
         if not nextx['scraping'].get('next'):
             for r in result_list:

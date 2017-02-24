@@ -106,7 +106,7 @@ class CssSelector(Selector):
 			raise Exception("Invalid CSS selector " + selector)
 
 
-	def extract_tabular(self, result={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="text", default="", connector="", verbosity=0):
+	def extract_tabular(self, *args, **kwargs):
 		"""
 		Method for performing the extraction of tabular data.
 
@@ -128,6 +128,12 @@ class CssSelector(Selector):
 		:return: A 2-tuple containing the list of all the column headers extracted and the list of \
 		dictionaries which contain (header, content) pairs
 		"""
+		result = kwargs.get('result', {})
+		table_type = kwargs.get('table_type', 'rows')
+		header = kwargs.get('header', [])
+		prefix, suffix, selector, default, connector = [kwargs.get(x, '') for x in ['prefix', 'suffix', 'selector', 'default', 'connector']]
+		attr = kwargs.get('attr', 'text')
+		verbosity = kwargs.get('verbosity', 0)
 		result_list = []
 		if type(header) in [str, unicode]:
 			try:
