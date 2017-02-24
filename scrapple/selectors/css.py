@@ -12,13 +12,7 @@ except ImportError:
 	from urllib.parse import urljoin
 
 from scrapple.selectors.selector import Selector
-
-
-def make_ascii(s):
-    """
-    Convert text to ASCII
-    """
-    return "".join(i for i in s if ord(i) < 128)
+from scrapple.utils.text import make_ascii
 
 
 class CssSelector(Selector):
@@ -35,7 +29,7 @@ class CssSelector(Selector):
 		super(CssSelector, self).__init__(url)
 
 
-	def extract_content(self, selector, attr, default="", connector=""):
+	def extract_content(self, *args, **kwargs):
 		"""
 		Method for performing the content extraction for the given CSS selector.
 
@@ -62,6 +56,7 @@ class CssSelector(Selector):
 
 		"""
 		try:
+			selector, attr, default, connector = [kwargs.get(x, '') for x in ['selector', 'attr', 'default', 'connector']]
 			if selector == "url":
 				return self.url
 			sel = cssselect.CSSSelector(selector)

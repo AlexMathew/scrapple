@@ -86,7 +86,7 @@ class RunCommand(command.Command):
                 if attribute['field'] != "":
                     if self.args['--verbosity'] > 1:
                         print("\nExtracting", attribute['field'], "attribute", sep=' ', end='')
-                    result[attribute['field']] = selector.extract_content(attribute['selector'], attribute['attr'], default=attribute['default'], connector=attribute['connector'])
+                    result[attribute['field']] = selector.extract_content(**attribute)
             if not self.config['scraping'].get('table'):
                 result_list = [result]
             else:
