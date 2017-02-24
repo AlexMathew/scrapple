@@ -86,25 +86,18 @@ class RunCommand(command.Command):
                 if attribute['field'] != "":
                     if self.args['--verbosity'] > 1:
                         print("\nExtracting", attribute['field'], "attribute", sep=' ', end='')
-                    result[attribute['field']] = selector.extract_content(attribute['selector'], attribute['attr'], default=attribute['default'], connector=attribute['connector'])
+                    result[attribute['field']] = selector.extract_content(**attribute)
             if not self.config['scraping'].get('table'):
                 result_list = [result]
             else:
-                tables = self.config['scraping'].get('table')
+                tables = self.config['scraping'].get('table', [])
                 for table in tables:
                     if table.get('selector', '').strip() != '':
-                        table_headers, result_list = selector.extract_tabular(
-                            result=result,
-                            table_type=table.get('table_type', 'rows'),
-                            header=table.get('header', []),
-                            prefix=table.get('prefix', ''),
-                            suffix=table.get('suffix', ''),
-                            selector=table.get('selector', ''),
-                            attr=table.get('attr', 'text'),
-                            default=table.get('default', ''),
-                            connector=table.get('connector', ''),
-                            verbosity=self.args['--verbosity']
-                            )
+                        table.update({
+                            'result': result,
+                            'verbosity': self.args['--verbosity']
+                        })
+                        table_headers, result_list = selector.extract_tabular(**table)
                         for th in table_headers:
                             if not th in tabular_data_headers:
                                 tabular_data_headers[th] = len(tabular_data_headers)

@@ -22,7 +22,7 @@ def traverse_next(page, nextx, results, tabular_data_headers=[], verbosity=0):
     :return: The extracted content, through a generator
 
     """
-    for link in page.extract_links(nextx['follow_link']):
+    for link in page.extract_links(selector=nextx['follow_link']):
         if verbosity > 0:
             print('\n')
             print(Back.YELLOW + Fore.BLUE + "Loading page ", link.url + Back.RESET + Fore.RESET, end='')
@@ -31,24 +31,17 @@ def traverse_next(page, nextx, results, tabular_data_headers=[], verbosity=0):
             if attribute['field'] != "":
                 if verbosity > 1:
                     print("\nExtracting", attribute['field'], "attribute", sep=' ', end='')
-                r[attribute['field']] = link.extract_content(attribute['selector'], attribute['attr'], default=attribute['default'], connector=attribute['connector'])
+                r[attribute['field']] = link.extract_content(**attribute)
         if not nextx['scraping'].get('table'):
             result_list = [r]
         else:
-            tables = nextx['scraping'].get('table')
+            tables = nextx['scraping'].get('table', [])
             for table in tables:
-                table_headers, result_list = link.extract_tabular(
-                    result=r,
-                    table_type=table.get('table_type', 'rows'),
-                    header=table.get('header', []),
-                    prefix=table.get('prefix', ''),
-                    suffix=table.get('suffix', ''),
-                    selector=table.get('selector', ''),
-                    attr=table.get('attr', 'text'),
-                    default=table.get('default', ''),
-                    connector=table.get('connector', ''),
-                    verbosity=verbosity
-                    )
+                table.update({
+                    'result': r,
+                    'verbosity': verbosity
+                })
+                table_headers, result_list = link.extract_tabular(**table)
                 tabular_data_headers.extend(table_headers)
         if not nextx['scraping'].get('next'):
             for r in result_list:

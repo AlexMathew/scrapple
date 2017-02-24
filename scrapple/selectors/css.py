@@ -12,13 +12,7 @@ except ImportError:
 	from urllib.parse import urljoin
 
 from scrapple.selectors.selector import Selector
-
-
-def make_ascii(s):
-    """
-    Convert text to ASCII
-    """
-    return "".join(i for i in s if ord(i) < 128)
+from scrapple.utils.text import make_ascii
 
 
 class CssSelector(Selector):
@@ -35,7 +29,7 @@ class CssSelector(Selector):
 		super(CssSelector, self).__init__(url)
 
 
-	def extract_content(self, selector, attr, default="", connector=""):
+	def extract_content(self, *args, **kwargs):
 		"""
 		Method for performing the content extraction for the given CSS selector.
 
@@ -62,6 +56,7 @@ class CssSelector(Selector):
 
 		"""
 		try:
+			selector, attr, default, connector = [kwargs.get(x, '') for x in ['selector', 'attr', 'default', 'connector']]
 			if selector == "url":
 				return self.url
 			sel = cssselect.CSSSelector(selector)
@@ -80,7 +75,7 @@ class CssSelector(Selector):
 			raise Exception("There is no content for the selector " + selector)
 
 
-	def extract_links(self, selector):
+	def extract_links(self, *args, **kwargs):
 		"""
 		Method for performing the link extraction for the crawler implementation.
 
@@ -100,14 +95,18 @@ class CssSelector(Selector):
 		:return: A ``CssSelector`` object for every page to be crawled through 
 		
 		"""
-		sel = cssselect.CSSSelector(selector)
-		links = sel(self.tree)
-		for link in links:
-			next_url = urljoin(self.url, link.get('href'))
-			yield CssSelector(next_url)
+		try:
+			selector = kwargs.get('selector', '')
+			sel = cssselect.CSSSelector(selector)
+			links = sel(self.tree)
+			for link in links:
+				next_url = urljoin(self.url, link.get('href'))
+				yield CssSelector(next_url)
+		except Exception:
+			raise Exception("Invalid CSS selector " + selector)
 
 
-	def extract_tabular(self, result={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="text", default="", connector="", verbosity=0):
+	def extract_tabular(self, *args, **kwargs):
 		"""
 		Method for performing the extraction of tabular data.
 
@@ -129,6 +128,12 @@ class CssSelector(Selector):
 		:return: A 2-tuple containing the list of all the column headers extracted and the list of \
 		dictionaries which contain (header, content) pairs
 		"""
+		result = kwargs.get('result', {})
+		table_type = kwargs.get('table_type', 'rows')
+		header = kwargs.get('header', [])
+		prefix, suffix, selector, default, connector = [kwargs.get(x, '') for x in ['prefix', 'suffix', 'selector', 'default', 'connector']]
+		attr = kwargs.get('attr', 'text')
+		verbosity = kwargs.get('verbosity', 0)
 		result_list = []
 		if type(header) in [str, unicode]:
 			try:

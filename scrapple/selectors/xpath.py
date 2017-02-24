@@ -13,13 +13,7 @@ except ImportError:
 
 from lxml.etree import XPathError
 from scrapple.selectors.selector import Selector
-
-
-def make_ascii(s):
-    """
-    Convert text to ASCII
-    """
-    return "".join(i for i in s if ord(i) < 128)
+from scrapple.utils.text import make_ascii
 
 
 class XpathSelector(Selector):
@@ -36,7 +30,7 @@ class XpathSelector(Selector):
 		super(XpathSelector, self).__init__(url)
 
 
-	def extract_content(self, selector, attr, default="", connector=""):
+	def extract_content(self, *args, **kwargs):
 		"""
 		Method for performing the content extraction for the given XPath expression.
 
@@ -60,6 +54,7 @@ class XpathSelector(Selector):
 
 		"""
 		try:
+			selector, attr, default, connector = [kwargs.get(x, '') for x in ['selector', 'attr', 'default', 'connector']]
 			if selector == "url":
 				return self.url
 			if attr == "text":
@@ -79,7 +74,7 @@ class XpathSelector(Selector):
 			raise Exception("Invalid XPath selector " + selector)
 
 
-	def extract_links(self, selector):
+	def extract_links(self, *args, **kwargs):
 		"""
 		Method for performing the link extraction for the crawler.
 
@@ -97,6 +92,7 @@ class XpathSelector(Selector):
 		
 		"""
 		try:
+			selector = kwargs.get('selector', '')
 			links = self.tree.xpath(selector)
 			for link in links:
 				next_url = urljoin(self.url, link.get('href'))
@@ -105,7 +101,7 @@ class XpathSelector(Selector):
 			raise Exception("Invalid XPath selector " + selector)
 
 
-	def extract_tabular(self, result={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="text", default="", connector="", verbosity=0):
+	def extract_tabular(self, *args, **kwargs):
 		"""
 		Method for performing the extraction of tabular data.
 
@@ -124,6 +120,12 @@ class XpathSelector(Selector):
 		:return: A 2-tuple containing the list of all the column headers extracted and the list of \
 		dictionaries which contain (header, content) pairs
 		"""
+		result = kwargs.get('result', {})
+		table_type = kwargs.get('table_type', 'rows')
+		header = kwargs.get('header', [])
+		prefix, suffix, selector, default, connector = [kwargs.get(x, '') for x in ['prefix', 'suffix', 'selector', 'default', 'connector']]
+		attr = kwargs.get('attr', 'text')
+		verbosity = kwargs.get('verbosity', 0)
 		result_list = []
 		if type(header) in [str, unicode]:
 			try:
