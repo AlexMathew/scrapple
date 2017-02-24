@@ -32,11 +32,11 @@ def test_crawler_generation():
 	gc.execute_command()
 	with open(os.path.join(os.getcwd(), 'trial1.json'), 'r') as f:
 		config = json.load(f)
-	next = [
+	nextx = [
 		{
 			"follow_link": "", 
 			"scraping": {
-				"data": [{"field": "", "selector": "", "attr": "", "default": ""}],
+				"data": [{"field": "", "selector": "", "attr": "", "default": "", "connector": ""}],
 				"table": [
 					{
 						"table_type": "",
@@ -45,10 +45,11 @@ def test_crawler_generation():
 						"suffix": "",
 						"selector": "",
 						"attr": "",
-						"default": ""
+						"default": "",
+						"connector": ""
 					}
 				]				
 			}
 		}
 	]
-	assert_list_equal(config['scraping']['next'], next)
+	assert_list_equal(config['scraping']['next'], nextx)

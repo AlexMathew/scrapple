@@ -8,18 +8,20 @@
 				"field": "event",
 				"selector": "//h2",
 				"attr": "text",
+				"connector": "",
 				"default": "<event>"
 			}
 		],
 		"next": [
 			{
-				"follow_link": "//ul[@class='content-list']/li//div[@class='thumb']/a",
+				"follow_link": "//div[@class='content-list']/div[@class='row']//h4[@class='entry-title']/a",
 				"scraping": {
 					"data": [
 						{
 							"field": "talk",
 							"selector": "//h2",
 							"attr": "text",
+							"connector": "",
 							"default": "<talk>"
 						}
 					]

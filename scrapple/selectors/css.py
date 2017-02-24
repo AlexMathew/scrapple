@@ -35,7 +35,7 @@ class CssSelector(Selector):
 		super(CssSelector, self).__init__(url)
 
 
-	def extract_content(self, selector, attr, default):
+	def extract_content(self, selector, attr, default="", connector=""):
 		"""
 		Method for performing the content extraction for the given CSS selector.
 
@@ -67,7 +67,7 @@ class CssSelector(Selector):
 			sel = cssselect.CSSSelector(selector)
 			if attr == "text":
 				tag = sel(self.tree)[0]
-				content = " ".join([make_ascii(x).strip() for x in tag.itertext()])
+				content = connector.join([make_ascii(x).strip() for x in tag.itertext()])
 				content = content.replace("\n", " ").strip()				
 			else:
 				content = sel(self.tree)[0].get(attr)
@@ -107,7 +107,7 @@ class CssSelector(Selector):
 			yield CssSelector(next_url)
 
 
-	def extract_tabular(self, result={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="text", default="", verbosity=0):
+	def extract_tabular(self, result={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="text", default="", connector="", verbosity=0):
 		"""
 		Method for performing the extraction of tabular data.
 
@@ -158,7 +158,7 @@ class CssSelector(Selector):
 						print("\nExtracting", head, "attribute", sep=' ', end='')
 					if attr == "text":
 						try:
-							content = " ".join([make_ascii(x).strip() for x in val.itertext()])
+							content = connector.join([make_ascii(x).strip() for x in val.itertext()])
 						except Exception:
 							content = default
 						content = content.replace("\n", " ").strip()
@@ -193,7 +193,7 @@ class CssSelector(Selector):
 							col = columns[head][i]
 							if attr == "text":
 								try:
-									content = " ".join([make_ascii(x).strip() for x in col.itertext()])
+									content = connector.join([make_ascii(x).strip() for x in col.itertext()])
 								except Exception:
 									content = default
 								content = content.replace("\n", " ").strip()

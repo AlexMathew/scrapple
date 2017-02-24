@@ -8,7 +8,8 @@
 				"field": "",
 				"selector": "",
 				"attr": "",
-				"default": ""
+				"default": "",
+				"connector": ""
 			}
 		],
         "table": [
@@ -19,7 +20,8 @@
                 "suffix": "",
                 "selector": "",
                 "attr": "",
-                "default": ""
+                "default": "",
+                "connector": ""
             }
         ]
 	}

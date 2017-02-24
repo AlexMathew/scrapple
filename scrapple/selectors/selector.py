@@ -61,7 +61,7 @@ class Selector(object):
 			raise Exception('Ensure that you are connected to the Internet and that the page exists')
 
 
-	def extract_content(self, selector, attr, default):
+	def extract_content(self, selector, attr, default, connector):
 		"""
 		Method for performing the content extraction for the particular selector type. \
 		A detailed description is provided in the derived classes. 
@@ -73,6 +73,15 @@ class Selector(object):
 	def extract_links(self, selector):
 		"""
 		Method for performing the link extraction for the crawler. \
+		A detailed description is provided in the derived classes.
+
+		"""
+		raise NotImplementedError
+
+
+	def extract_tabular(self, result, table_type, header, prefix, suffix, selector, attr, default, connector, verbosity):
+		"""
+		Method for performing the tabular data extraction. \
 		A detailed description is provided in the derived classes.
 
 		"""

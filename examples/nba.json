@@ -1,0 +1,84 @@
+{
+    "project_name": "nba",
+    "selector_type": "xpath",
+    "scraping": {
+        "url": "http://espn.go.com/nba/teams",
+        "data": [
+            {
+                "field": "",
+                "selector": "",
+                "attr": "",
+                "default": "",
+                "connector": ""
+            }
+        ],
+        "next": [
+            {
+                "follow_link": "//*[@class='mod-content']//a[3]",
+                "scraping": {
+                    "data": [
+                        {
+                            "field": "team",
+                            "selector": "//h2",
+                            "attr": "text",
+                            "default": "<no_team>",
+                            "connector": ""
+                        }
+                    ],
+                    "next": [
+                        {
+                            "follow_link": "//*[@class='mod-content']/table[1]//tr[@class!='colhead']//a",
+                            "scraping": {
+                                "data": [
+                                    {
+                                        "field": "name",
+                                        "selector": "//h1",
+                                        "attr": "text",
+                                        "default": "<no_name>",
+                                        "connector": ""
+                                    },
+                                    {
+                                        "field": "headshot_link",
+                                        "selector": "//*[@class='main-headshot']/img",
+                                        "attr": "src",
+                                        "default": "<no_image>",
+                                        "connector": ""
+                                    },
+                                    {
+                                        "field": "number & position",
+                                        "selector": "//ul[@class='general-info']/li[1]",
+                                        "attr": "text",
+                                        "default": "<00> #<GFC>",
+                                        "connector": ""
+                                    }                                               
+                                ],
+                                "table": [
+                                    {
+                                        "table_type": "rows",
+                                        "header": "//div[@class='player-stats']//table//th",
+                                        "prefix": "season_",
+                                        "suffix": "",
+                                        "selector": "//div[@class='player-stats']//table//tr[1]/td",
+                                        "attr": "text",
+                                        "default": "",
+                                        "connector": ""
+                                    },
+                                    {
+                                        "table_type": "rows",
+                                        "header": "//div[@class='player-stats']//table//th",
+                                        "prefix": "career_",
+                                        "suffix": "",
+                                        "selector": "//div[@class='player-stats']//table//tr[@class='career']/td",
+                                        "attr": "text",
+                                        "default": "",
+                                        "connector": ""
+                                    }
+                                ]
+                            }
+                        }
+                    ]                   
+                }
+            }
+        ]
+    }
+}

@@ -4,6 +4,7 @@ Scrapple
 [![Join the chat at https://gitter.im/AlexMathew/scrapple](https://badges.gitter.im/AlexMathew/scrapple.svg)](https://gitter.im/AlexMathew/scrapple?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Scrapple on PyPI](https://badge.fury.io/py/scrapple.svg)](https://badge.fury.io/py/scrapple)
 [![Build Status](https://travis-ci.org/AlexMathew/scrapple.svg?branch=master)](https://travis-ci.org/AlexMathew/scrapple)
+[![Code Climate](https://codeclimate.com/github/AlexMathew/scrapple/badges/gpa.svg)](https://codeclimate.com/github/AlexMathew/scrapple)
 
 
 [Scrapple](http://scrappleapp.github.io/scrapple) is a framework for creating web scrapers and web crawlers according to a key-value based configuration file. It provides a command line interface to run the script on a given JSON-based configuration input, as well as a web interface to provide the necessary input.
@@ -50,6 +51,7 @@ The keys used in the configuration file are :
         -   **selector** : Specifies the selector expression.
         -   **attr** : Specifies the attribute to be extracted from the result of the selector expression.
         -   **field** : Specifies the field name under which this data is to stored.
+        -   **connector** : Specifies a text connector to join text from multiple tags (for eg, `<li>` tags)
         -   **default** : Specifies the default value to be used if the selector expression fails.
 
     -   **table** : Specifies a description for scraping tabular data.
@@ -59,6 +61,7 @@ The keys used in the configuration file are :
         -   **suffix** : Specifies a suffix to be added to each header.
         -   **selector** : Specifies the selector for the data. For row extraction, this is a selector that gives the row to be extracted. For column extraction, this is a list of selectors for each column.
         -   **attr** : Specifies the attribute to be extracted from the selected tag.
+        -   **connector** : Specifies a text connector to join text from multiple tags (for eg, `<li>` tags)
         -   **default** : Specifies the default value to be used if the selector does not return any data.
 
     -   **next** : Specifies the crawler implementation.  
@@ -100,7 +103,8 @@ This creates nba.json - a sample Scrapple configuration file for a crawler, whic
                 "field": "",
                 "selector": "",
                 "attr": "",
-                "default": ""
+                "default": "",
+                "connector": ""
             }
         ],
         "next": [
@@ -112,7 +116,8 @@ This creates nba.json - a sample Scrapple configuration file for a crawler, whic
                             "field": "team",
                             "selector": "//h2",
                             "attr": "text",
-                            "default": "<no_team>"
+                            "default": "<no_team>",
+                            "connector": ""
                         }
                     ],
                     "next": [
@@ -124,19 +129,22 @@ This creates nba.json - a sample Scrapple configuration file for a crawler, whic
                                         "field": "name",
                                         "selector": "//h1",
                                         "attr": "text",
-                                        "default": "<no_name>"
+                                        "default": "<no_name>",
+                                        "connector": ""
                                     },
                                     {
                                         "field": "headshot_link",
                                         "selector": "//*[@class='main-headshot']/img",
                                         "attr": "src",
-                                        "default": "<no_image>"
+                                        "default": "<no_image>",
+                                        "connector": ""
                                     },
                                     {
                                         "field": "number & position",
                                         "selector": "//ul[@class='general-info']/li[1]",
                                         "attr": "text",
-                                        "default": "<00> #<GFC>"
+                                        "default": "<00> #<GFC>",
+                                        "connector": ""
                                     }                                               
                                 ],
                                 "table": [
@@ -147,7 +155,8 @@ This creates nba.json - a sample Scrapple configuration file for a crawler, whic
                                         "suffix": "",
                                         "selector": "//div[@class='player-stats']//table//tr[1]/td",
                                         "attr": "text",
-                                        "default": ""
+                                        "default": "",
+                                        "connector": ""
                                     },
                                     {
                                         "table_type": "rows",
@@ -156,7 +165,8 @@ This creates nba.json - a sample Scrapple configuration file for a crawler, whic
                                         "suffix": "",
                                         "selector": "//div[@class='player-stats']//table//tr[@class='career']/td",
                                         "attr": "text",
-                                        "default": ""
+                                        "default": "",
+                                        "connector": ""
                                     }
                                 ]
                             }
