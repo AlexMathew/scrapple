@@ -22,7 +22,7 @@ def traverse_next(page, nextx, results, tabular_data_headers=[], verbosity=0):
     :return: The extracted content, through a generator
 
     """
-    for link in page.extract_links(nextx['follow_link']):
+    for link in page.extract_links(selector=nextx['follow_link']):
         if verbosity > 0:
             print('\n')
             print(Back.YELLOW + Fore.BLUE + "Loading page ", link.url + Back.RESET + Fore.RESET, end='')

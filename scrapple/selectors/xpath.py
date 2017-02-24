@@ -74,7 +74,7 @@ class XpathSelector(Selector):
 			raise Exception("Invalid XPath selector " + selector)
 
 
-	def extract_links(self, selector):
+	def extract_links(self, *args, **kwargs):
 		"""
 		Method for performing the link extraction for the crawler.
 
@@ -92,6 +92,7 @@ class XpathSelector(Selector):
 		
 		"""
 		try:
+			selector = kwargs.get('selector', '')
 			links = self.tree.xpath(selector)
 			for link in links:
 				next_url = urljoin(self.url, link.get('href'))

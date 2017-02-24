@@ -75,7 +75,7 @@ class CssSelector(Selector):
 			raise Exception("There is no content for the selector " + selector)
 
 
-	def extract_links(self, selector):
+	def extract_links(self, *args, **kwargs):
 		"""
 		Method for performing the link extraction for the crawler implementation.
 
@@ -95,11 +95,15 @@ class CssSelector(Selector):
 		:return: A ``CssSelector`` object for every page to be crawled through 
 		
 		"""
-		sel = cssselect.CSSSelector(selector)
-		links = sel(self.tree)
-		for link in links:
-			next_url = urljoin(self.url, link.get('href'))
-			yield CssSelector(next_url)
+		try:
+			selector = kwargs.get('selector', '')
+			sel = cssselect.CSSSelector(selector)
+			links = sel(self.tree)
+			for link in links:
+				next_url = urljoin(self.url, link.get('href'))
+				yield CssSelector(next_url)
+		except Exception:
+			raise Exception("Invalid CSS selector " + selector)
 
 
 	def extract_tabular(self, result={}, table_type="rows", header=[], prefix="", suffix="", selector="", attr="text", default="", connector="", verbosity=0):
