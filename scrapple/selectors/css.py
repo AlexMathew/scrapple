@@ -106,6 +106,88 @@ class CssSelector(Selector):
 			raise Exception("Invalid CSS selector " + selector)
 
 
+	def extract_rows(self, *args, **kwargs):
+		"""
+		Row data extraction for extract_tabular
+		"""
+		result_list = []
+
+		try:
+			sel = cssselect.CSSSelector(kwargs.get('selector', ''))
+			values = sel(self.tree)
+			if len(table_headers) >= len(values):
+				from itertools import izip_longest
+				pairs = izip_longest(table_headers, values, fillvalue=kwargs.get('default', ''))
+			else:
+				from itertools import izip
+				pairs = izip(table_headers, values)
+			for head, val in pairs:
+				if kwargs.get('verbosity', 0) > 1:
+					print("\nExtracting", head, "attribute", sep=' ', end='')
+				if kwargs.get('attr', 'text') == "text":
+					try:
+						content = kwargs.get('connector', '').join([make_ascii(x).strip() for x in val.itertext()])
+					except Exception:
+						content = kwargs.get('default', '')
+					content = content.replace("\n", " ").strip()
+				else:
+					content = val.get(kwargs.get('attr', 'text'))
+					if kwargs.get('attr', 'text') in ["href", "src"]:
+						content = urljoin(self.url, content)
+				result[head] = content
+			result_list.append(result)
+		except TypeError:
+			raise Exception("Selector expression string to be provided. Got " + kwargs.get('selector', ''))
+
+		return result_list
+
+
+	def extract_columns(self, *args, **kwargs):
+		"""
+		Column data extraction for extract_tabular
+		"""
+		result_list = []
+
+		try:
+			if type(kwargs.get('selector', '')) in [str, unicode]:
+				selectors = [kwargs.get('selector', '')]
+			elif type(kwargs.get('selector', '')) == list:
+				selectors = kwargs.get('selector', '')
+			else:
+				raise Exception("Use a list of selector expressions for the various columns")
+			from itertools import izip, count
+			pairs = izip(table_headers, selectors)
+			columns = {}
+			for head, selector in pairs:
+				sel = cssselect.CSSSelector(selector)
+				columns[head] = sel(self.tree)
+			try:
+				for i in count(start=0):
+					r = result.copy()
+					for head in columns.keys():
+						if kwargs.get('verbosity', 0) > 1:
+							print("\nExtracting", head, "attribute", sep=' ', end='')
+						col = columns[head][i]
+						if kwargs.get('attr', 'text') == "text":
+							try:
+								content = kwargs.get('connector', '').join([make_ascii(x).strip() for x in col.itertext()])
+							except Exception:
+								content = kwargs.get('default', '')
+							content = content.replace("\n", " ").strip()
+						else:
+							content = col.get(kwargs.get('attr', 'text'))
+							if kwargs.get('attr', 'text') in ["href", "src"]:
+								content = urljoin(self.url, content)
+						r[head] = content
+					result_list.append(r)
+			except IndexError:
+				pass
+		except TypeError:
+			raise Exception("Selector expression string to be provided. Got " + selector)
+
+		return result_list
+
+
 	def extract_tabular(self, *args, **kwargs):
 		"""
 		Method for performing the extraction of tabular data.
@@ -144,67 +226,7 @@ class CssSelector(Selector):
 		if kwargs.get('table_type', 'rows') not in ["rows", "columns"]:
 			raise Exception("Specify 'rows' or 'columns' in table_type")
 		if kwargs.get('table_type', 'rows') == "rows":
-			try:
-				sel = cssselect.CSSSelector(kwargs.get('selector', ''))
-				values = sel(self.tree)
-				if len(table_headers) >= len(values):
-					from itertools import izip_longest
-					pairs = izip_longest(table_headers, values, fillvalue=kwargs.get('default', ''))
-				else:
-					from itertools import izip
-					pairs = izip(table_headers, values)
-				for head, val in pairs:
-					if kwargs.get('verbosity', 0) > 1:
-						print("\nExtracting", head, "attribute", sep=' ', end='')
-					if kwargs.get('attr', 'text') == "text":
-						try:
-							content = kwargs.get('connector', '').join([make_ascii(x).strip() for x in val.itertext()])
-						except Exception:
-							content = kwargs.get('default', '')
-						content = content.replace("\n", " ").strip()
-					else:
-						content = val.get(kwargs.get('attr', 'text'))
-						if kwargs.get('attr', 'text') in ["href", "src"]:
-							content = urljoin(self.url, content)
-					result[head] = content
-				result_list.append(result)
-			except TypeError:
-				raise Exception("Selector expression string to be provided. Got " + kwargs.get('selector', ''))
+			result_list = self.extract_rows(**kwargs)
 		else:
-			try:
-				if type(kwargs.get('selector', '')) in [str, unicode]:
-					selectors = [kwargs.get('selector', '')]
-				elif type(kwargs.get('selector', '')) == list:
-					selectors = kwargs.get('selector', '')
-				else:
-					raise Exception("Use a list of selector expressions for the various columns")
-				from itertools import izip, count
-				pairs = izip(table_headers, selectors)
-				columns = {}
-				for head, selector in pairs:
-					sel = cssselect.CSSSelector(selector)
-					columns[head] = sel(self.tree)
-				try:
-					for i in count(start=0):
-						r = result.copy()
-						for head in columns.keys():
-							if kwargs.get('verbosity', 0) > 1:
-								print("\nExtracting", head, "attribute", sep=' ', end='')
-							col = columns[head][i]
-							if kwargs.get('attr', 'text') == "text":
-								try:
-									content = kwargs.get('connector', '').join([make_ascii(x).strip() for x in col.itertext()])
-								except Exception:
-									content = kwargs.get('default', '')
-								content = content.replace("\n", " ").strip()
-							else:
-								content = col.get(kwargs.get('attr', 'text'))
-								if kwargs.get('attr', 'text') in ["href", "src"]:
-									content = urljoin(self.url, content)
-							r[head] = content
-						result_list.append(r)
-				except IndexError:
-					pass
-			except TypeError:
-				raise Exception("Selector expression string to be provided. Got " + selector)
+			result_list = self.extract_columns(**kwargs)
 		return table_headers, result_list
