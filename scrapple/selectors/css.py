@@ -111,16 +111,17 @@ class CssSelector(Selector):
 		Row data extraction for extract_tabular
 		"""
 		result_list = []
+		result = kwargs.get('result', {})
 
 		try:
 			sel = cssselect.CSSSelector(kwargs.get('selector', ''))
 			values = sel(self.tree)
-			if len(table_headers) >= len(values):
+			if len(kwargs.get('table_headers', [])) >= len(values):
 				from itertools import izip_longest
-				pairs = izip_longest(table_headers, values, fillvalue=kwargs.get('default', ''))
+				pairs = izip_longest(kwargs.get('table_headers', []), values, fillvalue=kwargs.get('default', ''))
 			else:
 				from itertools import izip
-				pairs = izip(table_headers, values)
+				pairs = izip(kwargs.get('table_headers', []), values)
 			for head, val in pairs:
 				if kwargs.get('verbosity', 0) > 1:
 					print("\nExtracting", head, "attribute", sep=' ', end='')
@@ -147,6 +148,7 @@ class CssSelector(Selector):
 		Column data extraction for extract_tabular
 		"""
 		result_list = []
+		result = kwargs.get('result', {})
 
 		try:
 			if type(kwargs.get('selector', '')) in [str, unicode]:
@@ -156,7 +158,7 @@ class CssSelector(Selector):
 			else:
 				raise Exception("Use a list of selector expressions for the various columns")
 			from itertools import izip, count
-			pairs = izip(table_headers, selectors)
+			pairs = izip(kwargs.get('table_headers', []), selectors)
 			columns = {}
 			for head, selector in pairs:
 				sel = cssselect.CSSSelector(selector)
@@ -225,6 +227,7 @@ class CssSelector(Selector):
 			table_headers = [kwargs.get('prefix', '') + h + kwargs.get('suffix', '') for h in kwargs.get('header', [])]
 		if kwargs.get('table_type', 'rows') not in ["rows", "columns"]:
 			raise Exception("Specify 'rows' or 'columns' in table_type")
+		kwargs.update({'table_headers': table_headers})
 		if kwargs.get('table_type', 'rows') == "rows":
 			result_list = self.extract_rows(**kwargs)
 		else:
