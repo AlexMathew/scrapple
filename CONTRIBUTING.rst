@@ -25,7 +25,7 @@ Fix Bugs
 ~~~~~~~~
 
 Look through the GitHub issues for bugs. Anything tagged with "bug"
-is open to whoever wants to implement it.
+is open to whoever wants to fix it.
 
 Implement Features
 ~~~~~~~~~~~~~~~~~~
