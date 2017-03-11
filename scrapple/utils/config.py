@@ -52,6 +52,17 @@ def traverse_next(page, nextx, results, tabular_data_headers=[], verbosity=0):
                     yield (tdh, result)
 
 
+def validate_config(config):
+    """
+    Validates the extractor configuration file. Ensures that there are no duplicate field names, etc.
+
+    :param config: The configuration file that contains the specification of the extractor
+    :return: True if config is valid, else raises a exception that specifies the correction to be made
+
+    """
+    # TODO - Validate config or correct config ?
+
+
 def get_fields(config):
     """
     Recursive generator that yields the field names in the config file
