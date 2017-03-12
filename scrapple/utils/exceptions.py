@@ -8,7 +8,7 @@ Functions related to handling exceptions in the input arguments
 import re
 
 
-def handle_exceptions(args):
+def check_arguments(args):
 	"""
 	Validates the arguments passed through the CLI commands.
 
