@@ -22,6 +22,11 @@ class InvalidOutputType(ValueError):
 	pass
 
 
+class InvalidProjectName(ValueError):
+	"""Exception class for invalid <projectname> in arguments."""
+	pass
+
+
 
 def check_arguments(args):
 	"""
@@ -42,7 +47,8 @@ def check_arguments(args):
 			raise InvalidOutputType("--output_type has to be 'json' or 'csv'")
 	if args['genconfig'] or args['generate'] or args['run']:
 		if projectname_re.search(args['<projectname>']) is not None:
-			raise Exception("<projectname> should consist of letters, digits or _")
 	if int(args['--levels']) < 1:
 		raise Exception("--levels should be greater than, or equal to 1")
 	return
+			message = "<projectname> should consist of letters, digits or _"
+			raise InvalidProjectName(message)
