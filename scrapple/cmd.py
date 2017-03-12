@@ -44,7 +44,7 @@ def runCLI():
     """
     args = docopt(__doc__, version='0.3.0')
     try:
-        handle_exceptions(args)
+        check_arguments(args)
         command_list = ['genconfig', 'run', 'generate']
         select = itemgetter('genconfig', 'run', 'generate')
         selectedCommand = command_list[select(args).index(True)]
