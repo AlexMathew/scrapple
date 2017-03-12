@@ -12,6 +12,11 @@ class InvalidType(ValueError):
 	pass
 
 
+class InvalidSelector(ValueError):
+	"""Exception class for invalid in arguments."""
+	pass
+
+
 
 def check_arguments(args):
 	"""
@@ -26,7 +31,7 @@ def check_arguments(args):
 		if args['--type'] not in ['scraper', 'crawler']:
 			raise InvalidType("--type has to be 'scraper' or 'crawler'")
 		if args['--selector'] not in ['xpath', 'css']:
-			raise Exception("--selector has to be 'xpath' or 'css'")
+			raise InvalidSelector("--selector has to be 'xpath' or 'css'")
 	if args['generate'] or args['run']:
 		if args['--output_type'] not in ['json', 'csv']:
 			raise Exception("--output_type has to be 'json' or 'csv'")
