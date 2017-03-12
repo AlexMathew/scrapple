@@ -7,6 +7,11 @@ Functions related to handling exceptions in the input arguments
 
 import re
 
+class InvalidType(ValueError):
+	"""Exception class for invalid type in arguments."""
+	pass
+
+
 
 def check_arguments(args):
 	"""
@@ -19,7 +24,7 @@ def check_arguments(args):
 	projectname_re = re.compile(r'[^a-zA-Z0-9_]')
 	if args['genconfig']:
 		if args['--type'] not in ['scraper', 'crawler']:
-			raise Exception("--type has to be 'scraper' or 'crawler'")
+			raise InvalidType("--type has to be 'scraper' or 'crawler'")
 		if args['--selector'] not in ['xpath', 'css']:
 			raise Exception("--selector has to be 'xpath' or 'css'")
 	if args['generate'] or args['run']:
