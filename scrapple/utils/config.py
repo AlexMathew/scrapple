@@ -11,6 +11,11 @@ from colorama import init, Fore, Back
 init()
 
 
+class InvalidConfigException(Exception):
+    """Exception class for invalid config file. Example: duplicate field names"""
+    pass
+
+
 def traverse_next(page, nextx, results, tabular_data_headers=[], verbosity=0):
     """
     Recursive generator to traverse through the next attribute and \
@@ -60,7 +65,12 @@ def validate_config(config):
     :return: True if config is valid, else raises a exception that specifies the correction to be made
 
     """
-    # TODO - Validate config or correct config ?
+    fields = [f for f in get_fields(config)]
+    if len(fields) != len(set(fields)):
+        raise InvalidConfigException(
+            "Invalid configuration file - %d duplicate field names" % len(fields) - len(set(fields))
+        )
+    return True
 
 
 def get_fields(config):
