@@ -5,12 +5,16 @@ scrapple.commands.run
 """
 
 from __future__ import print_function
+
 import os
-from colorama import init, Fore, Back
+
+from colorama import Back, Fore, init
 
 from scrapple.commands import command
-from scrapple.selectors import xpath, css
-from scrapple.utils.config import traverse_next, extract_fieldnames
+from scrapple.selectors import css, xpath
+from scrapple.utils.config import (InvalidConfigException, extract_fieldnames,
+                                   traverse_next, validate_config)
+
 
 class RunCommand(command.Command):
     """
@@ -57,6 +61,7 @@ class RunCommand(command.Command):
             import json
             with open(self.args['<projectname>'] + '.json', 'r') as f:
                 self.config = json.load(f)
+            validate_config(self.config)
             self.run()
         except ValueError:
             print(Back.WHITE + Fore.RED + "Use 0, 1 or 2 for verbosity." \
@@ -64,6 +69,8 @@ class RunCommand(command.Command):
         except IOError:
             print(Back.WHITE + Fore.RED + self.args['<projectname>'], ".json does not ", \
                   "exist. Use ``scrapple genconfig``." + Back.RESET + Fore.RESET, sep="")
+        except InvalidConfigException as e:
+            print(Back.WHITE + Fore.RED + e + Back.RESET + Fore.RESET, sep="")
 
 
     def run(self):

@@ -6,9 +6,15 @@ Functions related to traversing the configuration file
 """
 
 from __future__ import print_function
-from colorama import init, Fore, Back
+
+from colorama import Back, Fore, init
 
 init()
+
+
+class InvalidConfigException(Exception):
+    """Exception class for invalid config file. Example: duplicate field names"""
+    pass
 
 
 def traverse_next(page, nextx, results, tabular_data_headers=[], verbosity=0):
@@ -50,6 +56,22 @@ def traverse_next(page, nextx, results, tabular_data_headers=[], verbosity=0):
             for nextx2 in nextx['scraping'].get('next'):
                 for tdh, result in traverse_next(link, nextx2, r, tabular_data_headers=tabular_data_headers, verbosity=verbosity):
                     yield (tdh, result)
+
+
+def validate_config(config):
+    """
+    Validates the extractor configuration file. Ensures that there are no duplicate field names, etc.
+
+    :param config: The configuration file that contains the specification of the extractor
+    :return: True if config is valid, else raises a exception that specifies the correction to be made
+
+    """
+    fields = [f for f in get_fields(config)]
+    if len(fields) != len(set(fields)):
+        raise InvalidConfigException(
+            "Invalid configuration file - %d duplicate field names" % len(fields) - len(set(fields))
+        )
+    return True
 
 
 def get_fields(config):

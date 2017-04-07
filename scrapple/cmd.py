@@ -27,12 +27,15 @@ extracted [default: 0]
 """
 
 from __future__ import print_function
-from docopt import docopt
+
 from operator import itemgetter
 
+from docopt import docopt
+
 from scrapple.utils.dynamicdispatch import get_command_class
-from scrapple.utils.exceptions import check_arguments, InvalidType, \
-    InvalidSelector, InvalidOutputType, InvalidProjectName, InvalidLevels
+from scrapple.utils.exceptions import (InvalidLevels, InvalidOutputType,
+                                       InvalidProjectName, InvalidSelector,
+                                       InvalidType, check_arguments)
 
 POSSIBLE_EXCEPTIONS = (
     InvalidType,

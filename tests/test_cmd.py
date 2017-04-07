@@ -1,5 +1,5 @@
-from nose.tools import assert_equals
 from docopt import docopt
+from nose.tools import assert_equals
 
 from scrapple import cmd
 

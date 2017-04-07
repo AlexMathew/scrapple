@@ -6,14 +6,15 @@ scrapple.selectors.xpath
 
 from __future__ import print_function
 
+from lxml.etree import XPathError
+
+from scrapple.selectors.selector import Selector
+from scrapple.utils.text import make_ascii
+
 try:
 	from urlparse import urljoin
 except ImportError:
 	from urllib.parse import urljoin
-
-from lxml.etree import XPathError
-from scrapple.selectors.selector import Selector
-from scrapple.utils.text import make_ascii
 
 
 class XpathSelector(Selector):

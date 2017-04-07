@@ -5,9 +5,9 @@ scrapple.utils.form
 Functions related to form handling.
 """
 
-import os
-import json
 import itertools
+import json
+import os
 
 
 def form_to_json(form):

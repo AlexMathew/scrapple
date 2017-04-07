@@ -1,7 +1,10 @@
-from nose.tools import assert_is_instance, assert_in, assert_dict_equal
-from docopt import docopt
 import json
 import os
+import sys
+from contextlib import contextmanager
+
+from docopt import docopt
+from nose.tools import assert_dict_equal, assert_in, assert_is_instance
 
 from scrapple import cmd
 from scrapple.commands import run
@@ -9,8 +12,6 @@ from scrapple.commands import run
 doc = cmd.__doc__
 
 
-import sys
-from contextlib import contextmanager
 try:
     from StringIO import StringIO
 except ImportError:

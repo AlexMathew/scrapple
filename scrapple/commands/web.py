@@ -5,13 +5,16 @@ scrapple.commands.web
 """
 
 from __future__ import print_function
-from flask import Flask, render_template, request
+
 import webbrowser
 from multiprocessing import Process
-from colorama import init, Fore, Back
+
+from colorama import Back, Fore, init
+from flask import Flask, render_template, request
 
 from scrapple.commands import command
 from scrapple.utils.form import form_to_json
+
 
 class WebCommand(command.Command):
     """

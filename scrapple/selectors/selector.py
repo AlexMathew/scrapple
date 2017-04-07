@@ -5,9 +5,11 @@ scrapple.selectors.selector
 """
 
 from __future__ import print_function
+
+import random
+
 import requests
 from lxml import etree
-import random
 
 requests.warnings.filterwarnings('ignore')
 
