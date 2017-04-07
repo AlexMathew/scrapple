@@ -1,7 +1,8 @@
-from nose.tools import assert_equals, assert_list_equal, assert_is_instance
-from docopt import docopt
 import json
 import os
+
+from docopt import docopt
+from nose.tools import assert_equals, assert_is_instance, assert_list_equal
 
 from scrapple import cmd
 from scrapple.commands import genconfig

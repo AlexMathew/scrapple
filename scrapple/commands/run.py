@@ -5,12 +5,15 @@ scrapple.commands.run
 """
 
 from __future__ import print_function
+
 import os
-from colorama import init, Fore, Back
+
+from colorama import Back, Fore, init
 
 from scrapple.commands import command
-from scrapple.selectors import xpath, css
-from scrapple.utils.config import traverse_next, extract_fieldnames, validate_config, InvalidConfigException
+from scrapple.selectors import css, xpath
+from scrapple.utils.config import (InvalidConfigException, extract_fieldnames,
+                                   traverse_next, validate_config)
 
 
 class RunCommand(command.Command):

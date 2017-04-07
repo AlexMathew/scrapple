@@ -3,6 +3,8 @@
 
 from __future__ import print_function
 
+from subprocess import call
+
 try:
     from setuptools import setup, find_packages
 except ImportError:
@@ -54,7 +56,6 @@ setup(
     tests_require=test_requirements
 )
 
-from subprocess import call
 print("Setting up argument completion")
 x = call(["bash", "scrapple.sh"])
 

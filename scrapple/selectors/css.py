@@ -5,14 +5,16 @@ scrapple.selectors.css
 """
 
 from __future__ import print_function
+
 from lxml import cssselect
+
+from scrapple.selectors.selector import Selector
+from scrapple.utils.text import make_ascii
+
 try:
 	from urlparse import urljoin
 except ImportError:
 	from urllib.parse import urljoin
-
-from scrapple.selectors.selector import Selector
-from scrapple.utils.text import make_ascii
 
 
 class CssSelector(Selector):

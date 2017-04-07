@@ -5,13 +5,16 @@ scrapple.commands.genconfig
 """
 
 from __future__ import print_function
-from jinja2 import Template
-import os
+
 import json
-from colorama import init, Fore, Back
+import os
+
+from colorama import Back, Fore, init
+from jinja2 import Template
 
 import scrapple
 from scrapple.commands import command
+
 
 class GenconfigCommand(command.Command):
     """

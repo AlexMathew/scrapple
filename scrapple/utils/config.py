@@ -6,7 +6,8 @@ Functions related to traversing the configuration file
 """
 
 from __future__ import print_function
-from colorama import init, Fore, Back
+
+from colorama import Back, Fore, init
 
 init()
 

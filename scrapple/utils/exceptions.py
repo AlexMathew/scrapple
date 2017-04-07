@@ -7,6 +7,7 @@ Functions related to handling exceptions in the input arguments
 
 import re
 
+
 class InvalidType(ValueError):
 	"""Exception class for invalid type in arguments."""
 	pass
