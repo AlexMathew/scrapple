@@ -11,6 +11,12 @@ import random
 import requests
 from lxml import etree
 
+try:
+	from urlparse import urljoin
+except ImportError:
+	from urllib.parse import urljoin
+
+
 requests.warnings.filterwarnings('ignore')
 
 
@@ -19,7 +25,9 @@ class Selector(object):
 	This class defines the basic ``Selector`` object. 
 
 	"""
+	__selector_type__ = ''
 	
+
 	def __init__(self, url):
 		"""
 		The URL of the web page to be loaded is validated - ensuring the schema has \
@@ -63,21 +71,80 @@ class Selector(object):
 			raise Exception('Ensure that you are connected to the Internet and that the page exists')
 
 
-	def extract_content(self, *args, **kwargs):
+	def extract_content(self, selector='', attr='', default='', connector='', *args, **kwargs):
 		"""
 		Method for performing the content extraction for the particular selector type. \
-		A detailed description is provided in the derived classes. 
 
+		If the selector is "url", the URL of the current web page is returned.
+		Otherwise, the selector expression is used to extract content. The particular \
+		attribute to be extracted ("text", "href", etc.) is specified in the method \
+		arguments, and this is used to extract the required content. If the content \
+		extracted is a link (from an attr value of "href" or "src"), the URL is parsed \
+		to convert the relative path into an absolute path.
+
+		If the selector does not fetch any content, the default value is returned. \
+		If no default value is specified, an exception is raised.
+
+		:param selector: The XPath expression
+		:param attr: The attribute to be extracted from the selected tag
+		:param default: The default value to be used if the selector does not return any data
+		:param connector: String connector for list of data returned for a particular selector
+		:return: The extracted content
 		"""
+		try:
+			if selector == "url":
+				return self.url
+			if attr == "text":
+				tag = self.get_selected_tag(selector=selector)
+				content = connector.join([make_ascii(x).strip() for x in tag.itertext()])
+				content = content.replace("\n", " ").strip()
+			else:
+				tag = self.get_selected_tag(selector=selector)
+				content = tag.get(attr)
+				if attr in ["href", "src"]:
+					content = urljoin(self.url, content)
+			return content
+		except IndexError:
+			if default is not "":
+				return default
+			raise Exception("There is no content for the %s selector - %s" % (self.__selector_type__, selector))
+		except XPathError:
+			raise Exception("Invalid %s selector - %s" % (self.__selector_type__, selector))
+
+
+	def get_selected_tag(self, selector='', *args, **kwargs):
 		raise NotImplementedError
 
 
-	def extract_links(self, *args, **kwargs):
+	def extract_links(self, selector='', *args, **kwargs):
 		"""
 		Method for performing the link extraction for the crawler. \
-		A detailed description is provided in the derived classes.
 
+		The selector passed as the argument is a selector to point to the anchor tags \
+		that the crawler should pass through. A list of links is obtained, and the links \
+		are iterated through. The relative paths are converted into absolute paths and \
+		a ``XpathSelector``/``CssSelector`` object (as is the case) is created with the URL of the next page as the argument \
+		and this created object is yielded. 
+
+		The extract_links method basically generates ``XpathSelector``/``CssSelector`` objects for all of \
+		the links to be crawled through.
+
+		:param selector: The selector for the anchor tags to be crawled through
+		:return: A ``XpathSelector``/``CssSelector`` object for every page to be crawled through 
+		
 		"""
+		try:
+			links = self.get_links_for_crawling(selector=selector)
+			for link in links:
+				next_url = urljoin(self.url, link.get('href'))
+				yield type(self)(next_url)
+		except XPathError:
+			raise Exception("Invalid %s selector - %s" % (self.__selector_type__, selector))
+		except Exception:
+			raise Exception("Invalid %s selector - %s" % (self.__selector_type__, selector))
+
+
+	def get_links_for_crawling(self, selector='', *args, **kwargs):
 		raise NotImplementedError
 
 
