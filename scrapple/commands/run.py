@@ -11,7 +11,8 @@ import os
 from colorama import Back, Fore, init
 
 from scrapple.commands import command
-from scrapple.selectors import css, xpath
+from scrapple.selectors.css import CssSelector
+from scrapple.selectors.xpath import XpathSelector
 from scrapple.utils.config import (InvalidConfigException, extract_fieldnames,
                                    traverse_next, validate_config)
 
@@ -74,10 +75,11 @@ class RunCommand(command.Command):
 
 
     def run(self):
-        selectorClass = getattr(
-                eval(self.config['selector_type']), 
-                self.config['selector_type'].title() + 'Selector'
-                )
+        selectorClassMapping = {
+            'xpath': XpathSelector,
+            'css': CssSelector
+        }
+        selectorClass = selectorClassMapping.get(self.config['selector_type'].lower())
         results = dict()
         results['project'] = self.args['<projectname>']
         results['data'] = list()
