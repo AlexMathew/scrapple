@@ -10,6 +10,7 @@ import random
 
 import requests
 from lxml import etree
+from lxml.etree import XPathError
 
 try:
 	from urlparse import urljoin
