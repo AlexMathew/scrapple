@@ -106,7 +106,7 @@ class Selector(object):
 				content = connector.join([make_ascii(x).strip() for x in tag.itertext()])
 				content = content.replace("\n", " ").strip()
 			else:
-				tag = self.get_tree_tag(selector=selector)
+				tag = self.get_tree_tag(selector=selector, get_one=True)
 				content = tag.get(attr)
 				if attr in ["href", "src"]:
 					content = urljoin(self.url, content)

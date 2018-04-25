@@ -29,9 +29,9 @@ class CssSelector(Selector):
 		super(CssSelector, self).__init__(url)
 
 
-	def get_selected_tag(self, selector='', get_one=False, *args, **kwargs):
+	def get_tree_tag(self, selector='', get_one=False, *args, **kwargs):
 		sel = cssselect.CSSSelector(selector)
 		tags = sel(self.tree)
 		if get_one:
 			return tags[0]
-		return tag
+		return tags

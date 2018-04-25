@@ -2,35 +2,28 @@
 	"project_name": "project3",
 	"selector_type": "css",
 	"scraping": {
-		"url": "http://pyvideo.org/pycon-us-2013/python-for-humans-1.html",
+		"url": "https://trakt.tv/shows/mr-robot",
 		"data": [
 			{
+				"field": "show_url",
+				"selector": "url",
+				"attr": "",
+				"connector": "",
+				"default": "<url>"
+			},
+			{
 				"field": "unknown",
-				"selector": "h1",
+				"selector": "h6",
 				"attr": "text",
 				"connector": "",
 				"default": "<unknown>"
 			},
 			{
-				"field": "talk_url",
-				"selector": "url",
-				"attr": "",
-				"connector": "",
-				"default": "<talk_url>"
-			},
-			{
-				"field": "title",
-				"selector": "h2",
+				"field": "year",
+				"selector": "span.year",
 				"attr": "text",
 				"connector": "",
-				"default": "<title>"
-			},
-			{
-				"field": "speaker",
-				"selector": ".author a",
-				"attr": "text",
-				"connector": "",
-				"default": "<speaker>"
+				"default": "<year>"
 			}
 		]
 	}

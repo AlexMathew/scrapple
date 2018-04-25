@@ -1,32 +1,26 @@
 {
-	"project_name": "new_project2",
-	"selector_type": "css",
-	"scraping": {
-		"url": "http://pyvideo.org/events/boston-python-meetup.html",
-		"data": [
-			{
-				"field": "event",
-				"selector": "h2",
-				"attr": "text",
-				"connector": "",
-				"default": "<event>"
-			}
-		],
-		"next": [
-			{
-				"follow_link": "div.content-list div.row h4.entry-title a",
-				"scraping": {
-					"data": [
-						{
-							"field": "talk",
-							"selector": "h2",
-							"attr": "text",
-							"connector": "",
-							"default": "<talk>"
-						}
-					]
-				}
-			}
-		]
-	}
+    "project_name": "project2_nba",
+    "selector_type": "css",
+    "scraping": {
+        "url": "https://www.basketball-reference.com/teams/",
+        "data": [
+
+        ],
+        "next": [
+            {
+                "follow_link": "#teams_active th > a",
+                "scraping": {
+                    "data": [
+                        {
+                            "field": "team",
+                            "selector": "div#info h1",
+                            "attr": "text",
+                            "default": "<no_team>",
+                            "connector": ""
+                        }
+                    ]
+                }
+            }
+        ]
+    }
 }
