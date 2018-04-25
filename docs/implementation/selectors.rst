@@ -15,6 +15,11 @@ These selector types are implemented through the ``XpathSelector`` and ``CssSele
 In the super class, the URL of the web page to be loaded is validated - ensuring the schema has been specified, and that the URL is valid. A HTTP GET request is made to load the web page, and the HTML content of this fetched web page is used to generate the :ref:`element tree <concepts-structure>`. This is the element tree that will be parsed to extract the necessary content.
 
 
+.. automodule:: scrapple.selectors.selector
+
+.. autoclass:: scrapple.selectors.selector.Selector
+   :members:
+
 .. automodule:: scrapple.selectors.xpath
 
 .. autoclass:: scrapple.selectors.xpath.XpathSelector

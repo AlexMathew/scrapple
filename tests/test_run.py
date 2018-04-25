@@ -62,7 +62,7 @@ def test_run_css_crawler():
 	rc.execute_command()
 	with open(os.path.join(os.getcwd(), 'result2.json'), 'r') as f:
 		result = json.load(f)
-	with open(os.path.join(os.getcwd(), 'expected_result2.json'), 'r') as f:
+	with open(os.path.join(os.getcwd(), 'expected_result2_20180428.json'), 'r') as f:
 		expected_result = json.load(f)
 	assert_dict_equal(result, expected_result)
 

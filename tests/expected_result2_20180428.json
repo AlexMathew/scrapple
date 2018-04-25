@@ -1,0 +1,95 @@
+{
+    "project": "project2", 
+    "data": [
+        {
+            "team": "Atlanta Hawks"
+        }, 
+        {
+            "team": "Boston Celtics"
+        }, 
+        {
+            "team": "Brooklyn Nets"
+        }, 
+        {
+            "team": "Charlotte Hornets"
+        }, 
+        {
+            "team": "Chicago Bulls"
+        }, 
+        {
+            "team": "Cleveland Cavaliers"
+        }, 
+        {
+            "team": "Dallas Mavericks"
+        }, 
+        {
+            "team": "Denver Nuggets"
+        }, 
+        {
+            "team": "Detroit Pistons"
+        }, 
+        {
+            "team": "Golden State Warriors"
+        }, 
+        {
+            "team": "Houston Rockets"
+        }, 
+        {
+            "team": "Indiana Pacers"
+        }, 
+        {
+            "team": "Los Angeles Clippers"
+        }, 
+        {
+            "team": "Los Angeles Lakers"
+        }, 
+        {
+            "team": "Memphis Grizzlies"
+        }, 
+        {
+            "team": "Miami Heat"
+        }, 
+        {
+            "team": "Milwaukee Bucks"
+        }, 
+        {
+            "team": "Minnesota Timberwolves"
+        }, 
+        {
+            "team": "New Orleans Pelicans"
+        }, 
+        {
+            "team": "New York Knicks"
+        }, 
+        {
+            "team": "Oklahoma City Thunder"
+        }, 
+        {
+            "team": "Orlando Magic"
+        }, 
+        {
+            "team": "Philadelphia 76ers"
+        }, 
+        {
+            "team": "Phoenix Suns"
+        }, 
+        {
+            "team": "Portland Trail Blazers"
+        }, 
+        {
+            "team": "Sacramento Kings"
+        }, 
+        {
+            "team": "San Antonio Spurs"
+        }, 
+        {
+            "team": "Toronto Raptors"
+        }, 
+        {
+            "team": "Utah Jazz"
+        }, 
+        {
+            "team": "Washington Wizards"
+        }
+    ]
+}

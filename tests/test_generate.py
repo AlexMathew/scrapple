@@ -51,7 +51,7 @@ def test_css_scraper_generate():
 	with open(os.path.join(os.getcwd(), 'project2.py'), 'r') as f:
 		program = f.read()
 	assert_in("from scrapple.selectors.css import CssSelector", program)
-	assert_in('page0 = CssSelector("http://pyvideo.org/events/boston-python-meetup.html")', program)
+	assert_in('page0 = CssSelector("https://www.basketball-reference.com/teams/")', program)
 
 
 def test_nonexistent_project():

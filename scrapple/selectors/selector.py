@@ -8,8 +8,17 @@ from __future__ import print_function
 
 import random
 
+from scrapple.utils.text import make_ascii
+
 import requests
 from lxml import etree
+from lxml.etree import XPathError
+
+try:
+	from urlparse import urljoin
+except ImportError:
+	from urllib.parse import urljoin
+
 
 requests.warnings.filterwarnings('ignore')
 
@@ -19,7 +28,9 @@ class Selector(object):
 	This class defines the basic ``Selector`` object. 
 
 	"""
+	__selector_type__ = ''
 	
+
 	def __init__(self, url):
 		"""
 		The URL of the web page to be loaded is validated - ensuring the schema has \
@@ -63,28 +74,198 @@ class Selector(object):
 			raise Exception('Ensure that you are connected to the Internet and that the page exists')
 
 
-	def extract_content(self, *args, **kwargs):
+	def get_tree_tag(self, selector='', get_one=False, *args, **kwargs):
+		raise NotImplementedError
+
+
+	def extract_content(self, selector='', attr='', default='', connector='', *args, **kwargs):
 		"""
 		Method for performing the content extraction for the particular selector type. \
-		A detailed description is provided in the derived classes. 
 
+		If the selector is "url", the URL of the current web page is returned.
+		Otherwise, the selector expression is used to extract content. The particular \
+		attribute to be extracted ("text", "href", etc.) is specified in the method \
+		arguments, and this is used to extract the required content. If the content \
+		extracted is a link (from an attr value of "href" or "src"), the URL is parsed \
+		to convert the relative path into an absolute path.
+
+		If the selector does not fetch any content, the default value is returned. \
+		If no default value is specified, an exception is raised.
+
+		:param selector: The XPath expression
+		:param attr: The attribute to be extracted from the selected tag
+		:param default: The default value to be used if the selector does not return any data
+		:param connector: String connector for list of data returned for a particular selector
+		:return: The extracted content
 		"""
-		raise NotImplementedError
+		try:
+			if selector.lower() == "url":
+				return self.url
+			if attr.lower() == "text":
+				tag = self.get_tree_tag(selector=selector, get_one=True)
+				content = connector.join([make_ascii(x).strip() for x in tag.itertext()])
+				content = content.replace("\n", " ").strip()
+			else:
+				tag = self.get_tree_tag(selector=selector, get_one=True)
+				content = tag.get(attr)
+				if attr in ["href", "src"]:
+					content = urljoin(self.url, content)
+			return content
+		except IndexError:
+			if default is not "":
+				return default
+			raise Exception("There is no content for the %s selector - %s" % (self.__selector_type__, selector))
+		except XPathError:
+			raise Exception("Invalid %s selector - %s" % (self.__selector_type__, selector))
 
 
-	def extract_links(self, *args, **kwargs):
+	def extract_links(self, selector='', *args, **kwargs):
 		"""
 		Method for performing the link extraction for the crawler. \
-		A detailed description is provided in the derived classes.
 
+		The selector passed as the argument is a selector to point to the anchor tags \
+		that the crawler should pass through. A list of links is obtained, and the links \
+		are iterated through. The relative paths are converted into absolute paths and \
+		a ``XpathSelector``/``CssSelector`` object (as is the case) is created with the URL of the next page as the argument \
+		and this created object is yielded. 
+
+		The extract_links method basically generates ``XpathSelector``/``CssSelector`` objects for all of \
+		the links to be crawled through.
+
+		:param selector: The selector for the anchor tags to be crawled through
+		:return: A ``XpathSelector``/``CssSelector`` object for every page to be crawled through 
+		
 		"""
-		raise NotImplementedError
+		try:
+			links = self.get_tree_tag(selector=selector)
+			for link in links:
+				next_url = urljoin(self.url, link.get('href'))
+				yield type(self)(next_url)
+		except XPathError:
+			raise Exception("Invalid %s selector - %s" % (self.__selector_type__, selector))
+		except Exception:
+			raise Exception("Invalid %s selector - %s" % (self.__selector_type__, selector))
 
 
-	def extract_tabular(self, *args, **kwargs):
+	def extract_tabular(self, header='', prefix='', suffix='', table_type='', *args, **kwargs):
 		"""
 		Method for performing the tabular data extraction. \
-		A detailed description is provided in the derived classes.
 
+		:param result: A dictionary containing the extracted data so far
+		:param table_type: Can be "rows" or "columns". This determines the type of table to be extracted. \
+		A row extraction is when there is a single row to be extracted and mapped to a set of headers. \
+		A column extraction is when a set of rows have to be extracted, giving a list of header-value mappings.
+		:param header: The headers to be used for the table. This can be a list of headers, or a selector that gives the list of headers
+		:param prefix: A prefix to be added to each header
+		:param suffix: A suffix to be added to each header
+		:param selector: For row extraction, this is a selector that gives the row to be extracted. \
+		For column extraction, this is a list of selectors for each column.
+		:param attr: The attribute to be extracted from the selected tag
+		:param default: The default value to be used if the selector does not return any data
+		:param verbosity: The verbosity set as the argument for scrapple run
+		:return: A 2-tuple containing the list of all the column headers extracted and the list of \
+		dictionaries which contain (header, content) pairs
 		"""
-		raise NotImplementedError
+		if type(header) in [str, unicode]:
+			try:
+				header_list = self.get_tree_tag(header)
+				table_headers = [prefix + h.text + suffix for h in header_list]
+			except XPathError:
+				raise Exception("Invalid %s selector for table header - %s" % (self.__selector_type__, header))
+			except Exception:
+				raise Exception("Invalid %s selector for table header - %s" % (self.__selector_type__, header))
+		else:
+			table_headers = [prefix + h + suffix for h in header]
+		if len(table_headers) == 0:
+			raise Exception("Invalid %s selector for table header - %s" % (self.__selector_type__, header))
+		if table_type not in ["rows", "columns"]:
+			raise Exception("Specify 'rows' or 'columns' in table_type")
+		if table_type == "rows":
+			result_list = self.extract_rows(table_headers=table_headers, *args, **kwargs)
+		else:
+			result_list = self.extract_columns(table_headers=table_headers, *args, **kwargs)
+		return table_headers, result_list
+
+
+	def extract_rows(self, result={}, selector='', table_headers=[], attr='', connector='', default='', verbosity=0, *args, **kwargs):
+		"""
+		Row data extraction for extract_tabular
+		"""
+		result_list = []
+
+		try:
+			values = self.get_tree_tag(selector)
+			if len(table_headers) >= len(values):
+				from itertools import izip_longest
+				pairs = izip_longest(table_headers, values, fillvalue=default)
+			else:
+				from itertools import izip
+				pairs = izip(table_headers, values)
+			for head, val in pairs:
+				if verbosity > 1:
+					print("\nExtracting", head, "attribute", sep=' ', end='')
+				if attr.lower() == "text":
+					try:
+						content = connector.join([make_ascii(x).strip() for x in val.itertext()])
+					except Exception:
+						content = default
+					content = content.replace("\n", " ").strip()
+				else:
+					content = val.get(attr)
+					if attr in ["href", "src"]:
+						content = urljoin(self.url, content)
+				result[head] = content
+			result_list.append(result)
+		except XPathError:
+			raise Exception("Invalid %s selector - %s" % (self.__selector_type__, selector))
+		except TypeError:
+			raise Exception("Selector expression string to be provided. Got " + selector)
+
+		return result_list
+
+
+	def extract_columns(self, result={}, selector='', table_headers=[], attr='', connector='', default='', verbosity=0, *args, **kwargs):
+		"""
+		Column data extraction for extract_tabular
+		"""
+		result_list = []
+
+		try:
+			if type(selector) in [str, unicode]:
+				selectors = [selector]
+			elif type(selector) == list:
+				selectors = selector[:]
+			else:
+				raise Exception("Use a list of selector expressions for the various columns")
+			from itertools import izip, count
+			pairs = izip(table_headers, selectors)
+			columns = {}
+			for head, selector in pairs:
+				columns[head] = self.get_tree_tag(selector)
+			try:
+				for i in count(start=0):
+					r = result.copy()
+					for head in columns.keys():
+						if verbosity > 1:
+							print("\nExtracting", head, "attribute", sep=' ', end='')
+						col = columns[head][i]
+						if attr == "text":
+							try:
+								content = connector.join([make_ascii(x).strip() for x in col.itertext()])
+							except Exception:
+								content = default
+							content = content.replace("\n", " ").strip()
+						else:
+							content = col.get(attr)
+							if attr in ["href", "src"]:
+								content = urljoin(self.url, content)
+						r[head] = content
+					result_list.append(r)
+			except IndexError:
+				pass
+		except XPathError:
+			raise Exception("Invalid %s selector - %s" % (self.__selector_type__, selector))
+		except TypeError:
+			raise Exception("Selector expression string to be provided. Got " + selector)
+
+		return result_list

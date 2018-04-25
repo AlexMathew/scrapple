@@ -13,5 +13,11 @@ def get_command_class(command):
     :return: The command class corresponding to the selected command
     """
     from scrapple.commands import genconfig, generate, run, web
-    cmdClass = getattr(eval(command), command.title() + 'Command')
+    commandMapping = {
+    	'genconfig': genconfig,
+    	'generate': generate,
+    	'run': run,
+    	'web': web
+    }
+    cmdClass = getattr(commandMapping.get(command), command.title() + 'Command')
     return cmdClass
