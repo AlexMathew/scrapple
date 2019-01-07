@@ -53,3 +53,5 @@ coverage.xml
 
 *.dot
 *.png 
+
+.vscode
