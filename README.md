@@ -1,6 +1,7 @@
 Scrapple
 ========
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7d0291fc14fe408fb865a0df195ab3e9)](https://app.codacy.com/app/AlexMathew/scrapple?utm_source=github.com&utm_medium=referral&utm_content=AlexMathew/scrapple&utm_campaign=Badge_Grade_Settings)
 [![Join the chat at https://gitter.im/AlexMathew/scrapple](https://badges.gitter.im/AlexMathew/scrapple.svg)](https://gitter.im/AlexMathew/scrapple?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Scrapple on PyPI](https://badge.fury.io/py/scrapple.svg)](https://badge.fury.io/py/scrapple)
 [![Build Status](https://travis-ci.org/AlexMathew/scrapple.svg?branch=master)](https://travis-ci.org/AlexMathew/scrapple)
