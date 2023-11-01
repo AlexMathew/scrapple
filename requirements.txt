@@ -5,3 +5,4 @@ requests>=2.3.0
 colorama>=0.3.3
 docopt>=0.6.1
 cssselect>=0.9.1
+werkzeug>=3.0.1 # not directly required, pinned by Snyk to avoid a vulnerability
